@@ -69,5 +69,6 @@ public class LoginTest extends BaseTest {
         AdmissionsPage admissionsPage = loginPage.loginWithValidCredentialsToAdmissionsPage();
         // Then
         assertThat(admissionsPage.getPageTitle()).isEqualTo(admissionsPage.PAGE_TITLE);
+
     }
 }
