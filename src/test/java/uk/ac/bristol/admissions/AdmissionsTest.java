@@ -29,7 +29,6 @@ public class AdmissionsTest extends BaseTest {
         assertThat(admissionsPage.isElementDisplayed(admissionsPage.ACD_LINK_IDENTIFIER)).isTrue();
         assertThat(admissionsPage.isElementDisplayed(admissionsPage.RCD_LINK_IDENTIFIER)).isTrue();
 
-
     }
 
     @Test
