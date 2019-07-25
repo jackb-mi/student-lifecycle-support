@@ -27,17 +27,4 @@ public class HomePage extends BasePage {
         AdmissionsPage admissionsPage = new AdmissionsPage(driver);
         return admissionsPage;
     }
-
-    public RegistrationsPage clickRegistrationsLink() {
-
-        try {
-            driver.findElement(REGISTRATIONS_LINK_IDENTIFIER).click();
-        } catch (NoSuchElementException e) {
-            fail("Admissions Link Not Found");
-        }
-
-        RegistrationsPage registrationsPage = new RegistrationsPage(driver);
-        return registrationsPage;
-
-    }
 }
