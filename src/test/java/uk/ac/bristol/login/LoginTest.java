@@ -5,7 +5,6 @@ package uk.ac.bristol.login;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.PageObjects.AdmissionsPage;
-import uk.ac.bristol.PageObjects.BbcPage;
 import uk.ac.bristol.PageObjects.LoginPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,19 +17,11 @@ public class LoginTest extends BaseTest {
     private String superUserPassword = "Test@2PAssBook_";
 
     @Test
-    public void shouldGoToBbcHomePage() {
-        // Given / When
-        BbcPage bbcPage = loadBbcPage(driver);
-        // Then
-        assertThat(bbcPage.getPageTitle()).isEqualTo(bbcPage.PAGE_TITLE);
-    }
-
-    @Test
     public void shouldDisplayLoginPage() {
         // Given / When
         LoginPage loginPage = loadLoginPage(driver);
         // Then
-        assertThat(loginPage.getPageTitle()).isEqualTo(loginPage.PAGE_TITLE);
+        assertThat(loginPage.isElementDisplayed(loginPage.USERNAME_INPUT_IDENTIFIER)).isTrue();
     }
 
     @Test
@@ -38,7 +29,6 @@ public class LoginTest extends BaseTest {
         // Given
         LoginPage loginPage = loadLoginPage(driver);
         loginPage.enterUsernameAndPassword(unknownUsername, unknownPassword);
-//        assertThat(loginPage.isElementDisplayed(loginPage.ERROR_MESSAGE_IDENTIFIER)).isFalse();
         // When
         loginPage = loginPage.attemptLoginWithInvalidCredentials();
         // Then

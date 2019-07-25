@@ -1,8 +1,14 @@
 package uk.ac.bristol.PageObjects;
 
 
+import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
+
+import static com.jayway.awaitility.Awaitility.await;
+import static org.testng.AssertJUnit.fail;
 
 public class LoginPage extends BasePage {
 
@@ -13,7 +19,7 @@ public class LoginPage extends BasePage {
 
 
     private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector("body > main > div > form > div:nth-child(2) > div > div > h1");
-    private static final By USERNAME_INPUT_IDENTIFIER = By.cssSelector("#MUA_CODE\\.DUMMY\\.MENSYS");
+    public static final By USERNAME_INPUT_IDENTIFIER = By.cssSelector("#MUA_CODE\\.DUMMY\\.MENSYS");
     private static final By PASSWORD_INPUT_IDENTIFIER = By.cssSelector("#PASSWORD\\.DUMMY\\.MENSYS");
     private static final By SIGN_IN_BUTTON_IDENTIFIER = By.cssSelector("input.sv-btn");
     public static final By ERROR_MESSAGE_HEADING_IDENTIFIER = By.cssSelector(".sv-panel-danger > div:nth-child(1)");
@@ -35,6 +41,13 @@ public class LoginPage extends BasePage {
     }
 
     public String getPageTitle() {
+        try {
+           await().atMost(10, TimeUnit.SECONDS).until(() -> (isElementDisplayed(PAGE_TITLE_IDENTIFIER)));
+        }
+        catch(ConditionTimeoutException cte) {
+            fail("Page Title for Log In Page Not Found");
+        }
+
         return getTextFromElement(PAGE_TITLE_IDENTIFIER);
     }
 

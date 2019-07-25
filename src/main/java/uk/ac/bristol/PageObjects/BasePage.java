@@ -1,7 +1,13 @@
 package uk.ac.bristol.PageObjects;
 
+import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
+
+import static com.jayway.awaitility.Awaitility.await;
+import static org.testng.AssertJUnit.fail;
 
 public class BasePage {
 
@@ -17,6 +23,14 @@ public class BasePage {
     }
 
     public String getPageTitle() {
+
+        try {
+            await().atMost(10, TimeUnit.SECONDS).until(() -> (isElementDisplayed(PAGE_TITLE_IDENTIFIER)));
+        }
+        catch(ConditionTimeoutException cte) {
+            fail("Page Title Not Found");
+        }
+
         return getTextFromElement(PAGE_TITLE_IDENTIFIER);
     }
 
