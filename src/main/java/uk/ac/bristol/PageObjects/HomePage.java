@@ -1,7 +1,11 @@
 package uk.ac.bristol.PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import static org.junit.Assert.fail;
+
 
 public class HomePage extends BasePage {
 
@@ -12,7 +16,12 @@ public class HomePage extends BasePage {
     }
 
     public AdmissionsPage clickAdmissionsLink() {
-        driver.findElement(ADMISSIONS_LINK_IDENTIFIER).click();
+
+        try {
+            driver.findElement(ADMISSIONS_LINK_IDENTIFIER).click();
+        } catch (NoSuchElementException e) {
+            fail("Admissions Link Not Found");
+        }
 
         AdmissionsPage admissionsPage = new AdmissionsPage(driver);
         return admissionsPage;
