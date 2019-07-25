@@ -13,10 +13,7 @@ import static org.testng.AssertJUnit.fail;
 public class LoginPage extends BasePage {
 
 //    private static final String LOGIN_PAGE_URL = "test.sls.bristol.ac.uk/urd/sits.urd/run/SIW_LGN";
-//    private static final String LOGIN_PAGE_URL = "https://evision-b.apps.bris.ac.uk/urd/sits.urd/run/SIW_LGN";
     private static final String LOGIN_PAGE_URL = "evision-b.apps.bris.ac.uk/urd/sits.urd/run/SIW_LGN";
-
-
 
     private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector("body > main > div > form > div:nth-child(2) > div > div > h1");
     public static final By USERNAME_INPUT_IDENTIFIER = By.cssSelector("#MUA_CODE\\.DUMMY\\.MENSYS");
