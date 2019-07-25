@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 import static com.jayway.awaitility.Awaitility.await;
-import static org.testng.AssertJUnit.fail;
+import static org.junit.Assert.fail;
 
 public class LoginPage extends BasePage {
 

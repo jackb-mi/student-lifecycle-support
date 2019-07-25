@@ -9,8 +9,5 @@
         <module name="student-lifecycle-support" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="student-lifecycle-support" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
