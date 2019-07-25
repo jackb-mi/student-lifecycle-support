@@ -16,7 +16,7 @@ public class LoginPage extends BasePage {
     private static final String LOGIN_PAGE_URL = "evision-b.apps.bris.ac.uk/urd/sits.urd/run/SIW_LGN";
 
     private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector("body > main > div > form > div:nth-child(2) > div > div > h1");
-    public static final By USERNAME_INPUT_IDENTIFIER = By.cssSelector("#MUA_CODE\\.DUMMY\\.MENSYS");
+    private static final By USERNAME_INPUT_IDENTIFIER = By.cssSelector("#MUA_CODE\\.DUMMY\\.MENSYS");
     private static final By PASSWORD_INPUT_IDENTIFIER = By.cssSelector("#PASSWORD\\.DUMMY\\.MENSYS");
     private static final By SIGN_IN_BUTTON_IDENTIFIER = By.cssSelector("input.sv-btn");
     public static final By ERROR_MESSAGE_HEADING_IDENTIFIER = By.cssSelector(".sv-panel-danger > div:nth-child(1)");
