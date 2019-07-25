@@ -10,6 +10,7 @@ import static org.junit.Assert.fail;
 public class HomePage extends BasePage {
 
     private static final By ADMISSIONS_LINK_IDENTIFIER = By.cssSelector("body > main > div > div.sv-row > div > div > div.sv-list-group > div:nth-child(1) > a");
+    private static final By REGISTRATIONS_LINK_IDENTIFIER = By.cssSelector("#REG001");
 
     public HomePage(ChromeDriver driver) {
         super(driver);
@@ -25,5 +26,18 @@ public class HomePage extends BasePage {
 
         AdmissionsPage admissionsPage = new AdmissionsPage(driver);
         return admissionsPage;
+    }
+
+    public RegistrationsPage clickRegistrationsLink() {
+
+        try {
+            driver.findElement(REGISTRATIONS_LINK_IDENTIFIER).click();
+        } catch (NoSuchElementException e) {
+            fail("Admissions Link Not Found");
+        }
+
+        RegistrationsPage registrationsPage = new RegistrationsPage(driver);
+        return registrationsPage;
+
     }
 }
