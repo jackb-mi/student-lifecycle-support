@@ -83,7 +83,7 @@ public class AdmissionsTest extends BaseTest {
     }
 
     @Test
-    public void shouldNavigateToOfferGroups() {
+    public void shouldShowCorrectFolderTreeColumns() {
         //Given
         HomePage homePage = shouldAccessHomepage(admissionsUserUsername, admissionsUserPassword);
         AdmissionsPage admissionsPage = homePage.clickAdmissionsLink();
