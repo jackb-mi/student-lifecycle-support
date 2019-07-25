@@ -42,9 +42,9 @@ public class AdmissionsTest extends BaseTest {
         assertThat(admissionsPage.isElementDisplayed(admissionsPage.USER_GUIDES_LINK_IDENTIFIER)).isTrue();
         assertThat(admissionsPage.isElementDisplayed(admissionsPage.POLICY_GUIDENCE_LINK_IDENTIFIER)).isTrue();
 
-        assertThat(admissionsPage.isElementDisplayed(admissionsPage.ATTRIBUTE_MANAGEMENT_TITLE_IDENTIFIER)).isTrue();
-        assertThat(admissionsPage.isElementDisplayed(admissionsPage.MANAGE_COURSE_ATTRIBUTES_LINK_IDENTIFIER)).isTrue();
-        assertThat(admissionsPage.isElementDisplayed(admissionsPage.MANAGE_ADMISSIONS_THRESHOLDS_LINK_IDENTIFIER)).isTrue();
+//        assertThat(admissionsPage.isElementDisplayed(admissionsPage.ATTRIBUTE_MANAGEMENT_TITLE_IDENTIFIER)).isTrue();
+//        assertThat(admissionsPage.isElementDisplayed(admissionsPage.MANAGE_COURSE_ATTRIBUTES_LINK_IDENTIFIER)).isTrue();
+//        assertThat(admissionsPage.isElementDisplayed(admissionsPage.MANAGE_ADMISSIONS_THRESHOLDS_LINK_IDENTIFIER)).isTrue();
 
 
 
