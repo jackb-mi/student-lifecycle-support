@@ -79,6 +79,7 @@ public class AdmissionsTest extends BaseTest {
         assertThat(admissionsPage.isElementDisplayed(admissionsPage.DECISION_CHECKER_LINK_IDENTIFIER)).isTrue();
         assertThat(admissionsPage.isElementDisplayed(admissionsPage.WP_PROJECTS_LINK_IDENTIFIER)).isTrue();
         assertThat(admissionsPage.isElementDisplayed(admissionsPage.FOLDEROVERVIEW_LINK_IDENTIFIER)).isTrue();
+
     }
 
     @Test
