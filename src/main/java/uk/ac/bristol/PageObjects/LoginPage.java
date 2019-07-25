@@ -1,16 +1,19 @@
 package uk.ac.bristol.PageObjects;
 
 
+import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
+
+import static com.jayway.awaitility.Awaitility.await;
+import static org.testng.AssertJUnit.fail;
 
 public class LoginPage extends BasePage {
 
 //    private static final String LOGIN_PAGE_URL = "test.sls.bristol.ac.uk/urd/sits.urd/run/SIW_LGN";
-//    private static final String LOGIN_PAGE_URL = "https://evision-b.apps.bris.ac.uk/urd/sits.urd/run/SIW_LGN";
     private static final String LOGIN_PAGE_URL = "evision-b.apps.bris.ac.uk/urd/sits.urd/run/SIW_LGN";
-
-
 
     private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector("body > main > div > form > div:nth-child(2) > div > div > h1");
     private static final By USERNAME_INPUT_IDENTIFIER = By.cssSelector("#MUA_CODE\\.DUMMY\\.MENSYS");
@@ -35,6 +38,13 @@ public class LoginPage extends BasePage {
     }
 
     public String getPageTitle() {
+        try {
+           await().atMost(10, TimeUnit.SECONDS).until(() -> (isElementDisplayed(PAGE_TITLE_IDENTIFIER)));
+        }
+        catch(ConditionTimeoutException cte) {
+            fail("Page Title for Log In Page Not Found");
+        }
+
         return getTextFromElement(PAGE_TITLE_IDENTIFIER);
     }
 
