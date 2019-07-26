@@ -5,9 +5,6 @@ import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.PageObjects.AdmissionsPage;
 import uk.ac.bristol.PageObjects.FolderTreeOfferGroupPage;
 import uk.ac.bristol.PageObjects.HomePage;
-import uk.ac.bristol.PageObjects.LoginPage;
-
-import java.security.PrivateKey;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
