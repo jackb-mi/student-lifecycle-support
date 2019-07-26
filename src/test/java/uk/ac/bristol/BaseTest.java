@@ -1,25 +1,33 @@
 package uk.ac.bristol;
 
+import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.PageObjects.HomePage;
 import uk.ac.bristol.PageObjects.LoginPage;
 
+import java.lang.reflect.Method;
+
 public class BaseTest {
 
     public ChromeDriver driver;
 //
-    @BeforeTest
-    public void dataSetUp() {
-        System.out.println("This code is being called as @BeforeTest");
+    @BeforeMethod
+    public void beforeMethod(Method method) {
+        System.out.println("Running " + this.getClass().getName() + "#" + method.getName());
         this.driver = new ChromeDriver();
     }
 
-    @AfterTest
-    public void dataTearDown() {
-        System.out.println("This code is being called as @AfterTest");
-        driver.close();
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
 
+        if(driver != null) {
+            try {
+                driver.quit();
+            } catch (WebDriverException e) {
+                System.out.print("***** CAUGHT EXCEPTION IN DRIVER TEARDOWN");
+            }
+        }
     }
 
     public LoginPage loadLoginPage(ChromeDriver driver) {
