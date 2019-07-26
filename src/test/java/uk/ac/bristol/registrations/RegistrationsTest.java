@@ -14,7 +14,7 @@ public class RegistrationsTest extends BaseTest {
     private String admissionsUserPassword = "P1";
 
     @Test
-    public void shouldShouldAdmissionsDashboardLinks() {
+    public void shouldNavigateToRegistrationsPage() {
         // Given
         HomePage homePage = shouldAccessHomepage(admissionsUserUsername, admissionsUserPassword);
         // When
