@@ -20,7 +20,7 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        System.out.print("This code is being called as @AfterMethod");
+
         if(driver != null) {
             try {
                 driver.quit();
