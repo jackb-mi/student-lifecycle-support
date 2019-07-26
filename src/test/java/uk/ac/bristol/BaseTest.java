@@ -14,7 +14,7 @@ public class BaseTest {
 //
     @BeforeMethod
     public void beforeMethod(Method method) {
-        System.out.print("Running " + this.getClass().getName() + "#" + method.getName());
+        System.out.println("Running " + this.getClass().getName() + "#" + method.getName());
         this.driver = new ChromeDriver();
     }
 
