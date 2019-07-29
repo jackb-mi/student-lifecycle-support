@@ -2,9 +2,10 @@ package uk.ac.bristol.admissions;
 
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
-import uk.ac.bristol.PageObjects.AdmissionsPage;
-import uk.ac.bristol.PageObjects.FolderTreeOfferGroupPage;
-import uk.ac.bristol.PageObjects.HomePage;
+import uk.ac.bristol.enums.OfferGroups;
+import uk.ac.bristol.pageobjects.AdmissionsPage;
+import uk.ac.bristol.pageobjects.FolderTreeOfferGroupPage;
+import uk.ac.bristol.pageobjects.HomePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -86,6 +87,7 @@ public class AdmissionsTest extends BaseTest {
         AdmissionsPage admissionsPage = homePage.clickAdmissionsLink();
         FolderTreeOfferGroupPage folderTreeOfferGroupPage = admissionsPage.goToFolderTreeOfferGroups();
 //        assertThat(folderTreeOfferGroupPage.isElementDisplayed(folderTreeOfferGroupPage.OFFER_GROUP_HEADER_IDENTIFIER)).isTrue();
+        folderTreeOfferGroupPage.selectOfferGroup(OfferGroups.AEROSPACE_ENGINEERING.getId());
     }
 
 
