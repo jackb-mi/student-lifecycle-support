@@ -2,8 +2,8 @@ package uk.ac.bristol;
 
 import org.testng.annotations.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import uk.ac.bristol.PageObjects.HomePage;
-import uk.ac.bristol.PageObjects.LoginPage;
+import uk.ac.bristol.pageobjects.HomePage;
+import uk.ac.bristol.pageobjects.LoginPage;
 
 public class BaseTest {
 

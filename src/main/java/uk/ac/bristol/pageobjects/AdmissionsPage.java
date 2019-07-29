@@ -1,4 +1,4 @@
-package uk.ac.bristol.PageObjects;
+package uk.ac.bristol.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -69,8 +69,11 @@ public class AdmissionsPage extends BasePage {
     }
 
     public FolderTreeOfferGroupPage goToFolderTreeOfferGroups() {
+        // click element
         driver.findElement(UNDERGRADUATE_LINK_IDENTIFIER).click();
+        // create new class instance for page we are going to
         FolderTreeOfferGroupPage folderTreeOfferGroup = new FolderTreeOfferGroupPage(driver);
+        // return new class instance so that we can use the new page
         return folderTreeOfferGroup;
     }
 

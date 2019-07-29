@@ -1,9 +1,9 @@
-package uk.ac.bristol.PageObjects;
+package uk.ac.bristol.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static uk.ac.bristol.PageObjects.AdmissionsPage.UNDERGRADUATE_LINK_IDENTIFIER;
+import static uk.ac.bristol.pageobjects.AdmissionsPage.UNDERGRADUATE_LINK_IDENTIFIER;
 
 public class FolderTreeOfferGroupPage extends BasePage{
     public static final String PAGE_TITLE = "Admissions Dashboard";
@@ -54,7 +54,7 @@ public class FolderTreeOfferGroupPage extends BasePage{
     public static final By FILM_ENGLISH_IDENTIFIER = By.id("radioFILM/ENGLISH");
     public static final By FILM_MODERN_LANGUAGE_IDENTIFIER = By.id("radioFILM/ML");
     public static final By FILM_INNOVATION_IDENTIFIER = By.id("radioFILM/INNOV");
-    public static final By FRENCH_IDENTIFIER = By.id("radioFILM/INNOV");
+    public static final By FRENCH_IDENTIFIER = By.id("radioFRENCH");
     public static final By GATEWWAY_DENTISTRY_IDENTIFIER = By.id("radioGATEWAY_DENT");
     public static final By GATEWWAY_MEDICINE_IDENTIFIER = By.id("radioGATEWAY_MED");
     public static final By GATEWWAY_VET_SCIENCE_IDENTIFIER = By.id("radioGATEWAY_VET");
@@ -114,22 +114,10 @@ public class FolderTreeOfferGroupPage extends BasePage{
     public static final By THEATRE_ENGLISH_IDENTIFIER = By.id("radioTHEATRE/ENGLISH");
     public static final By THEATRE_FILM_IDENTIFIER = By.id("radioTHEATRE/FILM");
     public static final By THEATRE_MODERN_LANGUAGES_IDENTIFIER = By.id("radioTHEATRE/ML");
-    public static final By THEATRE_PWERFORMANCE_STUDIES_IDENTIFIER = By.id("radioTHEATRE");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public static final By THEATRE_PERFORMANCE_STUDIES_IDENTIFIER = By.id("radioTHEATRE");
+    public static final By THEATRE_INNOVATION_IDENTIFIER = By.id("radioTHEATRE/INNOV");
+    public static final By THEOLOGY_RELIGIOUS_STUDIES_IDENTIFIER = By.id("radioTHEOL_&_RS");
+    public static final By THEOLOGY_SOCIOLOGY_IDENTIFIER = By.id("radioTHEOL/SOCIOL");
 
 
 
@@ -142,5 +130,11 @@ public class FolderTreeOfferGroupPage extends BasePage{
         driver.findElement(UNDERGRADUATE_LINK_IDENTIFIER).click();
         FolderTreeOfferGroupPage folderTreeOfferGroup = new FolderTreeOfferGroupPage(driver);
         return folderTreeOfferGroup;
+    }
+//  Method to select the offer group. Provide offer group name.
+    public void selectOfferGroup(String OFFER_GROUP) {
+        driver.findElement(By.id(OFFER_GROUP)).click();
+
+
     }
 }
