@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import uk.ac.bristol.pageObjects.HomePage;
-import uk.ac.bristol.pageObjects.LoginPage;
+import uk.ac.bristol.pageobjects.HomePage;
+import uk.ac.bristol.pageobjects.LoginPage;
 
 import java.lang.reflect.Method;
 

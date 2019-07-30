@@ -1,4 +1,4 @@
-package uk.ac.bristol.pageObjects;
+package uk.ac.bristol.pageobjects;
 
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.openqa.selenium.*;
