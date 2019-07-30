@@ -1,9 +1,9 @@
-package uk.ac.bristol.PageObjects;
+package uk.ac.bristol.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static uk.ac.bristol.PageObjects.AdmissionsPage.UNDERGRADUATE_LINK_IDENTIFIER;
+import static uk.ac.bristol.pageObjects.AdmissionsPage.UNDERGRADUATE_LINK_IDENTIFIER;
 
 public class FolderTreeOfferGroupPage extends BasePage{
     public static final String PAGE_TITLE = "Admissions Dashboard";
