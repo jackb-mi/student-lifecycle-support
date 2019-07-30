@@ -2,9 +2,9 @@ package uk.ac.bristol.admissions;
 
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
-import uk.ac.bristol.PageObjects.AdmissionsPage;
-import uk.ac.bristol.PageObjects.FolderTreeOfferGroupPage;
-import uk.ac.bristol.PageObjects.HomePage;
+import uk.ac.bristol.pageObjects.AdmissionsPage;
+import uk.ac.bristol.pageObjects.FolderTreeOfferGroupPage;
+import uk.ac.bristol.pageObjects.HomePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

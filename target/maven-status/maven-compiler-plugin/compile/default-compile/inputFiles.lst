@@ -1,5 +1,7 @@
-/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/PageObjects/FolderTreeOfferGroupPage.java
-/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/PageObjects/LoginPage.java
-/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/PageObjects/BasePage.java
-/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/PageObjects/HomePage.java
-/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/PageObjects/AdmissionsPage.java
+/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/pageObjects/RegistrationPage.java
+/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/pageObjects/FolderTreeOfferGroupPage.java
+/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/pageObjects/HomePage.java
+/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/pageObjects/AdmissionsPage.java
+/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/pageObjects/BasePage.java
+/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/pageObjects/FolderTreePage.java
+/Users/jack/Documents/student-lifecycle-support/src/main/java/uk/ac/bristol/pageObjects/LoginPage.java

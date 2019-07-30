@@ -1,5 +1,7 @@
-uk/ac/bristol/PageObjects/BasePage.class
-uk/ac/bristol/PageObjects/FolderTreeOfferGroupPage.class
-uk/ac/bristol/PageObjects/HomePage.class
-uk/ac/bristol/PageObjects/AdmissionsPage.class
-uk/ac/bristol/PageObjects/LoginPage.class
+uk/ac/bristol/pageObjects/FolderTreeOfferGroupPage.class
+uk/ac/bristol/pageObjects/FolderTreePage.class
+uk/ac/bristol/pageObjects/BasePage.class
+uk/ac/bristol/pageObjects/HomePage.class
+uk/ac/bristol/pageObjects/LoginPage.class
+uk/ac/bristol/pageObjects/AdmissionsPage.class
+uk/ac/bristol/pageObjects/RegistrationPage.class
