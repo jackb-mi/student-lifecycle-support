@@ -4,31 +4,53 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import uk.ac.bristol.pageobjects.HomePage;
 import uk.ac.bristol.pageobjects.LoginPage;
 
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     public ChromeDriver driver;
     public By PAGE_TITLE_IDENTIFIER = By.cssSelector("#sitsportalpagetitle");
 
-    public BaseTest() {
+    @BeforeMethod
+    public void beforeMethod(Method method) {
+        System.out.println("Running " + this.getClass().getName() + "#" + method.getName());
+        instantiateChromeDriver();
     }
 
-    @BeforeTest
-    public void dataSetUp() {
-        System.out.println("This code is being called as @BeforeTest");
-        this.driver = new ChromeDriver();
+    private void instantiateChromeDriver() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("start-maximized");
+        chromeOptions.addArguments("test-type");
+        chromeOptions.addArguments("disable-plugins");
+        chromeOptions.addArguments("disable-extensions");
+        //  chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
+
+        this.driver = new ChromeDriver(chromeOptions);
+
+        org.openqa.selenium.Dimension d = new org.openqa.selenium.Dimension(1900, 1900);
+        driver.manage().window().setSize(d);
     }
 
-    @AfterTest
-    public void dataTearDown() {
-        System.out.println("This code is being called as @AfterTest");
-        this.driver.close();
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+
+        if(driver != null) {
+            try {
+                driver.quit();
+            } catch (WebDriverException e) {
+                System.out.print("***** CAUGHT EXCEPTION IN DRIVER TEARDOWN");
+            }
+        }
     }
 
     public LoginPage loadLoginPage(ChromeDriver driver) {
@@ -37,7 +59,7 @@ public class BaseTest {
     }
 
     public HomePage shouldAccessHomepage(String username, String password) {
-        LoginPage loginPage = this.loadLoginPage(this.driver);
+        LoginPage loginPage = loadLoginPage(driver);
         loginPage.enterUsernameAndPassword(username, password);
         HomePage homePage = loginPage.loginWithValidCredentials();
         return homePage;

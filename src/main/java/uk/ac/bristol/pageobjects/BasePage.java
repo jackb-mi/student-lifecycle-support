@@ -13,7 +13,7 @@ public class BasePage {
     public By PAGE_TITLE_IDENTIFIER = By.cssSelector("#sitsportalpagetitle");
 
     public BasePage(ChromeDriver driver) {
-        driver = driver;
+        this.driver = driver;
     }
 
     public String buildUrl(String endPoint) {
