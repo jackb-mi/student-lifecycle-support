@@ -1,6 +1,7 @@
 package uk.ac.bristol;
 
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.PageObjects.HomePage;
@@ -11,11 +12,27 @@ import java.lang.reflect.Method;
 public class BaseTest {
 
     public ChromeDriver driver;
-//
+
     @BeforeMethod
     public void beforeMethod(Method method) {
         System.out.println("Running " + this.getClass().getName() + "#" + method.getName());
-        this.driver = new ChromeDriver();
+        instantiateChromeDriver();
+    }
+
+    private void instantiateChromeDriver() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("start-maximized");
+        chromeOptions.addArguments("test-type");
+        chromeOptions.addArguments("disable-plugins");
+        chromeOptions.addArguments("disable-extensions");
+        //  chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
+
+        this.driver = new ChromeDriver(chromeOptions);
+
+        org.openqa.selenium.Dimension d = new org.openqa.selenium.Dimension(1900, 1900);
+        driver.manage().window().setSize(d);
     }
 
     @AfterMethod(alwaysRun = true)
