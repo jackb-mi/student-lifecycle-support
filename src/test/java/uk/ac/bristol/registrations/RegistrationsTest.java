@@ -2,8 +2,8 @@ package uk.ac.bristol.registrations;
 
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
-import uk.ac.bristol.pageObjects.HomePage;
-import uk.ac.bristol.pageObjects.RegistrationPage;
+import uk.ac.bristol.pageobjects.HomePage;
+import uk.ac.bristol.pageobjects.RegistrationPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,7 +20,7 @@ public class RegistrationsTest extends BaseTest {
         // When
         RegistrationPage registrationPage = homePage.clickRegistrationsLink();
         // Then
-        assertThat(registrationPage.getPageTitle()).isEqualTo(registrationPage.PAGE_TITLE);
+        assertThat(getPageTitle()).isEqualTo(registrationPage.PAGE_TITLE);
     }
 
 }

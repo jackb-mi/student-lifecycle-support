@@ -1,12 +1,15 @@
-package uk.ac.bristol.pageObjects;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package uk.ac.bristol.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class AdmissionsPage extends BasePage {
-
     public static final String PAGE_TITLE = "Admissions";
-
     public static final By APPLICATION_PROCESSING_TITLE_IDENTIFIER = By.cssSelector("div.sv-col-md-6:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h2:nth-child(1)");
     public static final By UNDERGRADUATE_LINK_IDENTIFIER = By.cssSelector("div.sv-col-md-6:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > a:nth-child(1)");
     public static final By ACD_LINK_IDENTIFIER = By.cssSelector("div.sv-col-md-6:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > a:nth-child(2)");
@@ -15,28 +18,23 @@ public class AdmissionsPage extends BasePage {
     public static final By UKCAT_LINK_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(1) > div.sv-list-group.sv-portal-2-col > a:nth-child(5)");
     public static final By LNAT_LINK_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(1) > div.sv-list-group.sv-portal-2-col > a:nth-child(6)");
     public static final By WORK_EXP_LINK_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(1) > div.sv-list-group.sv-portal-2-col > a:nth-child(7)");
-
     public static final By OPEN_DAYS_TITLE_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(2) > div.sv-panel-heading > div h2");
     public static final By TALK_SEARCH_LINK_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(2) > div.sv-list-group.sv-portal-2-col > a:nth-child(1)");
     public static final By OPEN_DAY_SUMMARY_LINK_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(2) > div.sv-list-group.sv-portal-2-col > a:nth-child(2)");
     public static final By ACCESS_REQUIREMENTS_LINK_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(2) > div.sv-list-group.sv-portal-2-col > a:nth-child(3)");
-
     public static final By HELP_SUPPORT_TITLE_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(4) > div.sv-panel-heading > div > div > h2");
     public static final By USER_GUIDES_LINK_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(4) > div.sv-list-group.sv-portal-2-col > a:nth-child(1)");
     public static final By POLICY_GUIDANCE_LINK_IDENTIFIER = By.cssSelector("div:nth-child(1) > div > div > div:nth-child(4) > div.sv-list-group.sv-portal-2-col > a:nth-child(2)");
-
     public static final By ATTRIBUTE_MANAGEMENT_TITLE_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(4) > div.sv-panel-heading > div > div > h2");
     public static final By MANAGE_COURSE_ATTRIBUTES_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(4) > div.sv-list-group.sv-portal-2-col > a:nth-child(1)");
     public static final By MANAGE_ADMISSIONS_THRESHOLDS_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(4) > div.sv-list-group.sv-portal-2-col > a:nth-child(2)");
     public static final By DUPLICATE_MATCHING_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(4) > div.sv-list-group.sv-portal-2-col > a:nth-child(3)");
-
     public static final By CONFIRMATION_TITLE_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(5) > div.sv-panel-heading > div > div > h2");
     public static final By CONFIRMATION_CALL_CENTRE_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(5) > div.sv-list-group.sv-portal-2-col > a:nth-child(1)");
     public static final By CONFIRMATION_PROCESSING_GROUP_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(5) > div.sv-list-group.sv-portal-2-col > a:nth-child(2)");
     public static final By CONFIRMATION_PROCESSING_CHECKING_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(5) > div.sv-list-group.sv-portal-2-col > a:nth-child(3)");
     public static final By MANAGE_NEAR_MISS_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(5) > div.sv-list-group.sv-portal-2-col > a:nth-child(4)");
     public static final By SEND_CONFIRMATION_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(5) > div.sv-list-group.sv-portal-2-col > a:nth-child(5)");
-
     public static final By REPORTS_TITLE_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(6) > div.sv-panel-heading > div > div > h2");
     public static final By OPEN_DAYS_SCHOOL_BOOKINGS_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(6) > div.sv-list-group.sv-portal-2-col > a:nth-child(1)");
     public static final By OPEN_DAYS_DEPARTMENT_BOOKINGS_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(6) > div.sv-list-group.sv-portal-2-col > a:nth-child(2)");
@@ -63,7 +61,6 @@ public class AdmissionsPage extends BasePage {
     public static final By WP_PROJECTS_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(6) > div.sv-list-group.sv-portal-2-col > a:nth-child(23)");
     public static final By FOLDEROVERVIEW_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(6) > div.sv-list-group.sv-portal-2-col > a:nth-child(24)");
 
-
     public AdmissionsPage(ChromeDriver driver) {
         super(driver);
     }
@@ -73,5 +70,4 @@ public class AdmissionsPage extends BasePage {
         FolderTreeOfferGroupPage folderTreeOfferGroup = new FolderTreeOfferGroupPage(driver);
         return folderTreeOfferGroup;
     }
-
 }
