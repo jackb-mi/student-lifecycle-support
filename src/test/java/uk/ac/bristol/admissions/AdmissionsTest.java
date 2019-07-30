@@ -57,10 +57,10 @@ public class AdmissionsTest extends BaseTest {
         assertThat(getTextFromElement(folderTreePage.COLUMN_ONE_IDENTIFIER)).contains("UCAS");
         assertThat(getTextFromElement(folderTreePage.COLUMN_TWO_IDENTIFIER)).contains("Name");
         assertThat(getTextFromElement(folderTreePage.COLUMN_THREE_IDENTIFIER)).contains("Course");
-        assertThat(getTextFromElement(folderTreePage.COLUMN_FOUR_IDENTIFIER)).contains("date");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOUR_IDENTIFIER)).contains("Date");
         assertThat(getTextFromElement(folderTreePage.COLUMN_FIVE_IDENTIFIER)).contains("Applicant");
         assertThat(getTextFromElement(folderTreePage.COLUMN_SIX_IDENTIFIER)).contains("Project");
-        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVEN_IDENTIFIER)).contains("Contectual");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVEN_IDENTIFIER)).contains("Contextual");
         assertThat(getTextFromElement(folderTreePage.COLUMN_EIGHT_IDENTIFIER)).contains("Point");
         assertThat(getTextFromElement(folderTreePage.COLUMN_NINE_IDENTIFIER)).contains("Year");
         assertThat(getTextFromElement(folderTreePage.COLUMN_TEN_IDENTIFIER)).contains("Age");

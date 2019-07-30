@@ -19,7 +19,7 @@ public class FolderTreePage extends BasePage {
     public static final By COLUMN_TWELVE_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(13)");
     public static final By COLUMN_THIRTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(14)");
     public static final By COLUMN_FOURTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(15)");
-    public static final By COLUMN_FIFTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(15)");
+    public static final By COLUMN_FIFTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(16)");
 
     public FolderTreePage(ChromeDriver driver) {
         super(driver);
