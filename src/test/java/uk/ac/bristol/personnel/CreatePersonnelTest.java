@@ -27,6 +27,24 @@ public class CreatePersonnelTest extends BaseTest {
                 .statusCode(201);
     }
 
+    @Test
+    public void shouldReturnSuccessResponseForCreatePersonnelRequestTwo() {
+
+        RequestSpecBuilder builder = new RequestSpecBuilder();
+        builder.setBody(new PersonnelXMLBuilder().withTitleCode("PROFESSOR SIR").create());
+        builder.setContentType("text/xml");
+
+        RequestSpecification requestSpecification = builder.build();
+
+        given()
+                .auth().preemptive().basic(user, password)
+                .spec(requestSpecification)
+                .when()
+                .post(restAPIUrl)
+                .then()
+                .statusCode(201);
+    }
+
     private RequestSpecification createNewPersonnelRequestData() {
 
         RequestSpecBuilder builder = new RequestSpecBuilder();

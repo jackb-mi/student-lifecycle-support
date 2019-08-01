@@ -29,17 +29,17 @@ public class PersonnelXMLBuilder {
 //        return this;
 //    }
 
-    public PersonnelXMLBuilder withTitleCode() {
+    public PersonnelXMLBuilder withTitleCode(String titleCode) {
         this.titleCode = titleCode;
         return this;
     }
 
-    public PersonnelXMLBuilder withSurname() {
+    public PersonnelXMLBuilder withSurname(String surname) {
         this.surname = surname;
         return this;
     }
 
-    public PersonnelXMLBuilder withEmailAddress() {
+    public PersonnelXMLBuilder withEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
         return this;
     }
@@ -49,12 +49,12 @@ public class PersonnelXMLBuilder {
 //        return this;
 //    }
 
-    public PersonnelXMLBuilder withForenameUsed() {
+    public PersonnelXMLBuilder withForenameUsed(String forenameUsed) {
         this.forenameUsed = forenameUsed;
         return this;
     }
 
-    public PersonnelXMLBuilder withDateOfBirth() {
+    public PersonnelXMLBuilder withDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }
