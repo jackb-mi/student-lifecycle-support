@@ -26,6 +26,11 @@ public class LoginPage extends BasePage {
         return new LoginPage(driver);
     }
 
+    public LoginPage loadLoginPageForTestEnvironment() {
+        driver.get(this.buildUrl("test.sls.bristol.ac.uk/urd/sits.urd/run/siw_lgn"));
+        return new LoginPage(driver);
+    }
+
     public void enterUsernameAndPassword(String username, String password) {
         this.enterUsername(username);
         this.enterPassword(password);

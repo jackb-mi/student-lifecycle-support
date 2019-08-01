@@ -65,6 +65,18 @@ public class BaseTest {
         return homePage;
     }
 
+    public LoginPage loadLoginPageForTestEnvironment(ChromeDriver driver) {
+        LoginPage loginPage = new LoginPage(driver);
+        return loginPage.loadLoginPageForTestEnvironment();
+    }
+
+    public HomePage shouldAccessHomepageForTestEnvironment(String username, String password) {
+        LoginPage loginPage = loadLoginPageForTestEnvironment(driver);
+        loginPage.enterUsernameAndPassword(username, password);
+        HomePage homePage = loginPage.loginWithValidCredentials();
+        return homePage;
+    }
+
     public Boolean isElementDisplayed(By elementId) {
         return this.driver.findElements(elementId).size() > 0;
     }

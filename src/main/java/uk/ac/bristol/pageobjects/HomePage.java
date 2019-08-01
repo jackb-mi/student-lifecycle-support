@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class HomePage extends BasePage {
     private static final By ADMISSIONS_LINK_IDENTIFIER = By.cssSelector("body > main > div > div.sv-row > div > div > div.sv-list-group > div:nth-child(1) > a");
+    private static final By CURRICULUM_LINK_IDENTIFIER = By.id("CRT001");
     private static final By REGISTRATIONS_LINK_IDENTIFIER = By.cssSelector("#REG001");
 
     public HomePage(ChromeDriver driver) {
@@ -22,5 +23,16 @@ public class HomePage extends BasePage {
 
         AdmissionsPage admissionsPage = new AdmissionsPage(driver);
         return admissionsPage;
+    }
+
+    public CurriculumPage clickCurriculumLink() {
+        try {
+            driver.findElement(CURRICULUM_LINK_IDENTIFIER).click();
+        } catch (NoSuchElementException var2) {
+            Assert.fail("Curriculum Link Not Found");
+        }
+
+        CurriculumPage curriculumPage = new CurriculumPage(driver);
+        return curriculumPage;
     }
 }
