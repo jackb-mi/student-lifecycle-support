@@ -6,6 +6,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
@@ -36,6 +37,11 @@ public class BasePage {
             Assert.fail("Element was not found before the specified timeout");
         }
     }
+    public void selectFromDropdown(By elementId, String DropdownText) {
+            Select selectList = new Select(driver.findElement(elementId));
+            selectList.selectByVisibleText(DropdownText);
+    }
+
 
 
 }

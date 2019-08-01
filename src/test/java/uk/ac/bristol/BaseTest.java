@@ -11,6 +11,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import uk.ac.bristol.pageobjects.HomePage;
 import uk.ac.bristol.pageobjects.LoginPage;
+import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsApplicantDashboardPage;
+import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsApplicantLoginPage;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
@@ -58,11 +60,24 @@ public class BaseTest {
         return loginPage.loadLoginPage();
     }
 
+    public AdmissionsApplicantLoginPage applicantLoginPage(ChromeDriver driver, String ssolink) {
+        AdmissionsApplicantLoginPage admissionsApplicantLoginPage = new AdmissionsApplicantLoginPage(driver);
+        return admissionsApplicantLoginPage.applicantLoginPage(ssolink);
+    }
+
     public HomePage shouldAccessHomepage(String username, String password) {
         LoginPage loginPage = loadLoginPage(driver);
         loginPage.enterUsernameAndPassword(username, password);
         HomePage homePage = loginPage.loginWithValidCredentials();
         return homePage;
+    }
+
+    //Log into the applicant Dashboard
+    public AdmissionsApplicantDashboardPage shouldAccessApplicantDashboard(String Studentno, String Surname, String dob, String ssolink) {
+        AdmissionsApplicantLoginPage admissionsApplicantLoginPage = applicantLoginPage(driver, ssolink);
+        admissionsApplicantLoginPage.enterApplicantDetails(Studentno, Surname, dob);
+        AdmissionsApplicantDashboardPage admissionsApplicantDashboardPage = admissionsApplicantLoginPage.loginWithValidCredentials();
+        return admissionsApplicantDashboardPage;
     }
 
     public Boolean isElementDisplayed(By elementId) {
