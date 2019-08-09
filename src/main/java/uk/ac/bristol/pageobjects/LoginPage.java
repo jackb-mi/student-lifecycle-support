@@ -2,6 +2,7 @@ package uk.ac.bristol.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
 
 public class LoginPage extends BasePage {
     private static final String LOGIN_PAGE_URL = "evision-b.apps.bris.ac.uk/urd/sits.urd/run/SIW_LGN";

@@ -1,7 +1,8 @@
-package uk.ac.bristol.pageobjects;
+package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import uk.ac.bristol.pageobjects.BasePage;
 
 public class FolderTreePage extends BasePage {
     public static final String FOLDER_TREE_PANEL_TITLE = "Filter Offer Group by Faculty";
@@ -20,6 +21,9 @@ public class FolderTreePage extends BasePage {
     public static final By COLUMN_THIRTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(14)");
     public static final By COLUMN_FOURTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(15)");
     public static final By COLUMN_FIFTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(16)");
+    public static final By COLUMN_SIXTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(17)");
+    public static final By COLUMN_SEVENTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(18)");
+    public static final By COLUMN_EIGHTNTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(19)"); 
 
     public FolderTreePage(ChromeDriver driver) {
         super(driver);

@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.FolderTreeFolders;
 import uk.ac.bristol.enums.OfferGroups;
-import uk.ac.bristol.pageobjects.AdmissionsPage;
-import uk.ac.bristol.pageobjects.FolderTreeOfferGroupPage;
-import uk.ac.bristol.pageobjects.FolderTreePage;
+import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
+import uk.ac.bristol.pageobjects.admissionspageobjects.FolderTreeOfferGroupPage;
+import uk.ac.bristol.pageobjects.admissionspageobjects.FolderTreePage;
 import uk.ac.bristol.pageobjects.HomePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,14 +45,74 @@ public class AdmissionsTest extends BaseTest {
         folderTreePage.goToFolder(FolderTreeFolders.TO_BE_UNSUCCESSFUL.getId());
         //Then
         try{
-            confirmCorrectColumnHeadersAreDisplayed(folderTreePage);
+            confirmCorrectToBeUnsuccessfulColumnHeadersAreDisplayed(folderTreePage);
+        }
+        catch (ComparisonFailure f) {
+            fail("Column headers were not displayed as expected");
+        }
+
+        //And When
+        folderTreePage.goToFolder(FolderTreeFolders.FURTHER_INFORMATION.getId());
+        //Then
+        try{
+            confirmCorrectFurtherInfoColumnHeadersAreDisplayed(folderTreePage);
+        }
+        catch (ComparisonFailure f) {
+            fail("Column headers were not displayed as expected");
+        }
+
+        //And When
+        folderTreePage.goToFolder((FolderTreeFolders.CONSIDER_FOR_INTERVIEW.getId()));
+        //Then
+        try{
+            confirmCorrectConsiderInterviewColumnHeadersAreDisplayed(folderTreePage);
+        }
+        catch (ComparisonFailure f) {
+            fail("Column headers were not displayed as expected");
+        }
+
+        // And When
+        folderTreePage.goToFolder((FolderTreeFolders.INVITED_FOR_INTERVEW.getId()));
+        //Then
+        try{
+            confirmCorrectInvitedInterviewColumnHeadersAreDisplayed(folderTreePage);
+        }
+        catch (ComparisonFailure f) {
+            fail("Column headers were not displayed as expected");
+        }
+
+        // And When
+        folderTreePage.goToFolder((FolderTreeFolders.CONSIDER_FOR_OFFER.getId()));
+        //Then
+        try{
+            confirmCorrectConsiderOfferColumnHeadersAreDisplayed(folderTreePage);
+        }
+        catch (ComparisonFailure f) {
+            fail("Column headers were not displayed as expected");
+        }
+
+        // And When
+        folderTreePage.goToFolder((FolderTreeFolders.OFFER_PENDING.getId()));
+        //Then
+        try{
+            confirmCorrectOfferPendingColumnHeadersAreDisplayed(folderTreePage);
+        }
+        catch (ComparisonFailure f) {
+            fail("Column headers were not displayed as expected");
+        }
+
+        // And When
+        folderTreePage.goToFolder((FolderTreeFolders.CONDITIONAL_FIRM.getId()));
+        //Then
+        try{
+            confirmCorrectConditionalFirmColumnHeadersAreDisplayed(folderTreePage);
         }
         catch (ComparisonFailure f) {
             fail("Column headers were not displayed as expected");
         }
     }
 
-    private void confirmCorrectColumnHeadersAreDisplayed(FolderTreePage folderTreePage) {
+    private void confirmCorrectToBeUnsuccessfulColumnHeadersAreDisplayed(FolderTreePage folderTreePage) {
 
         assertThat(getTextFromElement(folderTreePage.COLUMN_ONE_IDENTIFIER)).contains("UCAS");
         assertThat(getTextFromElement(folderTreePage.COLUMN_TWO_IDENTIFIER)).contains("Name");
@@ -69,6 +129,124 @@ public class AdmissionsTest extends BaseTest {
         assertThat(getTextFromElement(folderTreePage.COLUMN_THIRTEEN_IDENTIFIER)).contains("Circs");
         assertThat(getTextFromElement(folderTreePage.COLUMN_FOURTEEN_IDENTIFIER)).contains("stage");
         assertThat(getTextFromElement(folderTreePage.COLUMN_FIFTEEN_IDENTIFIER)).contains("Care");
+    }
+
+    private void confirmCorrectFurtherInfoColumnHeadersAreDisplayed(FolderTreePage folderTreePage) {
+
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ONE_IDENTIFIER)).contains("UCAS");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWO_IDENTIFIER)).contains("Name");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THREE_IDENTIFIER)).contains("Course");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOUR_IDENTIFIER)).contains("received");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIVE_IDENTIFIER)).contains("requested");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIX_IDENTIFIER)).contains("Info");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVEN_IDENTIFIER)).contains("Project");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_EIGHT_IDENTIFIER)).contains("Contextual");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_NINE_IDENTIFIER)).contains("Point");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TEN_IDENTIFIER)).contains("Year");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ELEVEN_IDENTIFIER)).contains("Age");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWELVE_IDENTIFIER)).contains("Folder");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THIRTEEN_IDENTIFIER)).contains("Total");
+    }
+
+    private void confirmCorrectConsiderInterviewColumnHeadersAreDisplayed(FolderTreePage folderTreePage){
+
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ONE_IDENTIFIER)).contains("UCAS");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWO_IDENTIFIER)).contains("Name");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THREE_IDENTIFIER)).contains("Course");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOUR_IDENTIFIER)).contains("received");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIVE_IDENTIFIER)).contains("Applicant");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIX_IDENTIFIER)).contains("Project");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVEN_IDENTIFIER)).contains("Contextual");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_EIGHT_IDENTIFIER)).contains("Point");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_NINE_IDENTIFIER)).contains("Year");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TEN_IDENTIFIER)).contains("Age");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ELEVEN_IDENTIFIER)).contains("Folder");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWELVE_IDENTIFIER)).contains("quals");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THIRTEEN_IDENTIFIER)).contains("Aspirational");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOURTEEN_IDENTIFIER)).contains("Total");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIFTEEN_IDENTIFIER)).contains("Pre-Interview");
+    }
+
+    private void confirmCorrectInvitedInterviewColumnHeadersAreDisplayed(FolderTreePage folderTreePage){
+
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ONE_IDENTIFIER)).contains("UCAS");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWO_IDENTIFIER)).contains("Name");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THREE_IDENTIFIER)).contains("Course");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOUR_IDENTIFIER)).contains("received");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIVE_IDENTIFIER)).contains("Applicant");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIX_IDENTIFIER)).contains("Project");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVEN_IDENTIFIER)).contains("Contextual");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_EIGHT_IDENTIFIER)).contains("Point");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_NINE_IDENTIFIER)).contains("Year");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TEN_IDENTIFIER)).contains("Age");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ELEVEN_IDENTIFIER)).contains("Folder");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWELVE_IDENTIFIER)).contains("Aspirational");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THIRTEEN_IDENTIFIER)).contains("Total");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOURTEEN_IDENTIFIER)).contains("Pre-Interview");
+    }
+
+    private void confirmCorrectConsiderOfferColumnHeadersAreDisplayed(FolderTreePage folderTreePage){
+
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ONE_IDENTIFIER)).contains("UCAS");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWO_IDENTIFIER)).contains("Name");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THREE_IDENTIFIER)).contains("Course");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOUR_IDENTIFIER)).contains("received");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIVE_IDENTIFIER)).contains("Applicant");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIX_IDENTIFIER)).contains("Project");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVEN_IDENTIFIER)).contains("Contextual");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_EIGHT_IDENTIFIER)).contains("Point");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_NINE_IDENTIFIER)).contains("Year");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TEN_IDENTIFIER)).contains("Age");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ELEVEN_IDENTIFIER)).contains("Folder");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWELVE_IDENTIFIER)).contains("Circs");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THIRTEEN_IDENTIFIER)).contains("stage");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOURTEEN_IDENTIFIER)).contains("quals");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIFTEEN_IDENTIFIER)).contains("Aspirational");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIXTEEN_IDENTIFIER)).contains("Interview");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVENTEEN_IDENTIFIER)).contains("Total");
+    }
+
+    private void confirmCorrectOfferPendingColumnHeadersAreDisplayed(FolderTreePage folderTreePage){
+
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ONE_IDENTIFIER)).contains("UCAS");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWO_IDENTIFIER)).contains("Name");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THREE_IDENTIFIER)).contains("Course");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOUR_IDENTIFIER)).contains("received");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIVE_IDENTIFIER)).contains("Applicant");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIX_IDENTIFIER)).contains("Project");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVEN_IDENTIFIER)).contains("Contextual");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_EIGHT_IDENTIFIER)).contains("Point");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_NINE_IDENTIFIER)).contains("Year");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TEN_IDENTIFIER)).contains("Age");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ELEVEN_IDENTIFIER)).contains("Interview");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWELVE_IDENTIFIER)).contains("quals");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THIRTEEN_IDENTIFIER)).contains("Care");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOURTEEN_IDENTIFIER)).contains("Aspirational");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIFTEEN_IDENTIFIER)).contains("Parental");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIXTEEN_IDENTIFIER)).contains("move");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVENTEEN_IDENTIFIER)).contains("Total");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_EIGHTNTEEN_IDENTIFIER)).contains("Pre-offer");
+    }
+
+    private void confirmCorrectConditionalFirmColumnHeadersAreDisplayed(FolderTreePage folderTreePage){
+
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ONE_IDENTIFIER)).contains("UCAS");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWO_IDENTIFIER)).contains("Name");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THREE_IDENTIFIER)).contains("Course");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOUR_IDENTIFIER)).contains("received");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIVE_IDENTIFIER)).contains("Applicant");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIX_IDENTIFIER)).contains("Project");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVEN_IDENTIFIER)).contains("Contextual");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_EIGHT_IDENTIFIER)).contains("Point");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_NINE_IDENTIFIER)).contains("Year");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TEN_IDENTIFIER)).contains("Age");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_ELEVEN_IDENTIFIER)).contains("Interview");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_TWELVE_IDENTIFIER)).contains("Total");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_THIRTEEN_IDENTIFIER)).contains("Decision");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FOURTEEN_IDENTIFIER)).contains("response");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_FIFTEEN_IDENTIFIER)).contains("Folder");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SIXTEEN_IDENTIFIER)).contains("Parental");
+        assertThat(getTextFromElement(folderTreePage.COLUMN_SEVENTEEN_IDENTIFIER)).contains("Occ");
     }
 
     private void confirmAllLinksAreDisplayed(AdmissionsPage admissionsPage) {
