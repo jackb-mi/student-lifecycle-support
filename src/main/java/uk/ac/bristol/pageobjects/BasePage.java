@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import uk.ac.bristol.enums.CurriculumProposalApprovalLevels;
 
 public class BasePage {
     public static ChromeDriver driver;
@@ -26,6 +27,14 @@ public class BasePage {
 
     public Boolean isElementDisplayed(By elementId) {
         return driver.findElements(elementId).size() > 0;
+    }
+
+    public void clickElement(By elementId) {
+        driver.findElement(elementId).click();
+    }
+
+    public String getTextFromElement(By elementId) {
+        return driver.findElement(elementId).getText();
     }
 
     public void waitForElementToBeDisplayed(By elementId, WebDriver driver, int timeout) {
