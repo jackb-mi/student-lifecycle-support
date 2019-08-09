@@ -9,7 +9,7 @@ public class AdmissionsApplicantLoginPage extends BasePage {
     public static final By SURNAME_IDENTIFIER = (By.id("ANSWER.TTQ.MENSYS.3."));
     public static final By DATE_OF_BIRTH_IDENTIFIER = (By.id("ANSWER.TTQ.MENSYS.4."));
     public static final By CONTINUE_BUTTON_IDENTIFIER = (By.name("NEXT.DUMMY.MENSYS.1"));
-    public static final By DASHBOARD_GUIDE_BUTTON_IDENTIFIER = (By.cssSelector("div.sv-col-sm-offset-5.sv-col-sm-2 > input1"));
+    public static final By DASHBOARD_GUIDE_BUTTON_IDENTIFIER = (By.cssSelector("div.sv-col-sm-offset-5.sv-col-sm-2 > input"));
 
 
     public AdmissionsApplicantLoginPage(ChromeDriver driver) { super(driver); }
@@ -21,6 +21,7 @@ public class AdmissionsApplicantLoginPage extends BasePage {
     }
     //Provide applicant details
     public void enterApplicantDetails(String studentno, String surname, String dob) {
+        waitForElementToBeDisplayed(STUDENT_NUMBER_IDENTIFIER, driver, 10);
         this.enterStudentNo(studentno);
         this.enterSurname(surname);
         this.enterDateOfBirth(dob);
