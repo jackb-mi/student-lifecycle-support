@@ -1,7 +1,8 @@
-package uk.ac.bristol.pageobjects;
+package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import uk.ac.bristol.pageobjects.BasePage;
 
 public class FolderTreePage extends BasePage {
     public static final String FOLDER_TREE_PANEL_TITLE = "Filter Offer Group by Faculty";

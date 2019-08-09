@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.FolderTreeFolders;
 import uk.ac.bristol.enums.OfferGroups;
-import uk.ac.bristol.pageobjects.AdmissionsPage;
-import uk.ac.bristol.pageobjects.FolderTreeOfferGroupPage;
-import uk.ac.bristol.pageobjects.FolderTreePage;
+import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
+import uk.ac.bristol.pageobjects.admissionspageobjects.FolderTreeOfferGroupPage;
+import uk.ac.bristol.pageobjects.admissionspageobjects.FolderTreePage;
 import uk.ac.bristol.pageobjects.HomePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
