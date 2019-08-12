@@ -8,6 +8,7 @@ import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
 
 public class HomePage extends BasePage {
     private static final By ADMISSIONS_LINK_IDENTIFIER = By.cssSelector("body > main > div > div.sv-row > div > div > div.sv-list-group > div:nth-child(1) > a");
+    private static final By ASSESSMENTS_LINK_IDENTIFIER = By.cssSelector("#EXA001");
     private static final By REGISTRATIONS_LINK_IDENTIFIER = By.cssSelector("#REG001");
 
     public HomePage(ChromeDriver driver) {
@@ -24,4 +25,15 @@ public class HomePage extends BasePage {
         AdmissionsPage admissionsPage = new AdmissionsPage(driver);
         return admissionsPage;
     }
+
+        public AssessmentsPage clickAssessmentsLink() {
+            try {
+                driver.findElement(ASSESSMENTS_LINK_IDENTIFIER).click();
+            } catch (NoSuchElementException var2) {
+                Assert.fail("Assessments Link Not Found");
+            }
+            AssessmentsPage assessmentsPage = new AssessmentsPage(driver);
+            return assessmentsPage;
+        }
+
 }
