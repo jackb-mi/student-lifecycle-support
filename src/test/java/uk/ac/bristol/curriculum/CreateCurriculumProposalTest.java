@@ -7,9 +7,8 @@ import uk.ac.bristol.enums.CurriculumProposalApprovalLevels;
 import uk.ac.bristol.pageobjects.*;
 import uk.ac.bristol.pageobjects.curriculum.*;
 
-import java.awt.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.ac.bristol.enums.CurriculumProposalApprovalLevels.*;
 
 public class CreateCurriculumProposalTest extends BaseTest {
 
@@ -17,15 +16,12 @@ public class CreateCurriculumProposalTest extends BaseTest {
     private String curriculumUserPassword = "Test@2PassBook_";
 
     @Test
-    public void shouldCompleteCurriculumProposalWithApprovalLevelUnitUpdatesThatDoNotRequireApproval() {
+    public void shouldCompleteCurriculumProposalWithApprovalLevelUnitUpdatesThatDoNotRequireApproval() throws InterruptedException {
         // Given
-        ProposalLevelDecisionPage proposalLevelDecisionPage = accessProposalLevelDecisionPage(curriculumUserUsername, curriculumUserPassword);
-
-        ProposalInformationPage proposalInformationPage =
-                proposalLevelDecisionPage.startProposal(CurriculumProposalApprovalLevels.UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
+        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
 
         proposalInformationPage.completeProposalSection(CommitteeLevel.POSTGRADUATE);
-        SubmitProposalPage submitProposalPage = proposalInformationPage.selectPrepareToSubmitProposalButton();
+        SubmitProposalPage submitProposalPage = proposalInformationPage.selectPrepareToSubmitProposalButton(UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -35,56 +31,54 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompleteCurriculumProposalWithApprovalLevelOtherChangesThatRequireApprovalFaculty() throws InterruptedException {
         // Given
-        ProposalLevelDecisionPage proposalLevelDecisionPage = accessProposalLevelDecisionPage(curriculumUserUsername, curriculumUserPassword);
-
-        ProposalInformationPage proposalInformationPage =
-                proposalLevelDecisionPage.startProposal(CurriculumProposalApprovalLevels.OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
 
         proposalInformationPage.completeProposalSection(CommitteeLevel.POSTGRADUATE);
-        proposalInformationPage.selectAndCompleteRationalSection();
-        proposalInformationPage.selectAndCompleteEqualityAnalysisSection();
-        proposalInformationPage.selectAndCompleteOrdinancesAndRegulationsSection();
-        proposalInformationPage.selectAndCompleteStudentsAndApplicantsSection();
-        SubmitProposalPage submitProposalPage = proposalInformationPage.selectPrepareToSubmitProposalButton();
+        proposalInformationPage.selectAndCompleteRationalSection(OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        proposalInformationPage.selectAndCompleteEqualityAnalysisSection(OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        proposalInformationPage.selectAndCompleteOrdinancesAndRegulationsSection(OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        proposalInformationPage.selectAndCompleteStudentsAndApplicantsSection(OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        SubmitProposalPage submitProposalPage = proposalInformationPage.selectPrepareToSubmitProposalButton(OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
         assertThat(viewProposalsToEditSearchPage.getPageTitle()).isEqualTo(viewProposalsToEditSearchPage.PAGE_TITLE);
     }
 
-
-
     @Test
-    public void shouldPerformUploadDuringCurriculumProposalCreation() throws InterruptedException, AWTException {
-        // Given
-        ProposalLevelDecisionPage proposalLevelDecisionPage = accessProposalLevelDecisionPage(curriculumUserUsername, curriculumUserPassword);
+    public void shouldCompleteCurriculumProposalWithApprovalLevelPROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY() {
 
-        ProposalInformationPage proposalInformationPage =
-                proposalLevelDecisionPage.startProposal(CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
-
-        proposalInformationPage.completeProposalSection(CommitteeLevel.POSTGRADUATE);
-
-        proposalInformationPage.selectSupportSection();
-        // When
-        UploadFilesPage uploadFilesPage = proposalInformationPage.selectUploadFileForExternalSupport();
-        uploadFilesPage.selectBrowseForFileButton();
-        //TODO complete upload action
-
-        // Then
-        // TODO assert upload action
     }
 
-    public ProposalLevelDecisionPage accessProposalLevelDecisionPage(String curriculumUserUsername, String curriculumUserPassword) {
+    @Test
+    public void shouldCompleteCurriculumProposalWithApprovalLevelNewProgrammeHighRiskChangesUniversity() throws InterruptedException {
+        // Given
+        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+
+        proposalInformationPage.completeProposalSection(CommitteeLevel.POSTGRADUATE);
+        proposalInformationPage.selectAndCompleteRationalSection(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        proposalInformationPage.selectAndCompleteEqualityAnalysisSection(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        proposalInformationPage.selectAndCompleteOrdinancesAndRegulationsSection(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        proposalInformationPage.selectAndCompleteSupportSection();
+        proposalInformationPage.selectAndCompleteStudentsAndApplicantsSection(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        SubmitProposalPage submitProposalPage = proposalInformationPage.selectPrepareToSubmitProposalButton(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        // When
+        ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
+        // Then
+        assertThat(viewProposalsToEditSearchPage.getPageTitle()).isEqualTo(viewProposalsToEditSearchPage.PAGE_TITLE);
+    }
+
+    public ProposalInformationPage accessProposalLevelDecisionPageAndStartNewProposal(String curriculumUserUsername, String curriculumUserPassword, CurriculumProposalApprovalLevels proposalApprovalLevel) {
 
         HomePage homePage = shouldAccessHomepageForTestEnvironment(curriculumUserUsername, curriculumUserPassword);
 
         CurriculumPage curriculumPage = homePage.clickCurriculumLink();
 
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = curriculumPage.selectCreateEditProposalsLink();
-        return viewProposalsToEditSearchPage.selectNewProposalButton();
+        ProposalLevelDecisionPage proposalLevelDecisionPage = viewProposalsToEditSearchPage.selectNewProposalButton();
+        ProposalInformationPage proposalInformationPage = proposalLevelDecisionPage.startProposal(proposalApprovalLevel);
 
+        return proposalInformationPage;
     }
-
-
 
 }

@@ -13,6 +13,8 @@ public class SubmitProposalPage extends BasePage {
     }
 
     public ViewProposalsToEditSearchPage submitProposalToCatalogue() {
+        waitForElementToBeDisplayed(SUBMIT_TO_CATALOGUE_BUTTON_IDENTIFIER, driver, 5);
+
         clickElement(SUBMIT_TO_CATALOGUE_BUTTON_IDENTIFIER);
 
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = new ViewProposalsToEditSearchPage(driver);

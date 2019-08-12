@@ -23,7 +23,7 @@ public class BasePage {
         return "https://" + endPoint;
     }
 
-    public void enterTextIntoElement(By elementId, String textToEnter) {
+    public static void enterTextIntoElement(By elementId, String textToEnter) {
         driver.findElement(elementId).sendKeys(new CharSequence[]{textToEnter});
     }
 
@@ -31,9 +31,10 @@ public class BasePage {
         return driver.findElements(elementId).size() > 0;
     }
 
-    public void clickElement(By elementId) {
+    public static void clickElement(By elementId) {
         driver.findElement(elementId).click();
     }
+
 
     public String getTextFromElement(By elementId) {
         return driver.findElement(elementId).getText();

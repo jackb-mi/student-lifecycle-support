@@ -22,7 +22,7 @@ public class ApplicantDashboardTest extends BaseTest {
         AdmissionsApplicantDashboardPage admissionsApplicantDashboardPage = shouldAccessApplicantDashboard(DocUploadStudentNo, DocUploadSurname, DocUploadDateOfBirth, DocUploadSsoLink);
         SelectUploadDocumentTypePage selectUploadDocumentTypePage = admissionsApplicantDashboardPage.goToSelectUploadDocumentTypePage();
         UploadSupportingDocumentsPage uploadSupportingDocumentsPage = selectUploadDocumentTypePage.goToUploadDocumentPage("Achieved qualifications");
-        UploadedDocumentPage uploadedDocumentPage = uploadSupportingDocumentsPage.uploadDocument("/Users/chrisharris/Pictures/", "juninho.jpg");
+        UploadedDocumentPage uploadedDocumentPage = uploadSupportingDocumentsPage.uploadDocument("/Users/jack/Pictures/", "juninho.jpg");
         assertThat(isElementDisplayed(uploadedDocumentPage.SUBMIT_IDENTIFIER)).isTrue();
     }
 
