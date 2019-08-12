@@ -8,7 +8,9 @@ import uk.ac.bristol.enums.CurriculumProposalApprovalLevels;
 import uk.ac.bristol.pageobjects.BasePage;
 import uk.ac.bristol.pageobjects.UploadFilesPage;
 
+import static junit.framework.TestCase.fail;
 import static uk.ac.bristol.enums.CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY;
+import static uk.ac.bristol.enums.CurriculumProposalApprovalLevels.PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY;
 
 public class ProposalInformationPage extends BasePage {
 
@@ -47,7 +49,7 @@ public class ProposalInformationPage extends BasePage {
 
     public void selectAndCompleteEqualityAnalysisSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
         clickElement(EQUALITY_ANALYSIS_SECTION_IDENTIFIER);
-
+        Thread.sleep(1000);
         if (proposalApprovalLevel == CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
             EqualityAnalysisSection.enterEqualityRiskAssessment("Test");
             //TODO improve wait
@@ -61,7 +63,7 @@ public class ProposalInformationPage extends BasePage {
 
     public void selectAndCompleteOrdinancesAndRegulationsSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
         clickElement(ORDINANCES_AND_REGULATIONS_SECTION_IDENTIFIER);
-        if (proposalApprovalLevel == CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
+        if (proposalApprovalLevel == NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY || proposalApprovalLevel == PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY) {
             OrdinancesAndRegulationsSection.enterConsequentChangesToTheOrdinances("Test");
             // TODO improve wait
             Thread.sleep(1000);
@@ -83,16 +85,47 @@ public class ProposalInformationPage extends BasePage {
 
 
     public void selectAndCompleteStudentsAndApplicantsSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
-        if (proposalApprovalLevel != NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
-            clickElement(By.cssSelector("#ui-id-9"));
-            enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
-        }
-        else {
-            clickElement(By.cssSelector("#ui-id-11"));
-            enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.25\\."), "Test");
+
+        switch (proposalApprovalLevel) {
+            case NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY: {
+                Thread.sleep(1000);
+                clickElement(By.cssSelector("#ui-id-11"));
+                Thread.sleep(1000);
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.25\\."), "Test");
+                break;
+            }
+            case PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY: {
+                clickElement(By.cssSelector("#ui-id-9"));
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.21\\."), "Test");
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.22\\."), "Test");
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.24\\."), "Test");
+                break;
+            }
+            case PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY: {
+                clickElement(By.cssSelector("#ui-id-7"));
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.21\\."), "Test");
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.22\\."), "Test");
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.24\\."), "Test");
+                break;
+            }
+            case OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY: {
+                clickElement(By.cssSelector("#ui-id-9"));
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
+                break;
+            }
+            case UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL: {
+                clickElement(By.cssSelector("#ui-id-9"));
+                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
+                break;
+            }
+            default:
+                fail("Unknown Curriculum Proposal Approval Level");
         }
         // TODO improve wait
         Thread.sleep(1000);
+
     }
 
     public SubmitProposalPage selectPrepareToSubmitProposalButton(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
@@ -236,15 +269,4 @@ public class ProposalInformationPage extends BasePage {
         }
 
     }
-
-    public static class StudentsAndApplicantsSection {
-        // TODO Move to Students and applications section of page
-        private static final By CONSUMER_PROTECTION_LAW_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.25\\.");  // #ANSWER\.TTQ\.MENSYS\.23\.
-
-        // TODO Move to Students and Applications section of page
-        private static void enterConsumerProtectionLaw(String textToEnter) {
-            enterTextIntoElement(CONSUMER_PROTECTION_LAW_INPUT_IDENTIFIER, textToEnter);
-        }
-    }
-
 }
