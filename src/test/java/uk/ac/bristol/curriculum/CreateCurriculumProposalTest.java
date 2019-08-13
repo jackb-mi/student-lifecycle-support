@@ -1,6 +1,5 @@
 package uk.ac.bristol.curriculum;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.CommitteeLevel;
@@ -19,7 +18,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     private String curriculumUserPassword = "Test@2PassBook_";
 
     @Test
-    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelUnitUpdatesThatDoNotRequireApproval() throws InterruptedException {
+    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelUnitUpdatesThatDoNotRequireApproval() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
 
@@ -31,7 +30,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelUnitUpdatesThatDoNotRequireApproval() throws InterruptedException {
+    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelUnitUpdatesThatDoNotRequireApproval() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
 
@@ -43,7 +42,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelOtherChangesThatRequireApprovalFaculty() throws InterruptedException {
+    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelOtherChangesThatRequireApprovalFaculty() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
 
@@ -55,7 +54,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelOtherChangesThatRequireApprovalFaculty() throws InterruptedException {
+    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelOtherChangesThatRequireApprovalFaculty() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
 
@@ -67,7 +66,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelProgrammePathwaySuspensionUniversity() throws InterruptedException {
+    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelProgrammePathwaySuspensionUniversity() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
 
@@ -79,7 +78,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelProgrammePathwaySuspensionUniversity() throws InterruptedException {
+    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelProgrammePathwaySuspensionUniversity() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
 
@@ -91,7 +90,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelProgrammePathwayWithdrawalUniversity() throws InterruptedException {
+    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelProgrammePathwayWithdrawalUniversity() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
 
@@ -103,7 +102,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelProgrammePathwayWithdrawalUniversity() throws InterruptedException {
+    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelProgrammePathwayWithdrawalUniversity() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
 
@@ -115,7 +114,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelNewProgrammeHighRiskChangesUniversity() throws InterruptedException {
+    public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelNewProgrammeHighRiskChangesUniversity() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
 
@@ -127,7 +126,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
     }
 
     @Test
-    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelNewProgrammeHighRiskChangesUniversity() throws InterruptedException {
+    public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelNewProgrammeHighRiskChangesUniversity() throws Exception {
         // Given
         ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
 
@@ -151,7 +150,7 @@ public class CreateCurriculumProposalTest extends BaseTest {
         return proposalInformationPage;
     }
 
-    public SubmitProposalPage completeProposalSectionsAndPrepareToSubmitToCatalogue(ProposalInformationPage proposalInformationPage, CommitteeLevel committeeLevel, CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
+    public SubmitProposalPage completeProposalSectionsAndPrepareToSubmitToCatalogue(ProposalInformationPage proposalInformationPage, CommitteeLevel committeeLevel, CurriculumProposalApprovalLevels proposalApprovalLevel) throws Exception {
 
         SubmitProposalPage submitProposalPage = new SubmitProposalPage(driver);
 

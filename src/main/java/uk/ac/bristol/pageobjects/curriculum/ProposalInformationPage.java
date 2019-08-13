@@ -8,6 +8,8 @@ import uk.ac.bristol.enums.CurriculumProposalApprovalLevels;
 import uk.ac.bristol.pageobjects.BasePage;
 import uk.ac.bristol.pageobjects.UploadFilesPage;
 
+import java.io.IOException;
+
 import static junit.framework.TestCase.fail;
 import static uk.ac.bristol.enums.CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY;
 import static uk.ac.bristol.enums.CurriculumProposalApprovalLevels.PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY;
@@ -71,7 +73,7 @@ public class ProposalInformationPage extends BasePage {
         OrdinancesAndRegulationsSection.enterConsequentChangesToTheRegulations("Test");
     }
 
-    public void selectAndCompleteSupportSection() throws InterruptedException {
+    public void selectAndCompleteSupportSection() throws Exception {
         clickElement(SUPPORT_SECTION_IDENTIFIER);
         //TODO improve wait
         Thread.sleep(1000);
@@ -247,7 +249,7 @@ public class ProposalInformationPage extends BasePage {
             enterTextIntoElement(PROFESSIONAL_BODY_SCRUTINY_INPUT_IDENTIFIER, textToEnter);
         }
 
-        public static void completeUploadFileForExternalSupportAndReturnToSupportSection() throws InterruptedException {
+        public static void completeUploadFileForExternalSupportAndReturnToSupportSection() throws Exception {
             clickElement(EXTERNAL_SUPPORT_UPLOAD_BUTTON_IDENTIFIER);
 
             UploadFilesPage uploadFilesPage = new UploadFilesPage(driver);
@@ -258,7 +260,7 @@ public class ProposalInformationPage extends BasePage {
             Thread.sleep(1000);
         }
 
-        public static void completeUploadFileForStudentConsultationAndReturnToSupportSection() {
+        public static void completeUploadFileForStudentConsultationAndReturnToSupportSection() throws IOException {
             clickElement(STUDENT_CONSULTATION_UPLOAD_BUTTON_IDENTIFIER);
 
             UploadFilesPage uploadFilesPage = new UploadFilesPage(driver);

@@ -5,6 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.pageobjects.curriculum.ProposalInformationPage;
 
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class UploadFilesPage extends BasePage {
 
@@ -22,16 +25,34 @@ public class UploadFilesPage extends BasePage {
         driver.findElement(By.partialLinkText("Browse for file")).click();
     }
 
-    public ProposalInformationPage uploadCurriculumManagementFile() {
-            uploadFile(By.xpath("//input[@title='Browse for files']"), "/Users/jack/Pictures/", "juninho.jpg");
-            waitForElementToBeDisplayed(UPLOAD_PANEL_IDENTIFIER,driver, 10);
-            enterTextIntoElement(FILE_NAME_INPUT_IDENTIFIER, "UploadedFile");
-            clickElement(UPLOAD_BUTTON_IDENTIFIER);
-            waitForElementTextToBeDisplayed(FILE_STATUS_PERCENTAGE_IDENTIFIER, driver, 10, "100%");
-            clickElement(NEXT_BUTTON_IDENTIFIER);
+    public ProposalInformationPage uploadCurriculumManagementFile() throws IOException {
+
+        String tempFileLocation = "/Users/jack/Pictures/";
+        String tempFileName = "TestFile.txt";
+        String tempFileContent = "Test File";
+
+        createTestFile(tempFileLocation, tempFileName, tempFileContent);
+
+        uploadFile(By.xpath("//input[@title='Browse for files']"), tempFileLocation, tempFileName);
+
+//        uploadFile(By.xpath("//input[@title='Browse for files']"), "/Users/jack/Pictures/", "juninho.jpg");
+        waitForElementToBeDisplayed(UPLOAD_PANEL_IDENTIFIER,driver, 10);
+        enterTextIntoElement(FILE_NAME_INPUT_IDENTIFIER, "UploadedFile");
+        clickElement(UPLOAD_BUTTON_IDENTIFIER);
+        waitForElementTextToBeDisplayed(FILE_STATUS_PERCENTAGE_IDENTIFIER, driver, 10, "100%");
+        clickElement(NEXT_BUTTON_IDENTIFIER);
 
         ProposalInformationPage proposalInformationPage = new ProposalInformationPage(driver);
         return proposalInformationPage;
+    }
+
+    public String createTestFile(String fileLocation, String fileName, String fileContent) throws IOException {
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileLocation + fileName));
+        writer.write(fileContent);
+        writer.close();
+
+        return fileLocation + fileName;
     }
 
 }
