@@ -3,6 +3,7 @@ package uk.ac.bristol.assessments;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.pageobjects.AssessmentsPage;
+import uk.ac.bristol.pageobjects.EducationAdministrationOfficePage;
 import uk.ac.bristol.pageobjects.HomePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,4 +22,21 @@ public class AssessmentsTest extends BaseTest  {
         // Then
         assertThat(getPageTitle()).isEqualTo(assessmentsPage.PAGE_TITLE);
     }
+
+    @Test
+    public void shouldNavigateToEducationAdministrationOfficePage() {
+        // Given
+        HomePage homePage = shouldAccessHomepage(assessmentsUserUsername, assessmentsUserPassword);
+        AssessmentsPage assessmentsPage = homePage.clickAssessmentsLink();
+        // When
+        EducationAdministrationOfficePage educationAdministrationOfficePage = assessmentsPage.clickUserGuidesLink();
+        // Then
+        assertThat(getPageTitle()).isEqualTo(educationAdministrationOfficePage.PAGE_TITLE);
+    }
+
+    @Test
+    public void shouldNavigateToUserGuidePage() {
+    }
+
 }
+
