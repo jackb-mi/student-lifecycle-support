@@ -31,7 +31,7 @@ public class AssessmentsTest extends BaseTest  {
         // When
         EducationAdministrationOfficePage educationAdministrationOfficePage = assessmentsPage.clickUserGuidesLink();
         // Then
-        assertThat(getPageTitle()).isEqualTo(educationAdministrationOfficePage.PAGE_TITLE);
+        assertThat(educationAdministrationOfficePage.getPageTitle()).isEqualTo(educationAdministrationOfficePage.PAGE_TITLE);
     }
 
     @Test
