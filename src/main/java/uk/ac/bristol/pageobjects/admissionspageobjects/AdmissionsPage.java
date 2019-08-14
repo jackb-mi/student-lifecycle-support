@@ -1,7 +1,8 @@
-package uk.ac.bristol.PageObjects;
+package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import uk.ac.bristol.pageobjects.BasePage;
 
 public class AdmissionsPage extends BasePage {
 

@@ -1,4 +1,4 @@
-package uk.ac.bristol.PageObjects;
+package uk.ac.bristol.pageobjects;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
