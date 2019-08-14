@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class BasePage {
     public static ChromeDriver driver;
@@ -86,5 +87,10 @@ public class BasePage {
  //       ((JavascriptExecutor) driver).executeScript(js, elementId);
         String path = (pathtofile + file);
         enterTextIntoElement(elementId, path);
+    }
+
+    public void switchDriverFocusToSecondTab() {
+        ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
     }
 }

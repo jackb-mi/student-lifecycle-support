@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.ArrayList;
 
 public class AssessmentsPage extends BasePage {
 
@@ -23,8 +22,7 @@ public class AssessmentsPage extends BasePage {
             Assert.fail("User Guides Link Not Found");
         }
 
-        ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs2.get(1));
+        switchDriverFocusToSecondTab();
 
         EducationAdministrationOfficePage educationAdministrationOfficePage = new EducationAdministrationOfficePage(driver);
         return educationAdministrationOfficePage;
