@@ -1,58 +1,42 @@
 package uk.ac.bristol.personnel;
 
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
-import uk.ac.bristol.helpers.PersonnelXMLBuilder;
+import uk.ac.bristol.enums.Titles;
+import uk.ac.bristol.helpers.AppointmentBuilder;
+import uk.ac.bristol.helpers.PersonnelBuilder;
 
-import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CreatePersonnelTest extends BaseTest {
 
-    private String restAPIUrl = "https://test.sls.bristol.ac.uk/urd/sits.urd/run/SIW_RWS/PERSONNEL/S/PERSONNEL/";
-    private String user = "DNS105";
-    private String password = "pj43WkhXG4377GUHtEze";
-
     @Test
-    public void shouldReturnSuccessResponseForCreatePersonnelRequest() {
-        RequestSpecification requestSpecification = createNewPersonnelRequestData();
+    public void shouldReturnMasterStudentCodeForCreatePersonnelRequest() {
+        String masterStudentCode = new PersonnelBuilder().create();
 
-        given()
-                .auth().preemptive().basic(user, password)
-                .spec(requestSpecification)
-        .when()
-                .post(restAPIUrl)
-        .then()
-                .statusCode(201);
+        assertThat(masterStudentCode).contains("00000");
     }
 
     @Test
-    public void shouldReturnSuccessResponseForCreatePersonnelRequestTwo() {
+    public void shouldReturnMasterStudentCodeForCreatePersonnelRequestWithSpecifiedValues() {
+        String emailAddress = "email@address.com";
 
-        RequestSpecBuilder builder = new RequestSpecBuilder();
-        builder.setBody(new PersonnelXMLBuilder().withTitleCode("PROFESSOR SIR").create());
-        builder.setContentType("text/xml");
+        String masterStudentCode = new PersonnelBuilder()
+                .withEmailAddress(emailAddress)
+                .withTitleCode(Titles.FATHER)
+                .withERPIntegration(true)
+                .create();
 
-        RequestSpecification requestSpecification = builder.build();
-
-        given()
-                .auth().preemptive().basic(user, password)
-                .spec(requestSpecification)
-                .when()
-                .post(restAPIUrl)
-                .then()
-                .statusCode(201);
+        assertThat(masterStudentCode).contains("00000");
     }
 
-    private RequestSpecification createNewPersonnelRequestData() {
+    @Test
+    public void shouldAddAppointmentToNewlyCreatedUser() {
 
-        RequestSpecBuilder builder = new RequestSpecBuilder();
-        builder.setBody(new PersonnelXMLBuilder().create());
-        builder.setContentType("text/xml");
+        String matCode = "ALL_STAFF";
 
-        RequestSpecification requestSpecification = builder.build();
-        return requestSpecification;
+        String masterStudentCode = new PersonnelBuilder().create();
+
+        new AppointmentBuilder(masterStudentCode, matCode).create();
     }
-
 }
