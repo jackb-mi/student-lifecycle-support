@@ -3,11 +3,13 @@ package uk.ac.bristol.helpers.builders;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import uk.ac.bristol.enums.Titles;
+//import uk.ac.bristol.helpers.PersonnelResponse;
 import uk.ac.bristol.helpers.RandomData;
 
 import static io.restassured.RestAssured.given;
 
 public class PersonnelBuilder {
+
 
     private String personalApiUrl = "https://test.sls.bristol.ac.uk/urd/sits.urd/run/SIW_RWS/PERSONNEL/S/PERSONNEL/";
     private String personnelApiUser = "DNS105";
@@ -26,8 +28,8 @@ public class PersonnelBuilder {
 
     public PersonnelBuilder() {
 
-    String randomNumber = RandomData.numericString(4);
-    String userReference = "TEST" + randomNumber;
+        String randomNumber = RandomData.numericString(4);
+        String userReference = "TEST" + randomNumber;
 
         this.personnelCode = userReference;
         this.titleCode = Titles.MRS.getValue();
@@ -39,7 +41,7 @@ public class PersonnelBuilder {
         this.prsExternalIdCode20 = "TEST" + String.valueOf(randomNumber);
         this.forenameUsed = forname1;
         this.dateOfBirth = "1987-11-19";
-}
+    }
 
     public PersonnelBuilder withTitleCode(Titles titleCode) {
         this.titleCode = titleCode.getValue();
@@ -65,7 +67,7 @@ public class PersonnelBuilder {
         return erpValue;
     }
 
-    public String create() {
+    public PersonnelResponse create() {
         String apiBody = "<PersonnelList>" +
                 "<Personnel>" +
                 "<PersonnelCode>" + personnelCode + "</PersonnelCode>" +
@@ -81,8 +83,6 @@ public class PersonnelBuilder {
                 "</Personnel>" +
                 "</PersonnelList>";
 
-        System.out.println("User being created with Personnel Code " + personnelCode);
-
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.setBody(apiBody);
         builder.setContentType("text/xml");
@@ -96,6 +96,91 @@ public class PersonnelBuilder {
                 .post(personalApiUrl).getBody().asString();
 
         String masterStudentCode = responseBody.substring(responseBody.indexOf("<MasterStudentCode>") + 1, responseBody.indexOf("</MasterStudentCode>"));
-        return masterStudentCode.replace("MasterStudentCode>", "");
+        masterStudentCode = masterStudentCode.replace("MasterStudentCode>", "");
+
+        PersonnelResponse personnelResponse = new PersonnelResponse(personnelCode, titleCode, forname1, surname, fullName, emailAddress, withERPIntegration, prsExternalIdCode20, forenameUsed, dateOfBirth, masterStudentCode);
+
+        return personnelResponse;
     }
+
+
+    public class PersonnelResponse {
+        private String personnelCode;
+        private String titleCode;
+        private String forname1;
+        private String surname;
+        private String fullName;
+        private String emailAddress;
+        private Boolean withERPIntegration;
+        private String prsExternalIdCode20;
+        private String forenameUsed;
+        private String dateOfBirth;
+        private String mstCode;
+        private String userName;
+
+        public PersonnelResponse(String personnelCode, String titleCode, String forname1, String surname, String fullName, String emailAddress,
+                                 Boolean withERPIntegration, String prsExternalIdCode20, String forenameUsed, String dateOfBirth, String mstCode) {
+            this.personnelCode = personnelCode;
+            this.titleCode = titleCode;
+            this.forname1 = forname1;
+            this.surname = surname;
+            this.fullName = fullName;
+            this.emailAddress = emailAddress;
+            this.withERPIntegration = withERPIntegration;
+            this.prsExternalIdCode20 = prsExternalIdCode20;
+            this.forenameUsed = forenameUsed;
+            this.dateOfBirth = dateOfBirth;
+            this.mstCode = mstCode;
+            this.userName = prsExternalIdCode20;
+        }
+
+        public String getPersonnelCode() {
+            return this.personnelCode;
+        }
+
+        public String getTitleCode() {
+            return this.titleCode;
+        }
+
+        public String getForname1() {
+            return this.forname1;
+        }
+
+        public String getSurname() {
+            return this.surname;
+        }
+
+        public String getFullName() {
+            return this.fullName;
+        }
+
+        public String getEmailAddress() {
+            return this.emailAddress;
+        }
+
+        public Boolean withERPIntegration() {
+            return this.withERPIntegration;
+        }
+
+        public String getPrsExternalIdCode20() {
+            return this.prsExternalIdCode20;
+        }
+
+        public String getForenameUsed() {
+            return this.forenameUsed;
+        }
+
+        public String getDateOfBirth() {
+            return this.dateOfBirth;
+        }
+
+        public String getMstCode() {
+            return this.mstCode;
+        }
+
+        public String getUserName() {
+            return this.userName;
+        }
+    }
+
 }

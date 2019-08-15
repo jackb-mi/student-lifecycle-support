@@ -3,31 +3,34 @@ package uk.ac.bristol.personnel;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.Titles;
+//import uk.ac.bristol.helpers.PersonnelResponse;
 import uk.ac.bristol.helpers.builders.AppointmentBuilder;
 import uk.ac.bristol.helpers.builders.PersonnelBuilder;
+import uk.ac.bristol.helpers.builders.PersonnelBuilder.PersonnelResponse;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CreatePersonnelTest extends BaseTest {
 
     @Test
-    public void shouldReturnMasterStudentCodeForCreatePersonnelRequest() {
-        String masterStudentCode = new PersonnelBuilder().create();
+    public void shouldGetMasterStudentCodeFromCreatePersonnelRequest() {
+        String mstCode = new PersonnelBuilder().create().getMstCode();
 
-        assertThat(masterStudentCode).contains("00000");
+        assertThat(mstCode).contains("00000");
     }
 
     @Test
     public void shouldReturnMasterStudentCodeForCreatePersonnelRequestWithSpecifiedValues() {
         String emailAddress = "email@address.com";
 
-        String masterStudentCode = new PersonnelBuilder()
+        String mstCode = new PersonnelBuilder()
                 .withEmailAddress(emailAddress)
                 .withTitleCode(Titles.FATHER)
                 .withERPIntegration(true)
-                .create();
+                .create()
+                .getMstCode();
 
-        assertThat(masterStudentCode).contains("00000");
+        assertThat(mstCode).contains("00000");
     }
 
     @Test
@@ -35,8 +38,20 @@ public class CreatePersonnelTest extends BaseTest {
 
         String matCode = "ALL_STAFF";
 
-        String masterStudentCode = new PersonnelBuilder().create();
+        String mstCode = new PersonnelBuilder().create().getMstCode();
 
-        new AppointmentBuilder(masterStudentCode, matCode).create();
+        new AppointmentBuilder(mstCode, matCode).create();
+    }
+
+    @Test
+    public void shouldAddAppointmentToNewlyCreatedUserAndGetLoginDetails() {
+
+        String matCode = "ALL_STAFF";
+
+        PersonnelResponse personnelResponse = new PersonnelBuilder().create();
+
+        new AppointmentBuilder(personnelResponse.getMstCode(), matCode).create();
+
+        System.out.println("And their username is " + personnelResponse.getUserName());
     }
 }
