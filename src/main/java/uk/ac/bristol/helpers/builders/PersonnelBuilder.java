@@ -1,8 +1,9 @@
-package uk.ac.bristol.helpers;
+package uk.ac.bristol.helpers.builders;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import uk.ac.bristol.enums.Titles;
+import uk.ac.bristol.helpers.RandomData;
 
 import static io.restassured.RestAssured.given;
 

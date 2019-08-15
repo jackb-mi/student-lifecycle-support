@@ -3,8 +3,8 @@ package uk.ac.bristol.personnel;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.Titles;
-import uk.ac.bristol.helpers.AppointmentBuilder;
-import uk.ac.bristol.helpers.PersonnelBuilder;
+import uk.ac.bristol.helpers.builders.AppointmentBuilder;
+import uk.ac.bristol.helpers.builders.PersonnelBuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
