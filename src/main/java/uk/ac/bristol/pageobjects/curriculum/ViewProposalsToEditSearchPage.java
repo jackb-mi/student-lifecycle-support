@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.pageobjects.BasePage;
-import uk.ac.bristol.pageobjects.curriculum.ProposalLevelDecisionPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +22,7 @@ public class ViewProposalsToEditSearchPage extends BasePage {
 
         try {
             Awaitility.await().atMost(10L, TimeUnit.SECONDS).until(() -> {
-                return this.isElementDisplayed(this.PAGE_TITLE_IDENTIFIER);
+                return this.isElementDisplayed(driver, this.PAGE_TITLE_IDENTIFIER);
             });
         } catch (ConditionTimeoutException var2) {
             Assert.fail("Page Title Not Found");

@@ -27,62 +27,63 @@ public class ProposalInformationPage extends BasePage {
 
     public void completeProposalSection(CommitteeLevel committeeLevel) {
 
-        ProposalSection.enterProposalName("Test123");
-        ProposalSection.enterOwningSchoolDepartment("SART");
-        ProposalSection.enterAcademicResponsible("XXXTEST3");
-        ProposalSection.selectDropDownOption(committeeLevel.getValue());
+        ProposalSection proposalSection = new ProposalSection();
+        proposalSection.enterProposalName("Test123");
+        proposalSection.enterOwningSchoolDepartment("SART");
+        proposalSection.enterAcademicResponsible("XXXTEST3");
+        proposalSection.selectDropDownOption(committeeLevel.getValue());
     }
 
     public void selectAndCompleteRationalSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
         clickElement(RATIONAL_SECTION_IDENTIFIER);
-        RationaleSection.enterAcademicRationale("Test");
+
+        RationaleSection rationaleSection = new RationaleSection();
+        rationaleSection.enterAcademicRationale("Test");
+        rationaleSection.enterResourceImplications("Test");
+        rationaleSection.enterStudentNumbers("10");
+        rationaleSection.enterConsultationWithOtherSchoolsDepartment("Test");
+
+
+//        Thread.sleep(1000);
         //TODO wait for element to become interactable
-        Thread.sleep(1000);
-
         if (proposalApprovalLevel == CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
-            RationaleSection.enterAssessmentDetails("Test");
+            rationaleSection.enterAssessmentDetails("Test");
         }
-
-        RationaleSection.enterResourceImplications("Test");
-        RationaleSection.enterStudentNumbers("10");
-        RationaleSection.enterConsultationWithOtherSchoolsDepartment("Test");
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
     }
 
     public void selectAndCompleteEqualityAnalysisSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
         clickElement(EQUALITY_ANALYSIS_SECTION_IDENTIFIER);
-        Thread.sleep(1000);
-        if (proposalApprovalLevel == CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
-            EqualityAnalysisSection.enterEqualityRiskAssessment("Test");
-            //TODO improve wait
-            Thread.sleep(1000);
-        }
 
-        EqualityAnalysisSection.enterEqualityRiskImpact("Test");
-        //TODO improve wait
-        Thread.sleep(1000);
+        EqualityAnalysisSection equalityAnalysisSection = new EqualityAnalysisSection();
+        equalityAnalysisSection.enterEqualityRiskImpact("Test");
+
+        if (proposalApprovalLevel == CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
+            equalityAnalysisSection.enterEqualityRiskAssessment("Test");
+        }
     }
 
     public void selectAndCompleteOrdinancesAndRegulationsSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
         clickElement(ORDINANCES_AND_REGULATIONS_SECTION_IDENTIFIER);
+
+        OrdinancesAndRegulationsSection ordinancesAndRegulationsSection = new OrdinancesAndRegulationsSection();
+        ordinancesAndRegulationsSection.enterConsequentChangesToTheRegulations("Test");
+
         if (proposalApprovalLevel == NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY || proposalApprovalLevel == PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY) {
-            OrdinancesAndRegulationsSection.enterConsequentChangesToTheOrdinances("Test");
-            // TODO improve wait
-            Thread.sleep(1000);
+            ordinancesAndRegulationsSection.enterConsequentChangesToTheOrdinances("Test");
         }
-        OrdinancesAndRegulationsSection.enterConsequentChangesToTheRegulations("Test");
     }
 
     public void selectAndCompleteSupportSection() throws Exception {
         clickElement(SUPPORT_SECTION_IDENTIFIER);
-        //TODO improve wait
-        Thread.sleep(1000);
-        SupportSection.completeUploadFileForExternalSupportAndReturnToSupportSection();
-        SupportSection.completeUploadFileForExternalSupportAndReturnToSupportSection();
-        SupportSection.enterExternalAssessors("Test");
-        SupportSection.enterResponseToExternalAssessors("Test");
-        SupportSection.enterProfessionalBodyScrutiny("Test");
-        SupportSection.completeUploadFileForStudentConsultationAndReturnToSupportSection();
+
+        SupportSection supportSection = new SupportSection();
+        supportSection.completeUploadFileForExternalSupportAndReturnToSupportSection();
+        supportSection.completeUploadFileForExternalSupportAndReturnToSupportSection();
+        supportSection.enterExternalAssessors("Test");
+        supportSection.enterResponseToExternalAssessors("Test");
+        supportSection.enterProfessionalBodyScrutiny("Test");
+        supportSection.completeUploadFileForStudentConsultationAndReturnToSupportSection();
     }
 
 
@@ -90,9 +91,7 @@ public class ProposalInformationPage extends BasePage {
 
         switch (proposalApprovalLevel) {
             case NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY: {
-                Thread.sleep(1000);
                 clickElement(By.cssSelector("#ui-id-11"));
-                Thread.sleep(1000);
                 enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.25\\."), "Test");
                 break;
             }
@@ -125,13 +124,9 @@ public class ProposalInformationPage extends BasePage {
             default:
                 fail("Unknown Curriculum Proposal Approval Level");
         }
-        // TODO improve wait
-        Thread.sleep(1000);
-
     }
 
     public SubmitProposalPage selectPrepareToSubmitProposalButton(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
-        Thread.sleep(3000);
 
         if (proposalApprovalLevel != NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
             clickElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.29\\."));
@@ -141,115 +136,113 @@ public class ProposalInformationPage extends BasePage {
             clickElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.31\\."));
         }
 
-        Thread.sleep(3000);
-
         SubmitProposalPage submitProposalPage = new SubmitProposalPage(driver);
         return submitProposalPage;
     }
 
-    public static class ProposalSection {
-        private static final By PROPOSAL_NAME_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.2\\.");
-        private static final By OWNING_SCHOOL_DEPARTMENT_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.3\\.");
-        private static final By ACADEMIC_RESPONSIBLE_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.4\\.");
-        private static final By COMMITTEE_LEVEL_DROPDOWN_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.6\\.");
+    public class ProposalSection {
+        private final By PROPOSAL_NAME_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.2\\.");
+        private final By OWNING_SCHOOL_DEPARTMENT_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.3\\.");
+        private final By ACADEMIC_RESPONSIBLE_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.4\\.");
+        private final By COMMITTEE_LEVEL_DROPDOWN_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.6\\.");
 
-        private static void enterProposalName(String textToEnter) {
+        private void enterProposalName(String textToEnter) {
             enterTextIntoElement(PROPOSAL_NAME_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterOwningSchoolDepartment(String textToEnter) {
+        private void enterOwningSchoolDepartment(String textToEnter) {
             enterTextIntoElement(OWNING_SCHOOL_DEPARTMENT_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterAcademicResponsible(String textToEnter) {
+        private void enterAcademicResponsible(String textToEnter) {
             enterTextIntoElement(ACADEMIC_RESPONSIBLE_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void selectDropDownOption(String value) {
+        private void selectDropDownOption(String value) {
 
             Select dropDownValue = new Select(driver.findElement(COMMITTEE_LEVEL_DROPDOWN_IDENTIFIER));
             dropDownValue.selectByValue(value);
         }
     }
 
-    public static class RationaleSection {
+    public class RationaleSection {
 
-        private static final By ACADEMIC_RATIONALE_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.7\\.");
-        private static final By ASSESSMENT_DETAILS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.8\\.");
-        private static final By RESOURCE_IMPLICATIONS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.9\\.");
-        private static final By STUDENT_NUMBERS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.10\\.");
-        private static final By CONSULTATION_WITH_OTHER_SCHOOLS_DEPARTMENT_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.11\\.");
+        private final By ACADEMIC_RATIONALE_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.7\\.");
+        private final By ASSESSMENT_DETAILS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.8\\.");
+        private final By RESOURCE_IMPLICATIONS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.9\\.");
+        private final By STUDENT_NUMBERS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.10\\.");
+        private final By CONSULTATION_WITH_OTHER_SCHOOLS_DEPARTMENT_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.11\\.");
 
-        private static void enterAcademicRationale(String textToEnter) {
+        private void enterAcademicRationale(String textToEnter) {
             enterTextIntoElement(ACADEMIC_RATIONALE_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterAssessmentDetails(String textToEnter) {
+        private void enterAssessmentDetails(String textToEnter) {
             enterTextIntoElement(ASSESSMENT_DETAILS_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterResourceImplications(String textToEnter) {
+        private void enterResourceImplications(String textToEnter) {
             enterTextIntoElement(RESOURCE_IMPLICATIONS_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterStudentNumbers(String textToEnter) {
+        private void enterStudentNumbers(String textToEnter) {
             enterTextIntoElement(STUDENT_NUMBERS_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterConsultationWithOtherSchoolsDepartment(String textToEnter) {
+        private void enterConsultationWithOtherSchoolsDepartment(String textToEnter) {
             enterTextIntoElement(CONSULTATION_WITH_OTHER_SCHOOLS_DEPARTMENT_INPUT_IDENTIFIER, textToEnter);
         }
     }
 
-    public static class EqualityAnalysisSection {
+    public class EqualityAnalysisSection {
 
-        private static final By EQUALITY_RISK_ASSESSMENT_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.12\\.");
-        private static final By EQUALITY_RISK_IMPACT_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.13\\.");
+        private final By EQUALITY_RISK_ASSESSMENT_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.12\\.");
+        private final By EQUALITY_RISK_IMPACT_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.13\\.");
 
-        private static void enterEqualityRiskAssessment(String textToEnter) {
+        private void enterEqualityRiskAssessment(String textToEnter) {
             enterTextIntoElement(EQUALITY_RISK_ASSESSMENT_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterEqualityRiskImpact(String textToEnter) {
+        private void enterEqualityRiskImpact(String textToEnter) {
             enterTextIntoElement(EQUALITY_RISK_IMPACT_INPUT_IDENTIFIER, textToEnter);
         }
     }
 
-    public static class OrdinancesAndRegulationsSection {
+    public class OrdinancesAndRegulationsSection {
 
-        private static final By CONSEQUENT_CHANGES_TO_THE_ORDINANCES_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.14\\.");
-        private static final By CONSEQUENT_CHANGES_TO_THE_REGULATIONS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.15\\.");
+        private final By CONSEQUENT_CHANGES_TO_THE_ORDINANCES_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.14\\.");
+        private final By CONSEQUENT_CHANGES_TO_THE_REGULATIONS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.15\\.");
 
-        private static void enterConsequentChangesToTheOrdinances(String textToEnter) {
+        private void enterConsequentChangesToTheOrdinances(String textToEnter) {
             enterTextIntoElement(CONSEQUENT_CHANGES_TO_THE_ORDINANCES_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterConsequentChangesToTheRegulations(String textToEnter) {
+        private void enterConsequentChangesToTheRegulations(String textToEnter) {
             enterTextIntoElement(CONSEQUENT_CHANGES_TO_THE_REGULATIONS_INPUT_IDENTIFIER, textToEnter);
         }
     }
 
-    public static class SupportSection {
+    public class SupportSection {
 
-        private static final By EXTERNAL_SUPPORT_UPLOAD_BUTTON_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.16\\.");
-        private static final By EXTERNAL_ASSESSORS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.18\\.");
-        private static final By RESPONSE_TO_EXTERNAL_ASSESSORS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.19\\.");
-        private static final By PROFESSIONAL_BODY_SCRUTINY_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.20\\.");
-        private static final By STUDENT_CONSULTATION_UPLOAD_BUTTON_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.21\\.");
+        private final By EXTERNAL_SUPPORT_UPLOAD_BUTTON_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.16\\.");
+        private final By EXTERNAL_ASSESSORS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.18\\.");
+        private final By RESPONSE_TO_EXTERNAL_ASSESSORS_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.19\\.");
+        private final By PROFESSIONAL_BODY_SCRUTINY_INPUT_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.20\\.");
+        private final By STUDENT_CONSULTATION_UPLOAD_BUTTON_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.21\\.");
 
-        private static void enterExternalAssessors(String textToEnter) {
+        private void enterExternalAssessors(String textToEnter) {
             enterTextIntoElement(EXTERNAL_ASSESSORS_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterResponseToExternalAssessors(String textToEnter) {
+        private void enterResponseToExternalAssessors(String textToEnter) {
             enterTextIntoElement(RESPONSE_TO_EXTERNAL_ASSESSORS_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private static void enterProfessionalBodyScrutiny(String textToEnter) {
+        private void enterProfessionalBodyScrutiny(String textToEnter) {
             enterTextIntoElement(PROFESSIONAL_BODY_SCRUTINY_INPUT_IDENTIFIER, textToEnter);
         }
 
-        public static void completeUploadFileForExternalSupportAndReturnToSupportSection() throws Exception {
+        public void completeUploadFileForExternalSupportAndReturnToSupportSection() throws Exception {
             clickElement(EXTERNAL_SUPPORT_UPLOAD_BUTTON_IDENTIFIER);
 
             UploadFilesPage uploadFilesPage = new UploadFilesPage(driver);
@@ -257,10 +250,9 @@ public class ProposalInformationPage extends BasePage {
             uploadFilesPage.uploadCurriculumManagementFile();
 
             clickElement(SUPPORT_SECTION_IDENTIFIER);
-            Thread.sleep(1000);
         }
 
-        public static void completeUploadFileForStudentConsultationAndReturnToSupportSection() throws IOException {
+        public void completeUploadFileForStudentConsultationAndReturnToSupportSection() throws IOException, InterruptedException {
             clickElement(STUDENT_CONSULTATION_UPLOAD_BUTTON_IDENTIFIER);
 
             UploadFilesPage uploadFilesPage = new UploadFilesPage(driver);

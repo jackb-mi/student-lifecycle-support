@@ -20,9 +20,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelUnitUpdatesThatDoNotRequireApproval() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -32,9 +34,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelUnitUpdatesThatDoNotRequireApproval() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -44,9 +48,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelOtherChangesThatRequireApprovalFaculty() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -56,9 +62,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelOtherChangesThatRequireApprovalFaculty() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -68,9 +76,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelProgrammePathwaySuspensionUniversity() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -80,9 +90,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelProgrammePathwaySuspensionUniversity() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -92,9 +104,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelProgrammePathwayWithdrawalUniversity() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -104,9 +118,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelProgrammePathwayWithdrawalUniversity() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -116,9 +132,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompletePostgraduateCurriculumProposalWithApprovalLevelNewProgrammeHighRiskChangesUniversity() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, POSTGRADUATE, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -128,9 +146,11 @@ public class CreateCurriculumProposalTest extends BaseTest {
     @Test
     public void shouldCompleteUndergraduateCurriculumProposalWithApprovalLevelNewProgrammeHighRiskChangesUniversity() throws Exception {
         // Given
-        ProposalInformationPage proposalInformationPage = accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        ProposalInformationPage proposalInformationPage =
+                accessProposalLevelDecisionPageAndStartNewProposal(curriculumUserUsername, curriculumUserPassword, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
 
-        SubmitProposalPage submitProposalPage = completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+        SubmitProposalPage submitProposalPage =
+                completeProposalSectionsAndPrepareToSubmitToCatalogue(proposalInformationPage, UNDERGRADUATE, NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
         // When
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = submitProposalPage.submitProposalToCatalogue();
         // Then
@@ -165,7 +185,8 @@ public class CreateCurriculumProposalTest extends BaseTest {
                 submitProposalPage = proposalInformationPage.selectPrepareToSubmitProposalButton(proposalApprovalLevel);
                 return submitProposalPage;
             }
-            case PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY: {
+            case PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY:
+            case OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY: {
                 proposalInformationPage.completeProposalSection(committeeLevel);
                 proposalInformationPage.selectAndCompleteRationalSection(proposalApprovalLevel);
                 proposalInformationPage.selectAndCompleteEqualityAnalysisSection(proposalApprovalLevel);
@@ -178,15 +199,6 @@ public class CreateCurriculumProposalTest extends BaseTest {
                 proposalInformationPage.completeProposalSection(committeeLevel);
                 proposalInformationPage.selectAndCompleteRationalSection(proposalApprovalLevel);
                 proposalInformationPage.selectAndCompleteEqualityAnalysisSection(proposalApprovalLevel);
-                proposalInformationPage.selectAndCompleteStudentsAndApplicantsSection(proposalApprovalLevel);
-                submitProposalPage = proposalInformationPage.selectPrepareToSubmitProposalButton(proposalApprovalLevel);
-                return submitProposalPage;
-            }
-            case OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY: {
-                proposalInformationPage.completeProposalSection(committeeLevel);
-                proposalInformationPage.selectAndCompleteRationalSection(proposalApprovalLevel);
-                proposalInformationPage.selectAndCompleteEqualityAnalysisSection(proposalApprovalLevel);
-                proposalInformationPage.selectAndCompleteOrdinancesAndRegulationsSection(proposalApprovalLevel);
                 proposalInformationPage.selectAndCompleteStudentsAndApplicantsSection(proposalApprovalLevel);
                 submitProposalPage = proposalInformationPage.selectPrepareToSubmitProposalButton(proposalApprovalLevel);
                 return submitProposalPage;

@@ -1,5 +1,7 @@
 package uk.ac.bristol.pageobjects;
 
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,9 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import uk.ac.bristol.enums.CurriculumProposalApprovalLevels;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     public static ChromeDriver driver;
@@ -23,21 +25,47 @@ public class BasePage {
         return "https://" + endPoint;
     }
 
-    public static void enterTextIntoElement(By elementId, String textToEnter) {
+    public void enterTextIntoElement(By elementId, String textToEnter) {
+        waitUntilElementIsVisibleAndIsClickable(elementId);
         driver.findElement(elementId).sendKeys(new CharSequence[]{textToEnter});
     }
 
-    public Boolean isElementDisplayed(By elementId) {
-        return driver.findElements(elementId).size() > 0;
-    }
-
-    public static void clickElement(By elementId) {
+    public void clickElement(By elementId) {
+        waitUntilElementIsVisibleAndIsClickable(elementId);
         driver.findElement(elementId).click();
     }
 
-
     public String getTextFromElement(By elementId) {
         return driver.findElement(elementId).getText();
+    }
+
+    public Boolean isElementClickable(ChromeDriver driver, By elementId) {
+        return driver.findElement(elementId).isEnabled();
+    }
+
+    public Boolean isElementDisplayed(ChromeDriver driver, By elementId) {
+        return driver.findElements(elementId).size() > 0;
+    }
+
+    public void waitUntilElementIsVisibleAndIsClickable(By elementId) {
+        waitUntilElementIsVisible(driver, elementId);
+        waitUntilElementIsClickable(driver, elementId);
+    };
+
+    public void waitUntilElementIsVisible(ChromeDriver driver, By elementId) {
+        try {
+            Awaitility.await().atMost(5L, TimeUnit.SECONDS).until(() -> isElementDisplayed(driver, elementId));
+        } catch (ConditionTimeoutException cte) {
+            Assert.fail("Element not found");
+        }
+    }
+
+    public void waitUntilElementIsClickable(ChromeDriver driver, By elementId) {
+        try {
+            Awaitility.await().atMost(5L, TimeUnit.SECONDS).until(() -> isElementClickable(driver, elementId));
+        } catch (ConditionTimeoutException cte) {
+            Assert.fail("Element not found");
+        }
     }
 
     public void waitForElementToBeDisplayed(By elementId, WebDriver driver, int timeout) {
