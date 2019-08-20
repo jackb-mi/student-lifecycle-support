@@ -33,7 +33,7 @@ public class BaseTest {
         chromeOptions.addArguments("test-type");
         chromeOptions.addArguments("disable-plugins");
         chromeOptions.addArguments("disable-extensions");
-        //  chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
 
@@ -78,6 +78,18 @@ public class BaseTest {
         admissionsApplicantLoginPage.enterApplicantDetails(Studentno, Surname, dob);
         AdmissionsApplicantDashboardPage admissionsApplicantDashboardPage = admissionsApplicantLoginPage.loginWithValidCredentials();
         return admissionsApplicantDashboardPage;
+    }
+
+    public LoginPage loadLoginPageForTestEnvironment(ChromeDriver driver) {
+        LoginPage loginPage = new LoginPage(driver);
+        return loginPage.loadLoginPageForTestEnvironment();
+    }
+
+    public HomePage shouldAccessHomepageForTestEnvironment(String username, String password) {
+        LoginPage loginPage = loadLoginPageForTestEnvironment(driver);
+        loginPage.enterUsernameAndPassword(username, password);
+        HomePage homePage = loginPage.loginWithValidCredentials();
+        return homePage;
     }
 
     public Boolean isElementDisplayed(By elementId) {
