@@ -33,7 +33,7 @@ public class CreateNewProgrammeTest extends BaseTest {
         programmeCreationProgrammeDetailsPage.enterFullName("Test Full Name " + randomText);
         programmeCreationProgrammeDetailsPage.enterShortName("Test" + randomText);
         programmeCreationProgrammeDetailsPage.enterAward("BA01");
-        programmeCreationProgrammeDetailsPage.selectLocation();
+        programmeCreationProgrammeDetailsPage.selectLocation(Location.BRISTOL_CITY_FOOTBALL_CLUB_ASHTON_GATE);
         programmeCreationProgrammeDetailsPage.selectDistanceLearningEtc(DistanceLearning.ON_CAMPUS);
 //        programmeCreationProgrammeDetailsPage.selectType(ProgrammeType.UNDERGRADUATE, HonourLevel.SINGLE, IntegratedMastersType.INTEGRATED_MASTERS_TYPE_2);
         programmeCreationProgrammeDetailsPage.selectType(ProgrammeType.POSTGRADUATE_RESEARCH, HonourLevel.NOT_APPLICABLE, IntegratedMastersType.NOT_APPLICABLE);
@@ -41,12 +41,12 @@ public class CreateNewProgrammeTest extends BaseTest {
         programmeCreationProgrammeDetailsPage.selectDepartmentOne();
         programmeCreationProgrammeDetailsPage.selectAdmissionsEntryLevel(AdmissionsEntry.DIRECT_ONLY);
         programmeCreationProgrammeDetailsPage.selectReplacesCourses();
-        programmeCreationProgrammeDetailsPage.selectAcademicYearProgrammeIsGoingLiveIn();
-        programmeCreationProgrammeDetailsPage.selectYearInIndustryStage();
-        programmeCreationProgrammeDetailsPage.selectStudyAbroadStage();
-        programmeCreationProgrammeDetailsPage.selectIntercalatingStage();
-        programmeCreationProgrammeDetailsPage.selectTeachingInstitution();
-        programmeCreationProgrammeDetailsPage.selectAwardingInstitution();
+        programmeCreationProgrammeDetailsPage.selectAcademicYearProgrammeIsGoingLiveIn(AcademicYear.ACADEMIC_YEAR_2019_2020);
+        programmeCreationProgrammeDetailsPage.selectYearInIndustryStage(YearInIndustryStage.TWO);
+        programmeCreationProgrammeDetailsPage.selectStudyAbroadStage(StudyAbroadStage.ZERO);
+        programmeCreationProgrammeDetailsPage.selectIntercalatingStage(IntercalatingStage.ZERO);
+        programmeCreationProgrammeDetailsPage.selectTeachingInstitution(TeachingInstitution.UNIVERSITY_OF_BRISTOL);
+        programmeCreationProgrammeDetailsPage.selectAwardingInstitution(AwardingInstitution.UNIVERSITY_OF_BRISTOL);
         CreateProgrammeAddPathwaysPage createProgrammeAddPathwaysPage = programmeCreationProgrammeDetailsPage.selectNextButton();
 
 //        createProgrammeAddPathwaysPage.enterFullName();

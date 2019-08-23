@@ -1,9 +1,9 @@
 package uk.ac.bristol.enums;
 
 public enum HonourLevel {
-    SINGLE(),
-    JOINT(),
-    OVERSEAS(),
+    SINGLE,
+    JOINT,
+    OVERSEAS,
 
     /* NOT_APPLICABLE has been included for use when creating Programmes in Curriculum Management,
     An honor level may or may not required depending on the Programme Type being created.
