@@ -25,6 +25,21 @@ public class BasePage {
         return "https://" + endPoint;
     }
 
+
+    public String getPageTitle() {
+
+        try {
+            Awaitility.await().atMost(10L, TimeUnit.SECONDS).until(() -> {
+                return this.isElementDisplayed(driver, this.PAGE_TITLE_IDENTIFIER);
+            });
+        } catch (ConditionTimeoutException var2) {
+            Assert.fail("Page Title Not Found");
+        }
+
+        return this.getTextFromElement(this.PAGE_TITLE_IDENTIFIER);
+
+    }
+
     public void enterTextIntoElement(By elementId, String textToEnter) {
         waitUntilElementIsVisibleAndIsClickable(elementId);
         driver.findElement(elementId).sendKeys(new CharSequence[]{textToEnter});
@@ -54,7 +69,7 @@ public class BasePage {
 
     public void waitUntilElementIsVisible(ChromeDriver driver, By elementId) {
         try {
-            Awaitility.await().atMost(5L, TimeUnit.SECONDS).until(() -> isElementDisplayed(driver, elementId));
+            Awaitility.await().atMost(10L, TimeUnit.SECONDS).until(() -> isElementDisplayed(driver, elementId));
         } catch (ConditionTimeoutException cte) {
             Assert.fail("Element not found");
         }
