@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     public static ChromeDriver driver;
-    public By PAGE_TITLE_IDENTIFIER = By.cssSelector("#sitsportalpagetitle");
+    public static final By PAGE_TITLE_IDENTIFIER = By.cssSelector("#sitsportalpagetitle");
+    public static final By NEXT_BUTTON_IDENTIFIER = By.name("NEXT.DUMMY.MENSYS.1");
 
     public BasePage(ChromeDriver driver) {
         this.driver = driver;
@@ -51,6 +52,15 @@ public class BasePage {
     }
 
     public String getTextFromElement(By elementId) {
+
+        try {
+            Awaitility.await().atMost(10L, TimeUnit.SECONDS).until(() -> {
+                return this.isElementDisplayed(driver, elementId);
+            });
+        } catch (ConditionTimeoutException var2) {
+            Assert.fail("Expected Element Not Found");
+        }
+
         return driver.findElement(elementId).getText();
     }
 
@@ -121,6 +131,12 @@ public class BasePage {
     public void selectFromDropdown(By elementId, String DropdownText) {
         Select selectList = new Select(driver.findElement(elementId));
         selectList.selectByVisibleText(DropdownText);
+    }
+
+    public void selectDropDownOptionByValue(By dropdownIdentifier, String value) {
+
+        Select dropDownValue = new Select(driver.findElement(dropdownIdentifier));
+        dropDownValue.selectByValue(value);
     }
 
     public void switchToIframe(By elementId) {

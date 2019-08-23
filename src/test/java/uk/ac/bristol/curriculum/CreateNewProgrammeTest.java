@@ -3,10 +3,11 @@ package uk.ac.bristol.curriculum;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.*;
+import uk.ac.bristol.helpers.RandomData;
 import uk.ac.bristol.pageobjects.HomePage;
-import uk.ac.bristol.pageobjects.curriculum.CurriculumPage;
-import uk.ac.bristol.pageobjects.curriculum.ProgrammeCreationProgrammeDetailsPage;
-import uk.ac.bristol.pageobjects.curriculum.ProgrammeCreationProposalInformationPage;
+import uk.ac.bristol.pageobjects.curriculum.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CreateNewProgrammeTest extends BaseTest {
 
@@ -27,9 +28,10 @@ public class CreateNewProgrammeTest extends BaseTest {
         programmeCreationProposalInformationPage.selectPostgraduateRadioButton();
         ProgrammeCreationProgrammeDetailsPage programmeCreationProgrammeDetailsPage = programmeCreationProposalInformationPage.selectNextButton();
 
-        programmeCreationProgrammeDetailsPage.enterTitle("Test");
-        programmeCreationProgrammeDetailsPage.enterFullName("Test");
-        programmeCreationProgrammeDetailsPage.enterShortName("Test");
+        String randomText = RandomData.alphaNumericString(4);
+        programmeCreationProgrammeDetailsPage.enterTitle("Test Title " + randomText);
+        programmeCreationProgrammeDetailsPage.enterFullName("Test Full Name " + randomText);
+        programmeCreationProgrammeDetailsPage.enterShortName("Test" + randomText);
         programmeCreationProgrammeDetailsPage.enterAward("BA01");
         programmeCreationProgrammeDetailsPage.selectLocation();
         programmeCreationProgrammeDetailsPage.selectDistanceLearningEtc(DistanceLearning.ON_CAMPUS);
@@ -45,9 +47,22 @@ public class CreateNewProgrammeTest extends BaseTest {
         programmeCreationProgrammeDetailsPage.selectIntercalatingStage();
         programmeCreationProgrammeDetailsPage.selectTeachingInstitution();
         programmeCreationProgrammeDetailsPage.selectAwardingInstitution();
-        programmeCreationProgrammeDetailsPage.selectNextButton();
+        CreateProgrammeAddPathwaysPage createProgrammeAddPathwaysPage = programmeCreationProgrammeDetailsPage.selectNextButton();
 
+//        createProgrammeAddPathwaysPage.enterFullName();
+//        createProgrammeAddPathwaysPage.enterAwardPrintName();
+//        createProgrammeAddPathwaysPage.enterShortName();
 
+        AddVariantsPage addVariantsPage = createProgrammeAddPathwaysPage.selectNextButton();
+        addVariantsPage.selectIntensity(ProgrammeIntensity.FULL_TIME);
+        addVariantsPage.selectIntakeMonth(IntakeMonth.OCTOBER_START);
+        addVariantsPage.enterLength("3");
+        addVariantsPage.selectUnitsOfMeasurement(UnitOfMeasurement.YEARS);
+        addVariantsPage.selectAddVariantButton();
+        ProgrammeCreationValidationPage programmeCreationValidationPage = addVariantsPage.selectCreateProgrammeButton();
+
+        ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
+        assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
     }
 
     public ProgrammeCreationProposalInformationPage accessCreateNewProgrammePage(String curriculumUserUsername, String curriculumUserPassword) {

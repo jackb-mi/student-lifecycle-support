@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 import uk.ac.bristol.enums.*;
 import uk.ac.bristol.pageobjects.BasePage;
 
@@ -51,7 +50,6 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     private static final By TEACHING_INSTITUTION_FIRST_RESULT_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.24.0");
     private static final By AWARDING_INSTITUTION_DROPDOWN_IDENTIFIER = By.cssSelector("#ANSWER_TTQ_MENSYS_25__chosen > a > div > b");
     private static final By AWARDING_INSTITUTION_FIRST_RESULT_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.25.0");
-    private static final By NEXT_BUTTON_IDENTIFIER = By.name("NEXT.DUMMY.MENSYS.1");
 
 
     public ProgrammeCreationProgrammeDetailsPage(ChromeDriver driver) {
@@ -96,13 +94,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     }
 
     public void selectDistanceLearningEtc(DistanceLearning distanceLearningSelection) {
-        selectDropDownOption(DISTANCE_LEARNING_DROPDOWN_IDENTIFIER, distanceLearningSelection.getValue());
-    }
-
-    private void selectDropDownOption(By dropdownIdentifier, String value) {
-
-        Select dropDownValue = new Select(driver.findElement(dropdownIdentifier));
-        dropDownValue.selectByValue(value);
+        selectDropDownOptionByValue(DISTANCE_LEARNING_DROPDOWN_IDENTIFIER, distanceLearningSelection.getValue());
     }
 
     public void selectType(ProgrammeType programmeType, HonourLevel honourLevel, IntegratedMastersType integratedMastersType) {
@@ -238,7 +230,9 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         clickElement(AWARDING_INSTITUTION_FIRST_RESULT_IDENTIFIER);
     }
 
-    public void selectNextButton() {
+    public CreateProgrammeAddPathwaysPage selectNextButton() {
         clickElement(NEXT_BUTTON_IDENTIFIER);
+
+        return new CreateProgrammeAddPathwaysPage(driver);
     }
 }
