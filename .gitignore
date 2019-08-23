@@ -7,6 +7,8 @@
 # Maven
 target
 
+*/target/**
+
 # Compiled class file
 *.class
 
