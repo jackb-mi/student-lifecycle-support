@@ -140,4 +140,9 @@ public class BasePage {
         String path = (pathtofile + file);
         enterTextIntoElement(elementId, path);
     }
+
+    public void scrollDown() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("scroll(0, 250);");
+    }
 }

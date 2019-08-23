@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.CommitteeLevel;
 import uk.ac.bristol.enums.CurriculumProposalApprovalLevels;
-import uk.ac.bristol.pageobjects.*;
+import uk.ac.bristol.pageobjects.HomePage;
 import uk.ac.bristol.pageobjects.curriculum.*;
 
 import static junit.framework.TestCase.fail;

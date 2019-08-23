@@ -33,7 +33,7 @@ public class BaseTest {
         chromeOptions.addArguments("test-type");
         chromeOptions.addArguments("disable-plugins");
         chromeOptions.addArguments("disable-extensions");
-        chromeOptions.addArguments("--headless");
+   //     chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
 

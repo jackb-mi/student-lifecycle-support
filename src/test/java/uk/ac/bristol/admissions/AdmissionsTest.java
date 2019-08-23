@@ -272,7 +272,7 @@ public class AdmissionsTest extends BaseTest {
         assertThat(isElementDisplayed(admissionsPage.ATTRIBUTE_MANAGEMENT_TITLE_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.MANAGE_COURSE_ATTRIBUTES_LINK_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.MANAGE_ADMISSIONS_THRESHOLDS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.DUPLICATE_MATCHING_LINK_IDENTIFIER)).isTrue();
+//        assertThat(isElementDisplayed(admissionsPage.DUPLICATE_MATCHING_LINK_IDENTIFIER)).isTrue();
 
         assertThat(isElementDisplayed(admissionsPage.CONFIRMATION_TITLE_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.CONFIRMATION_CALL_CENTRE_LINK_IDENTIFIER)).isTrue();

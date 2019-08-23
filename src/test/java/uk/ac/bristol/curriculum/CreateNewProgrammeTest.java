@@ -2,6 +2,7 @@ package uk.ac.bristol.curriculum;
 
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
+import uk.ac.bristol.enums.*;
 import uk.ac.bristol.pageobjects.HomePage;
 import uk.ac.bristol.pageobjects.curriculum.CurriculumPage;
 import uk.ac.bristol.pageobjects.curriculum.ProgrammeCreationProgrammeDetailsPage;
@@ -13,7 +14,7 @@ public class CreateNewProgrammeTest extends BaseTest {
     private String curriculumUserPassword = "Test@2PassBook_";
 
     @Test
-    public void shouldCreateNewProgramme() {
+    public void shouldCreateNewProgrammeWithMandatoryOptionsOnly() {
 
         ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
 
@@ -29,8 +30,24 @@ public class CreateNewProgrammeTest extends BaseTest {
         programmeCreationProgrammeDetailsPage.enterTitle("Test");
         programmeCreationProgrammeDetailsPage.enterFullName("Test");
         programmeCreationProgrammeDetailsPage.enterShortName("Test");
-        programmeCreationProgrammeDetailsPage.enterAward("BA 0:1:3");
+        programmeCreationProgrammeDetailsPage.enterAward("BA01");
         programmeCreationProgrammeDetailsPage.selectLocation();
+        programmeCreationProgrammeDetailsPage.selectDistanceLearningEtc(DistanceLearning.ON_CAMPUS);
+//        programmeCreationProgrammeDetailsPage.selectType(ProgrammeType.UNDERGRADUATE, HonourLevel.SINGLE, IntegratedMastersType.INTEGRATED_MASTERS_TYPE_2);
+        programmeCreationProgrammeDetailsPage.selectType(ProgrammeType.POSTGRADUATE_RESEARCH, HonourLevel.NOT_APPLICABLE, IntegratedMastersType.NOT_APPLICABLE);
+        programmeCreationProgrammeDetailsPage.selectSubjectOne();
+        programmeCreationProgrammeDetailsPage.selectDepartmentOne();
+        programmeCreationProgrammeDetailsPage.selectAdmissionsEntryLevel(AdmissionsEntry.DIRECT_ONLY);
+        programmeCreationProgrammeDetailsPage.selectReplacesCourses();
+        programmeCreationProgrammeDetailsPage.selectAcademicYearProgrammeIsGoingLiveIn();
+        programmeCreationProgrammeDetailsPage.selectYearInIndustryStage();
+        programmeCreationProgrammeDetailsPage.selectStudyAbroadStage();
+        programmeCreationProgrammeDetailsPage.selectIntercalatingStage();
+        programmeCreationProgrammeDetailsPage.selectTeachingInstitution();
+        programmeCreationProgrammeDetailsPage.selectAwardingInstitution();
+        programmeCreationProgrammeDetailsPage.selectNextButton();
+
+
     }
 
     public ProgrammeCreationProposalInformationPage accessCreateNewProgrammePage(String curriculumUserUsername, String curriculumUserPassword) {

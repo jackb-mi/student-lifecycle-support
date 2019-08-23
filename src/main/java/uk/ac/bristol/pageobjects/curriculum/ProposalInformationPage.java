@@ -84,7 +84,6 @@ public class ProposalInformationPage extends BasePage {
         supportSection.enterResponseToExternalAssessors("Test");
         supportSection.enterProfessionalBodyScrutiny("Test");
         supportSection.completeUploadFileForStudentConsultationAndReturnToSupportSection();
-//        Thread.sleep(1000);
     }
 
     private SupportSection openSupportSection() {
@@ -126,11 +125,7 @@ public class ProposalInformationPage extends BasePage {
                 enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.24\\."), "Test");
                 break;
             }
-            case OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY: {
-                clickElement(By.cssSelector("#ui-id-9"));
-                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
-                break;
-            }
+            case OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY:
             case UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL: {
                 clickElement(By.cssSelector("#ui-id-9"));
                 enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
