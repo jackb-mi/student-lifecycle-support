@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     public static ChromeDriver driver;
-    public By PAGE_TITLE_IDENTIFIER = By.cssSelector("#sitsportalpagetitle");
+    public static final By PAGE_TITLE_IDENTIFIER = By.cssSelector("#sitsportalpagetitle");
+    public static final By NEXT_BUTTON_IDENTIFIER = By.name("NEXT.DUMMY.MENSYS.1");
 
     public BasePage(ChromeDriver driver) {
         this.driver = driver;
@@ -23,6 +24,21 @@ public class BasePage {
 
     public String buildUrl(String endPoint) {
         return "https://" + endPoint;
+    }
+
+
+    public String getPageTitle() {
+
+        try {
+            Awaitility.await().atMost(10L, TimeUnit.SECONDS).until(() -> {
+                return this.isElementDisplayed(driver, this.PAGE_TITLE_IDENTIFIER);
+            });
+        } catch (ConditionTimeoutException var2) {
+            Assert.fail("Page Title Not Found");
+        }
+
+        return this.getTextFromElement(this.PAGE_TITLE_IDENTIFIER);
+
     }
 
     public void enterTextIntoElement(By elementId, String textToEnter) {
@@ -36,6 +52,15 @@ public class BasePage {
     }
 
     public String getTextFromElement(By elementId) {
+
+        try {
+            Awaitility.await().atMost(10L, TimeUnit.SECONDS).until(() -> {
+                return this.isElementDisplayed(driver, elementId);
+            });
+        } catch (ConditionTimeoutException var2) {
+            Assert.fail("Expected Element Not Found");
+        }
+
         return driver.findElement(elementId).getText();
     }
 
@@ -54,7 +79,7 @@ public class BasePage {
 
     public void waitUntilElementIsVisible(ChromeDriver driver, By elementId) {
         try {
-            Awaitility.await().atMost(5L, TimeUnit.SECONDS).until(() -> isElementDisplayed(driver, elementId));
+            Awaitility.await().atMost(10L, TimeUnit.SECONDS).until(() -> isElementDisplayed(driver, elementId));
         } catch (ConditionTimeoutException cte) {
             Assert.fail("Element not found");
         }
@@ -108,6 +133,12 @@ public class BasePage {
         selectList.selectByVisibleText(DropdownText);
     }
 
+    public void selectDropDownOptionByValue(By dropdownIdentifier, String value) {
+
+        Select dropDownValue = new Select(driver.findElement(dropdownIdentifier));
+        dropDownValue.selectByValue(value);
+    }
+
     public void switchToIframe(By elementId) {
         driver.switchTo().frame((WebElement) elementId);
     }
@@ -124,5 +155,10 @@ public class BasePage {
  //       ((JavascriptExecutor) driver).executeScript(js, elementId);
         String path = (pathtofile + file);
         enterTextIntoElement(elementId, path);
+    }
+
+    public void scrollDown() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("scroll(0, 250);");
     }
 }

@@ -1,6 +1,8 @@
 package uk.ac.bristol.pageobjects.curriculum;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import uk.ac.bristol.enums.CommitteeLevel;
@@ -43,13 +45,9 @@ public class ProposalInformationPage extends BasePage {
         rationaleSection.enterStudentNumbers("10");
         rationaleSection.enterConsultationWithOtherSchoolsDepartment("Test");
 
-
-//        Thread.sleep(1000);
-        //TODO wait for element to become interactable
         if (proposalApprovalLevel == CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
             rationaleSection.enterAssessmentDetails("Test");
         }
-//        Thread.sleep(1000);
     }
 
     public void selectAndCompleteEqualityAnalysisSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
@@ -75,26 +73,42 @@ public class ProposalInformationPage extends BasePage {
     }
 
     public void selectAndCompleteSupportSection() throws Exception {
-        clickElement(SUPPORT_SECTION_IDENTIFIER);
 
-        SupportSection supportSection = new SupportSection();
+        SupportSection supportSection = openSupportSection();
+
         supportSection.completeUploadFileForExternalSupportAndReturnToSupportSection();
+        openSupportSection();
         supportSection.completeUploadFileForExternalSupportAndReturnToSupportSection();
+        openSupportSection();
         supportSection.enterExternalAssessors("Test");
         supportSection.enterResponseToExternalAssessors("Test");
         supportSection.enterProfessionalBodyScrutiny("Test");
         supportSection.completeUploadFileForStudentConsultationAndReturnToSupportSection();
     }
 
+    private SupportSection openSupportSection() {
+        clickElement(SUPPORT_SECTION_IDENTIFIER);
+
+        SupportSection supportSection = new SupportSection();
+        waitUntilElementIsVisible(driver, supportSection.EXTERNAL_SUPPORT_UPLOAD_BUTTON_IDENTIFIER);
+
+        return supportSection;
+
+    }
 
     public void selectAndCompleteStudentsAndApplicantsSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
 
         switch (proposalApprovalLevel) {
             case NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY: {
-                clickElement(By.cssSelector("#ui-id-11"));
-                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.25\\."), "Test");
-                break;
+
+                while(!isElementClickable(driver, By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.25\\.")));
+                {
+                    clickElement(By.cssSelector("#ui-id-11"));
+                    enterTextWithoutThrowingElementNotInteractableException(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.25\\."), "Test");
+                    break;
+                }
             }
+
             case PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY: {
                 clickElement(By.cssSelector("#ui-id-9"));
                 enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.21\\."), "Test");
@@ -111,11 +125,7 @@ public class ProposalInformationPage extends BasePage {
                 enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.24\\."), "Test");
                 break;
             }
-            case OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY: {
-                clickElement(By.cssSelector("#ui-id-9"));
-                enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
-                break;
-            }
+            case OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY:
             case UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL: {
                 clickElement(By.cssSelector("#ui-id-9"));
                 enterTextIntoElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.23\\."), "Test");
@@ -124,6 +134,23 @@ public class ProposalInformationPage extends BasePage {
             default:
                 fail("Unknown Curriculum Proposal Approval Level");
         }
+    }
+
+    public void enterTextWithoutThrowingElementNotInteractableException(By element, String textToEnter) throws InterruptedException {
+
+        int count = 0;
+        int maxTries = 3;
+
+        while(true)
+            try
+            {
+                enterTextIntoElement(element, textToEnter);
+                break;
+            }
+            catch (ElementNotInteractableException e ) {
+                Thread.sleep(5000);
+                if (++count == maxTries) throw e;
+            }
     }
 
     public SubmitProposalPage selectPrepareToSubmitProposalButton(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
@@ -242,24 +269,43 @@ public class ProposalInformationPage extends BasePage {
             enterTextIntoElement(PROFESSIONAL_BODY_SCRUTINY_INPUT_IDENTIFIER, textToEnter);
         }
 
-        public void completeUploadFileForExternalSupportAndReturnToSupportSection() throws Exception {
-            clickElement(EXTERNAL_SUPPORT_UPLOAD_BUTTON_IDENTIFIER);
+        public ProposalInformationPage completeUploadFileForExternalSupportAndReturnToSupportSection() throws Exception {
+
+            clickButtonWithoutThrowingElementClickInterceptedException(EXTERNAL_SUPPORT_UPLOAD_BUTTON_IDENTIFIER);
 
             UploadFilesPage uploadFilesPage = new UploadFilesPage(driver);
 
-            uploadFilesPage.uploadCurriculumManagementFile();
-
-            clickElement(SUPPORT_SECTION_IDENTIFIER);
+            return uploadFilesPage.uploadCurriculumManagementFile();
         }
 
-        public void completeUploadFileForStudentConsultationAndReturnToSupportSection() throws IOException, InterruptedException {
+        public void clickButtonWithoutThrowingElementClickInterceptedException(By element) throws InterruptedException {
+
+            int count = 0;
+            int maxTries = 3;
+
+            while(true)
+            try
+            {
+                clickElement(element);
+                break;
+            }
+            catch (ElementClickInterceptedException e ) {
+                if (++count == maxTries) throw e;
+            }
+
+            if (isElementDisplayed(driver, element) == true) {
+                clickElement(element);
+            }
+
+        }
+
+        public ProposalInformationPage completeUploadFileForStudentConsultationAndReturnToSupportSection() throws IOException, InterruptedException {
+
             clickElement(STUDENT_CONSULTATION_UPLOAD_BUTTON_IDENTIFIER);
 
             UploadFilesPage uploadFilesPage = new UploadFilesPage(driver);
 
-            uploadFilesPage.uploadCurriculumManagementFile();
-
-            clickElement(SUPPORT_SECTION_IDENTIFIER);
+            return uploadFilesPage.uploadCurriculumManagementFile();
         }
 
     }

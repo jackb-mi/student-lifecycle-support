@@ -28,6 +28,8 @@ public class UploadFilesPage extends BasePage {
 
     public ProposalInformationPage uploadCurriculumManagementFile() throws IOException, InterruptedException {
 
+        waitUntilElementIsVisible(driver, By.xpath("//input[@title='Browse for files']"));
+
         uploadFile(By.xpath("//input[@title='Browse for files']"), "/Users/jack/Pictures/", "juninho.jpg");
         waitForElementToBeDisplayed(UPLOAD_PANEL_IDENTIFIER,driver, 10);
         enterTextIntoElement(FILE_NAME_INPUT_IDENTIFIER, "UploadedFile");
