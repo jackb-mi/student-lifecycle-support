@@ -33,6 +33,8 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     private static final By FIRST_SUBJECT_ONE_RESULT_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.10.0");
     private static final By DEPARTMENT_ONE_DROPDOWN_IDENTIFIER = By.cssSelector("#ANSWER_TTQ_MENSYS_12__chosen > a > div > b");
     private static final By FIRST_DEPARTMENT_ONE_RESULT_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.12.0");
+    private static final By DEPARTMENT_TWO_DROPDOWN_IDENTIFIER = By.cssSelector("#ANSWER_TTQ_MENSYS_14__chosen > a > div > b");
+    private static final By SECOND_DEPARTMENT_TWO_RESULT_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.14.1");
     private static final String ADMISSIONS_ENTRY_LEVEL_RADIO_BUTTON_IDENTIFIER = "ANSWER.TTQ.MENSYS.17.";
     private static final By INTEGRATED_MASTERS_TYPE_DROPDOWN_IDENTIFIER = By.xpath("/html/body/main/div/form/div/div/div/div[2]/div/div/fieldset/div[18]/div/div/a/div/b");
     private static final String INTEGRATED_MASTERS_TYPE_RESULT_IDENTIFIER = "ANSWER.TTQ.MENSYS.18.";
@@ -50,7 +52,6 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     private static final String TEACHING_INSTITUTION_RESULT_IDENTIFIER = "ANSWER.TTQ.MENSYS.24.";
     private static final By AWARDING_INSTITUTION_DROPDOWN_IDENTIFIER = By.cssSelector("#ANSWER_TTQ_MENSYS_25__chosen > a > div > b");
     private static final String AWARDING_INSTITUTION_RESULT_IDENTIFIER = "ANSWER.TTQ.MENSYS.25.";
-
 
     public ProgrammeCreationProgrammeDetailsPage(ChromeDriver driver) {
         super(driver);
@@ -198,12 +199,12 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
                 break;
             }
             case INTEGRATED_MASTERS_TYPE_3: {
-                clickElement(SINGLE_HONOUR_RADIO_BUTTON_IDENTIFIER);
+                clickElement(INTEGRATED_MASTERS_TYPE_DROPDOWN_IDENTIFIER);
                 clickElement(By.id(INTEGRATED_MASTERS_TYPE_RESULT_IDENTIFIER+ "1"));
                 break;
             }
             default:
-                fail("Unknown Honour Level");
+                fail("Unknown Integrated Masters Type");
         }
     }
 
@@ -213,9 +214,14 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         clickElement(FIRST_SUBJECT_ONE_RESULT_IDENTIFIER);
     }
 
-    public void selectDepartmentOne() {
+    public void selectDepartments(HonourLevel honourLevel) {
         clickElement(DEPARTMENT_ONE_DROPDOWN_IDENTIFIER);
         clickElement(FIRST_DEPARTMENT_ONE_RESULT_IDENTIFIER);
+
+        if (honourLevel == HonourLevel.JOINT) {
+        clickElement(DEPARTMENT_TWO_DROPDOWN_IDENTIFIER);
+        clickElement(SECOND_DEPARTMENT_TWO_RESULT_IDENTIFIER);
+        }
     }
 
     public void selectAdmissionsEntryLevel(AdmissionsEntry directOnly) {
@@ -479,6 +485,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     public CreateProgrammeAddPathwaysPage selectNextButton() {
         clickElement(NEXT_BUTTON_IDENTIFIER);
 
-        return new CreateProgrammeAddPathwaysPage(driver);
+        CreateProgrammeAddPathwaysPage createProgrammeAddPathwaysPage = new CreateProgrammeAddPathwaysPage(driver);
+        return createProgrammeAddPathwaysPage;
     }
 }

@@ -81,17 +81,17 @@ public class ProgrammeDetailsBuilder {
         this.distanceLearning = distanceLearning;
         return this;
     }
-
+    // Needs to provided HonourLevel and IntegratedMasterType values when using ProgrammeType.UNDERGRADUATE or ProgrammeType.SUB_DEGREE
     public ProgrammeDetailsBuilder withProgrammeType(ProgrammeType programmeType) {
         this.programmeType = programmeType;
         return this;
     }
-
+    // Needs to be provided when using ProgrammeType.UNDERGRADUATE or ProgrammeType.SUB_DEGREE
     public ProgrammeDetailsBuilder withHonourLevel(HonourLevel honourLevel) {
         this.honourLevel = honourLevel;
         return this;
     }
-
+    // Needs to be provided when using ProgrammeType.UNDERGRADUATE or ProgrammeType.SUB_DEGREE
     public ProgrammeDetailsBuilder withIntegratedMastersType(IntegratedMastersType integratedMastersType) {
         this.integratedMastersType = integratedMastersType;
         return this;

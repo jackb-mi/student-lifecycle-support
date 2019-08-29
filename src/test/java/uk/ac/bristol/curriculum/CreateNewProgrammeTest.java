@@ -2,11 +2,11 @@ package uk.ac.bristol.curriculum;
 
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
-import uk.ac.bristol.enums.IntakeMonth;
-import uk.ac.bristol.enums.ProgrammeIntensity;
-import uk.ac.bristol.enums.UnitOfMeasurement;
+import uk.ac.bristol.enums.*;
 import uk.ac.bristol.helpers.ProgrammeDetails;
+import uk.ac.bristol.helpers.ProposalInformation;
 import uk.ac.bristol.helpers.builders.ProgrammeDetailsBuilder;
+import uk.ac.bristol.helpers.builders.ProposalInformationBuilder;
 import uk.ac.bristol.pageobjects.HomePage;
 import uk.ac.bristol.pageobjects.curriculum.*;
 
@@ -18,27 +18,66 @@ public class CreateNewProgrammeTest extends BaseTest {
     private String curriculumUserPassword = "Test@2PassBook_";
 
     @Test
-    public void shouldCreateNewProgramme() {
+    public void shouldCreateNewProgrammeTypePostgraduateResearch() {
         // Given
+        ProposalInformation proposalInformation = new ProposalInformationBuilder().create();
         ProgrammeDetails programmeDetails = new ProgrammeDetailsBuilder().create();
-//                //TODO add create(); method
-//                .withAward("BA01")
-//                .withLocation(Location.BRISTOL_CITY_FOOTBALL_CLUB_ASHTON_GATE)
-//                .withDistanceLearning(DistanceLearning.ON_CAMPUS)
-//                .withProgrammeType(ProgrammeType.POSTGRADUATE_RESEARCH)
-//                .withHonourLevel(HonourLevel.NOT_APPLICABLE)
-//                .withIntegratedMastersType(IntegratedMastersType.NOT_APPLICABLE)
-//                .withAdmissionsEntry(AdmissionsEntry.DIRECT_ONLY)
-//                .withAcademicYear(AcademicYear.ACADEMIC_YEAR_2019_2020)
-//                .withYearInIndustryStage(YearInIndustryStage.TWO)
-//                .withStudyAbroadStage(StudyAbroadStage.ZERO)
-//                .withIntercalatingStage(IntercalatingStage.ZERO)
-//                .withTeachingInstitution(TeachingInstitution.UNIVERSITY_OF_BRISTOL)
-//                .withAwardingInstitution(AwardingInstitution.UNIVERSITY_OF_BRISTOL);
-
         ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
         // When
-        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, programmeDetails);
+        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, proposalInformation, programmeDetails);
+        ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
+        // Then
+        assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
+    }
+
+    @Test
+    public void shouldCreateNewProgrammeTypePostgraduateTaught() {
+        // Given
+        ProposalInformation proposalInformation = new ProposalInformationBuilder().create();
+        ProgrammeDetails programmeDetails = new ProgrammeDetailsBuilder()
+                .withProgrammeType(ProgrammeType.POSTGRADUATE_TAUGHT)
+                .create();
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
+        // When
+        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, proposalInformation, programmeDetails);
+        ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
+        // Then
+        assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
+    }
+
+    @Test
+    public void shouldCreateNewProgrammeTypeUndergraduateWithJointHonourLevelAndIntegratedMastersTypeTwo() {
+        // Given
+        ProposalInformation proposalInformation = new ProposalInformationBuilder()
+                .withCommitteeLevel(CommitteeLevel.UNDERGRADUATE)
+                .create();
+        ProgrammeDetails programmeDetails = new ProgrammeDetailsBuilder()
+                .withProgrammeType(ProgrammeType.UNDERGRADUATE)
+                .withHonourLevel(HonourLevel.JOINT)
+                .withIntegratedMastersType(IntegratedMastersType.INTEGRATED_MASTERS_TYPE_2)
+                .create();
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
+        // When
+        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, proposalInformation, programmeDetails);
+        ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
+        // Then
+        assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
+    }
+
+    @Test
+    public void shouldCreateNewProgrammeTypeSubDegreeWithSingleHonourLevelAndIntegratedMastersTypeThree() {
+        // Given
+        ProposalInformation proposalInformation = new ProposalInformationBuilder()
+                .withCommitteeLevel(CommitteeLevel.UNDERGRADUATE)
+                .create();
+        ProgrammeDetails programmeDetails = new ProgrammeDetailsBuilder()
+                .withProgrammeType(ProgrammeType.SUB_DEGREE)
+                .withHonourLevel(HonourLevel.SINGLE)
+                .withIntegratedMastersType(IntegratedMastersType.INTEGRATED_MASTERS_TYPE_3)
+                .create();
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
+        // When
+        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, proposalInformation, programmeDetails);
         ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
         // Then
         assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
@@ -51,22 +90,21 @@ public class CreateNewProgrammeTest extends BaseTest {
         return programmeCreationProposalInformationPage;
     }
 
-    private ProgrammeCreationValidationPage completeCreateProgrammeDataInputs(ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage, ProgrammeDetails programmeDetails) {
+    private ProgrammeCreationValidationPage completeCreateProgrammeDataInputs(ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage, ProposalInformation proposalInformation, ProgrammeDetails programmeDetails) {
 
-        ProgrammeCreationProgrammeDetailsPage programmeCreationProgrammeDetailsPage = completeProgrammeCreationProposalInformationPage(programmeCreationProposalInformationPage);
+        ProgrammeCreationProgrammeDetailsPage programmeCreationProgrammeDetailsPage = completeProgrammeCreationProposalInformationPage(programmeCreationProposalInformationPage, proposalInformation);
         CreateProgrammeAddPathwaysPage createProgrammeAddPathwaysPage = completeProgrammeCreationProgrammeDetailsPage(programmeCreationProgrammeDetailsPage, programmeDetails);
         AddVariantsPage addVariantsPage = completeCreateProgrammeAddPathwaysPage(createProgrammeAddPathwaysPage, programmeDetails.getUniqueProgrammeIdentifier());
         return completeAddVariantsPage(addVariantsPage);
 
     }
 
-    private ProgrammeCreationProgrammeDetailsPage completeProgrammeCreationProposalInformationPage(ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage) {
-        //TODO create ProposalInfoBuilder
-        programmeCreationProposalInformationPage.enterProposalTitle("Test ");
-        programmeCreationProposalInformationPage.enterAcademicResponsible("XXXTEST3");
-        programmeCreationProposalInformationPage.selectDropDownOption("Crt Slsp-CRT01");
-        programmeCreationProposalInformationPage.enterOwningDepartment("SART");
-        programmeCreationProposalInformationPage.selectPostgraduateRadioButton();
+    private ProgrammeCreationProgrammeDetailsPage completeProgrammeCreationProposalInformationPage(ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage, ProposalInformation proposalInformation) {
+        programmeCreationProposalInformationPage.enterProposalTitle(proposalInformation.getProposalTitle());
+        programmeCreationProposalInformationPage.enterAcademicResponsible(proposalInformation.getAcademicResponsible());
+        programmeCreationProposalInformationPage.selectSchoolProgrammeEditor(proposalInformation.getSchoolProgrammeEditor());
+        programmeCreationProposalInformationPage.enterOwningDepartment(proposalInformation.getOwningDepartment());
+        programmeCreationProposalInformationPage.selectCommitteeLevel(proposalInformation.getCommitteeLevel());
         return programmeCreationProposalInformationPage.selectNextButton();
 
     }
@@ -79,10 +117,9 @@ public class CreateNewProgrammeTest extends BaseTest {
         programmeCreationProgrammeDetailsPage.enterAward(programmeDetails.getAward());
         programmeCreationProgrammeDetailsPage.selectLocation(programmeDetails.getLocation());
         programmeCreationProgrammeDetailsPage.selectDistanceLearningEtc(programmeDetails.getDistanceLearning());
-//        programmeCreationProgrammeDetailsPage.selectType(ProgrammeType.UNDERGRADUATE, HonourLevel.SINGLE, IntegratedMastersType.INTEGRATED_MASTERS_TYPE_2);
         programmeCreationProgrammeDetailsPage.selectType(programmeDetails.getProgrammeType(), programmeDetails.getHonourLevel(), programmeDetails.getIntegratedMastersType());
         programmeCreationProgrammeDetailsPage.selectSubjectOne();
-        programmeCreationProgrammeDetailsPage.selectDepartmentOne();
+        programmeCreationProgrammeDetailsPage.selectDepartments(programmeDetails.getHonourLevel());
         programmeCreationProgrammeDetailsPage.selectAdmissionsEntryLevel(programmeDetails.getAdmissionsEntry());
         programmeCreationProgrammeDetailsPage.selectReplacesCourses();
         programmeCreationProgrammeDetailsPage.selectAcademicYearProgrammeIsGoingLiveIn(programmeDetails.getAcademicYear());

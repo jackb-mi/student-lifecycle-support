@@ -3,7 +3,7 @@ package uk.ac.bristol.pageobjects.curriculum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import uk.ac.bristol.enums.CurriculumProposalApprovalLevels;
+import uk.ac.bristol.enums.CurriculumProposalApprovalLevel;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class ProposalLevelDecisionPage extends BasePage {
@@ -17,7 +17,7 @@ public class ProposalLevelDecisionPage extends BasePage {
     }
 
 
-    public ProposalInformationPage startProposal(CurriculumProposalApprovalLevels approvalLevel) {
+    public ProposalInformationPage startProposal(CurriculumProposalApprovalLevel approvalLevel) {
 
         selectDropDownOption(approvalLevel.getValue());
         ProposalInformationPage proposalInformationPage = selectNextButton();
