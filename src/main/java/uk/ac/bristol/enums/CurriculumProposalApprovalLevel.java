@@ -1,6 +1,6 @@
 package uk.ac.bristol.enums;
 
-public enum CurriculumProposalApprovalLevels {
+public enum CurriculumProposalApprovalLevel {
 
     NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY("040"),
     PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY("039"),
@@ -10,7 +10,7 @@ public enum CurriculumProposalApprovalLevels {
 
     private String value;
 
-    private CurriculumProposalApprovalLevels(String value) {
+    private CurriculumProposalApprovalLevel(String value) {
         this.value = value;
     }
 

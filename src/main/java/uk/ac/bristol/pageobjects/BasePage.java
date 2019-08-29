@@ -159,6 +159,6 @@ public class BasePage {
 
     public void scrollDown() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("scroll(0, 250);");
+        jse.executeScript("scroll(0, 450);");
     }
 }

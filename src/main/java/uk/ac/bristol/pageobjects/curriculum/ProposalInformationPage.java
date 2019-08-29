@@ -5,16 +5,16 @@ import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import uk.ac.bristol.enums.CommitteeLevel;
-import uk.ac.bristol.enums.CurriculumProposalApprovalLevels;
+import uk.ac.bristol.enums.CurriculumProposalApprovalLevel;
+import uk.ac.bristol.helpers.ProposalInformation;
 import uk.ac.bristol.pageobjects.BasePage;
 import uk.ac.bristol.pageobjects.UploadFilesPage;
 
 import java.io.IOException;
 
 import static junit.framework.TestCase.fail;
-import static uk.ac.bristol.enums.CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY;
-import static uk.ac.bristol.enums.CurriculumProposalApprovalLevels.PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY;
+import static uk.ac.bristol.enums.CurriculumProposalApprovalLevel.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY;
+import static uk.ac.bristol.enums.CurriculumProposalApprovalLevel.PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY;
 
 public class ProposalInformationPage extends BasePage {
 
@@ -27,16 +27,16 @@ public class ProposalInformationPage extends BasePage {
         super(driver);
     }
 
-    public void completeProposalSection(CommitteeLevel committeeLevel) {
+    public void completeProposalSection(ProposalInformation proposalInformation) {
 
         ProposalSection proposalSection = new ProposalSection();
-        proposalSection.enterProposalName("Test123");
-        proposalSection.enterOwningSchoolDepartment("SART");
-        proposalSection.enterAcademicResponsible("XXXTEST3");
-        proposalSection.selectDropDownOption(committeeLevel.getValue());
+        proposalSection.enterProposalName(proposalInformation.getProposalTitle());
+        proposalSection.enterOwningSchoolDepartment(proposalInformation.getOwningDepartment());
+        proposalSection.enterAcademicResponsible(proposalInformation.getAcademicResponsible());
+        proposalSection.selectCommitteeLevel(proposalInformation.getCommitteeLevel().getValue());
     }
 
-    public void selectAndCompleteRationalSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
+    public void selectAndCompleteRationalSection(CurriculumProposalApprovalLevel proposalApprovalLevel) throws InterruptedException {
         clickElement(RATIONAL_SECTION_IDENTIFIER);
 
         RationaleSection rationaleSection = new RationaleSection();
@@ -45,23 +45,23 @@ public class ProposalInformationPage extends BasePage {
         rationaleSection.enterStudentNumbers("10");
         rationaleSection.enterConsultationWithOtherSchoolsDepartment("Test");
 
-        if (proposalApprovalLevel == CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
+        if (proposalApprovalLevel == CurriculumProposalApprovalLevel.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
             rationaleSection.enterAssessmentDetails("Test");
         }
     }
 
-    public void selectAndCompleteEqualityAnalysisSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
+    public void selectAndCompleteEqualityAnalysisSection(CurriculumProposalApprovalLevel proposalApprovalLevel) throws InterruptedException {
         clickElement(EQUALITY_ANALYSIS_SECTION_IDENTIFIER);
 
         EqualityAnalysisSection equalityAnalysisSection = new EqualityAnalysisSection();
         equalityAnalysisSection.enterEqualityRiskImpact("Test");
 
-        if (proposalApprovalLevel == CurriculumProposalApprovalLevels.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
+        if (proposalApprovalLevel == CurriculumProposalApprovalLevel.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
             equalityAnalysisSection.enterEqualityRiskAssessment("Test");
         }
     }
 
-    public void selectAndCompleteOrdinancesAndRegulationsSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
+    public void selectAndCompleteOrdinancesAndRegulationsSection(CurriculumProposalApprovalLevel proposalApprovalLevel) throws InterruptedException {
         clickElement(ORDINANCES_AND_REGULATIONS_SECTION_IDENTIFIER);
 
         OrdinancesAndRegulationsSection ordinancesAndRegulationsSection = new OrdinancesAndRegulationsSection();
@@ -96,7 +96,7 @@ public class ProposalInformationPage extends BasePage {
 
     }
 
-    public void selectAndCompleteStudentsAndApplicantsSection(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
+    public void selectAndCompleteStudentsAndApplicantsSection(CurriculumProposalApprovalLevel proposalApprovalLevel) throws InterruptedException {
 
         switch (proposalApprovalLevel) {
             case NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY: {
@@ -153,7 +153,7 @@ public class ProposalInformationPage extends BasePage {
             }
     }
 
-    public SubmitProposalPage selectPrepareToSubmitProposalButton(CurriculumProposalApprovalLevels proposalApprovalLevel) throws InterruptedException {
+    public SubmitProposalPage selectPrepareToSubmitProposalButton(CurriculumProposalApprovalLevel proposalApprovalLevel) throws InterruptedException {
 
         if (proposalApprovalLevel != NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
             clickElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.29\\."));
@@ -185,7 +185,7 @@ public class ProposalInformationPage extends BasePage {
             enterTextIntoElement(ACADEMIC_RESPONSIBLE_INPUT_IDENTIFIER, textToEnter);
         }
 
-        private void selectDropDownOption(String value) {
+        private void selectCommitteeLevel(String value) {
 
             Select dropDownValue = new Select(driver.findElement(COMMITTEE_LEVEL_DROPDOWN_IDENTIFIER));
             dropDownValue.selectByValue(value);

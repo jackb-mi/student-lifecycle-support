@@ -3,10 +3,9 @@ package uk.ac.bristol.personnel;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.Titles;
-//import uk.ac.bristol.helpers.PersonnelResponse;
+import uk.ac.bristol.helpers.Personnel;
 import uk.ac.bristol.helpers.builders.AppointmentBuilder;
 import uk.ac.bristol.helpers.builders.PersonnelBuilder;
-import uk.ac.bristol.helpers.builders.PersonnelBuilder.PersonnelResponse;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,7 +47,7 @@ public class CreatePersonnelTest extends BaseTest {
 
         String matCode = "ALL_STAFF";
 
-        PersonnelResponse personnelResponse = new PersonnelBuilder().create();
+        Personnel personnelResponse = new PersonnelBuilder().create();
 
         new AppointmentBuilder(personnelResponse.getMstCode(), matCode).create();
 

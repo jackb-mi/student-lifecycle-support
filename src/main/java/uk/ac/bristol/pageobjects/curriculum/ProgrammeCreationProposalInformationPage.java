@@ -5,9 +5,12 @@ import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import uk.ac.bristol.enums.CommitteeLevel;
 import uk.ac.bristol.pageobjects.BasePage;
 
 import java.util.concurrent.TimeUnit;
+
+import static junit.framework.TestCase.fail;
 
 public class ProgrammeCreationProposalInformationPage extends BasePage {
 
@@ -54,15 +57,22 @@ public class ProgrammeCreationProposalInformationPage extends BasePage {
         enterTextIntoElement(OWNING_DEPARTMENT_INPUT_IDENTIFIER, textToEnter);
     }
 
-    public void selectPostgraduateRadioButton() {
-        clickElement(POSTGRADUATE_RADIO_BUTTON_IDENTIFIER);
+    public void selectCommitteeLevel(CommitteeLevel committeeLevel) {
+        switch (committeeLevel) {
+            case POSTGRADUATE: {
+                clickElement(POSTGRADUATE_RADIO_BUTTON_IDENTIFIER);
+                break;
+            }
+            case UNDERGRADUATE: {
+                clickElement(UNDERGRADUATE_RADIO_BUTTON_IDENTIFIER);
+                break;
+            }
+            default :
+                fail("Unknown Committee Level");
+        }
     }
 
-    public void selectUndergraduateRadioButton() {
-        clickElement(UNDERGRADUATE_RADIO_BUTTON_IDENTIFIER);
-    }
-
-    public void selectDropDownOption(String value) {
+    public void selectSchoolProgrammeEditor(String value) {
         clickElement(SCHOOL_PROGRAMME_EDITOR_DROPDOWN_IDENTIFIER);
         enterTextIntoElement(SCHOOL_PROGRAMME_EDITOR_DROPDOWN_TEXT_INPUT_IDENTIFIER, value);
         clickElement(SCHOOL_PROGRAMME_EDITOR_DROPDOWN_FIRST_SEARCH_RESULT_IDENTIFIER);
