@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.enums.IntakeMonth;
 import uk.ac.bristol.enums.ProgrammeIntensity;
 import uk.ac.bristol.enums.UnitOfMeasurement;
+import uk.ac.bristol.helpers.ProgrammeDetails;
 import uk.ac.bristol.pageobjects.BasePage;
 
 import static junit.framework.TestCase.fail;
@@ -26,7 +27,17 @@ public class AddVariantsPage extends BasePage {
     }
 
 
-    public void selectIntensity(ProgrammeIntensity programmeIntensity) {
+    public ProgrammeCreationValidationPage completeAddVariantsPage(ProgrammeDetails programmeDetails) {
+        selectIntensity(programmeDetails.getProgrammeIntensity());
+        selectIntakeMonth(programmeDetails.getIntakeMonth());
+        enterLength(programmeDetails.getLength().getValue());
+        selectUnitsOfMeasurement(programmeDetails.getUnitOfMeasurement());
+        selectAddVariantButton();
+        return selectCreateProgrammeButton();
+    }
+
+
+    private void selectIntensity(ProgrammeIntensity programmeIntensity) {
         clickElement(INTENSITY_DROPDOWN_IDENTIFIER);
 
         switch(programmeIntensity) {
@@ -55,16 +66,16 @@ public class AddVariantsPage extends BasePage {
         }
     }
 
-    public void selectIntakeMonth(IntakeMonth intakeMonth) {
+    private void selectIntakeMonth(IntakeMonth intakeMonth) {
         selectDropDownOptionByValue(INTAKE_MONTH_DROPDOWN_IDENTIFIER, intakeMonth.getValue());
         clickElement(INTAKE_MONTH_DROPDOWN_IDENTIFIER);
     }
 
-    public void enterLength(String textToEnter) {
+    private void enterLength(String textToEnter) {
         enterTextIntoElement(LENGTH_INPUT_IDENTIFIER, textToEnter);
     }
 
-    public void selectUnitsOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
+    private void selectUnitsOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
         clickElement(UNIT_OF_MEASUREMENT_DROPDOWN_IDENTIFIER);
 
         switch(unitOfMeasurement) {
@@ -97,11 +108,11 @@ public class AddVariantsPage extends BasePage {
         }
     }
 
-    public void selectAddVariantButton() {
+    private void selectAddVariantButton() {
         clickElement(ADD_VARIANT_BUTTON_IDENTIFIER);
     }
 
-    public ProgrammeCreationValidationPage selectCreateProgrammeButton() {
+    private ProgrammeCreationValidationPage selectCreateProgrammeButton() {
         clickElement(CREATE_PROGRAMME_BUTTON_IDENTIFIER);
 
         return new ProgrammeCreationValidationPage(driver);

@@ -8,6 +8,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.enums.*;
+import uk.ac.bristol.helpers.ProgrammeDetails;
 import uk.ac.bristol.pageobjects.BasePage;
 
 import java.util.concurrent.TimeUnit;
@@ -70,26 +71,50 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         return this.getTextFromElement(this.PAGE_TITLE_IDENTIFIER);
     }
 
-    public void enterTitle(String textToEnter) {
+
+    public CreateProgrammeAddPathwaysPage completeProgrammeCreationProgrammeDetailsPage(ProgrammeDetails programmeDetails) {
+
+        enterTitle(programmeDetails.getProgrammeTitle());
+        enterFullName(programmeDetails.getProgrammeFullName());
+        enterShortName(programmeDetails.getProgrammeShortName());
+        enterAward(programmeDetails.getAward());
+        selectLocation(programmeDetails.getLocation());
+        selectDistanceLearningEtc(programmeDetails.getDistanceLearning());
+        selectType(programmeDetails.getProgrammeType(), programmeDetails.getHonourLevel(), programmeDetails.getIntegratedMastersType());
+        selectSubjectOne();
+        selectDepartments(programmeDetails.getHonourLevel());
+        selectAdmissionsEntryLevel(programmeDetails.getAdmissionsEntry());
+        selectReplacesCourses();
+        selectAcademicYearProgrammeIsGoingLiveIn(programmeDetails.getAcademicYear());
+        selectYearInIndustryStage(programmeDetails.getYearInIndustryStage());
+        selectStudyAbroadStage(programmeDetails.getStudyAbroadStage());
+        selectIntercalatingStage(programmeDetails.getIntercalatingStage());
+        selectTeachingInstitution(programmeDetails.getTeachingInstitution());
+        selectAwardingInstitution(programmeDetails.getAwardingInstitution());
+
+        return selectNextButton();
+    }
+
+    private void enterTitle(String textToEnter) {
         enterTextIntoElement(TITLE_INPUT_IDENTIFIER, textToEnter);
     }
 
 
-    public void enterFullName(String textToEnter) {
+    private void enterFullName(String textToEnter) {
         enterTextIntoElement(FULL_NAME_INPUT_IDENTIFIER, textToEnter);
     }
 
-    public void enterShortName(String textToEnter) {
+    private void enterShortName(String textToEnter) {
         enterTextIntoElement(SHORT_NAME_INPUT_IDENTIFIER, textToEnter);
     }
 
-    public void enterAward(String textToEnter) {
+    private void enterAward(String textToEnter) {
         enterTextIntoElement(AWARD_INPUT_IDENTIFIER, textToEnter);
         WebElement webElement = driver.findElement(AWARD_INPUT_IDENTIFIER);
         webElement.sendKeys(Keys.TAB);
     }
 
-    public void selectLocation(Location location) {
+    private void selectLocation(Location location) {
         clickElement(LOCATION_DROPDOWN_IDENTIFIER);
         switch (location) {
             case BRISTOL_CITY_FOOTBALL_CLUB_ASHTON_GATE: {
@@ -141,11 +166,11 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectDistanceLearningEtc(DistanceLearning distanceLearningSelection) {
+    private void selectDistanceLearningEtc(DistanceLearning distanceLearningSelection) {
         selectDropDownOptionByValue(DISTANCE_LEARNING_DROPDOWN_IDENTIFIER, distanceLearningSelection.getValue());
     }
 
-    public void selectType(ProgrammeType programmeType, HonourLevel honourLevel, IntegratedMastersType integratedMastersType) {
+    private void selectType(ProgrammeType programmeType, HonourLevel honourLevel, IntegratedMastersType integratedMastersType) {
 
         clickElement(TYPE_DROPDOWN_IDENTIFIER);
         switch (programmeType) {
@@ -176,7 +201,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectSingleOrJoinHonoursRadioButton(HonourLevel honourLevel) {
+    private void selectSingleOrJoinHonoursRadioButton(HonourLevel honourLevel) {
         switch (honourLevel) {
             case JOINT: {
                 clickElement(JOINT_HONOUR_RADIO_BUTTON_IDENTIFIER);
@@ -209,12 +234,12 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     }
 
 
-    public void selectSubjectOne() {
+    private void selectSubjectOne() {
         clickElement(SUBJECT_ONE_DROPDOWN_IDENTIFIER);
         clickElement(FIRST_SUBJECT_ONE_RESULT_IDENTIFIER);
     }
 
-    public void selectDepartments(HonourLevel honourLevel) {
+    private void selectDepartments(HonourLevel honourLevel) {
         clickElement(DEPARTMENT_ONE_DROPDOWN_IDENTIFIER);
         clickElement(FIRST_DEPARTMENT_ONE_RESULT_IDENTIFIER);
 
@@ -224,7 +249,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectAdmissionsEntryLevel(AdmissionsEntry directOnly) {
+    private void selectAdmissionsEntryLevel(AdmissionsEntry directOnly) {
         switch (directOnly) {
             case DIRECT_ONLY: {
                 clickElement(By.id(ADMISSIONS_ENTRY_LEVEL_RADIO_BUTTON_IDENTIFIER + "1"));
@@ -247,12 +272,12 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectReplacesCourses() {
+    private void selectReplacesCourses() {
         clickElement(REPLACES_COURSES_INPUT_IDENTIFIER);
         clickElement(REPLACES_COURSES_FIRST_RESULT_IDENTIFIER);
     }
 
-    public void selectAcademicYearProgrammeIsGoingLiveIn(AcademicYear academicYear) {
+    private void selectAcademicYearProgrammeIsGoingLiveIn(AcademicYear academicYear) {
         scrollDown();
         clickElement(ACADEMIC_YEAR_PROGRAMME_IS_GOING_LIVE_IN_DROPDOWN_IDENTIFIER);
 
@@ -302,7 +327,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectYearInIndustryStage(YearInIndustryStage yearInIndustryStage) {
+    private void selectYearInIndustryStage(YearInIndustryStage yearInIndustryStage) {
         clickElement(YEAR_IN_INDUSTRY_STAGE_DROPDOWN_IDENTIFIER);
 
         switch (yearInIndustryStage) {
@@ -351,7 +376,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectStudyAbroadStage(StudyAbroadStage studyAbroadStage) {
+    private void selectStudyAbroadStage(StudyAbroadStage studyAbroadStage) {
         clickElement(STUDY_ABROAD_STAGE_DROPDOWN_IDENTIFIER);
         switch (studyAbroadStage) {
             case ZERO: {
@@ -399,7 +424,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectIntercalatingStage(IntercalatingStage intercalatingStage) {
+    private void selectIntercalatingStage(IntercalatingStage intercalatingStage) {
         clickElement(INTERCALATING_STAGE_DROPDOWN_IDENTIFIER);
 
         switch (intercalatingStage) {
@@ -448,7 +473,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectTeachingInstitution(TeachingInstitution teachingInstitution) {
+    private void selectTeachingInstitution(TeachingInstitution teachingInstitution) {
         clickElement(TEACHING_INSTITUTION_DROPDOWN_IDENTIFIER);
 
         switch (teachingInstitution) {
@@ -465,7 +490,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public void selectAwardingInstitution(AwardingInstitution awardingInstitution) {
+    private void selectAwardingInstitution(AwardingInstitution awardingInstitution) {
         clickElement(AWARDING_INSTITUTION_DROPDOWN_IDENTIFIER);
 
         switch (awardingInstitution) {
@@ -482,7 +507,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
         }
     }
 
-    public CreateProgrammeAddPathwaysPage selectNextButton() {
+    private CreateProgrammeAddPathwaysPage selectNextButton() {
         clickElement(NEXT_BUTTON_IDENTIFIER);
 
         CreateProgrammeAddPathwaysPage createProgrammeAddPathwaysPage = new CreateProgrammeAddPathwaysPage(driver);
