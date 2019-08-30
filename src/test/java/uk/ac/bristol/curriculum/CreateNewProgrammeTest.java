@@ -1,5 +1,6 @@
 package uk.ac.bristol.curriculum;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.*;
@@ -14,17 +15,45 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CreateNewProgrammeTest extends BaseTest {
 
-    private String curriculumUserUsername = "SLSP-CRT02";
-    private String curriculumUserPassword = "Test@2PassBook_";
+    private String username;
+    private String password;
+    private ProposalInformation pgProposalInformation;
+    private ProposalInformation ugProposalInformation;
+    private ProgrammeDetails pgResearchProgramme;
+    private ProgrammeDetails pgTaughtProgramme;
+    private ProgrammeDetails ugJointHonourIntegratedMastersType2Programme;
+    private ProgrammeDetails subDegreeSingleHonourIntegratedMastersType3Programme;
+
+    @BeforeClass
+    public void dataSetUp() {
+        username = "SLSP-CRT02";
+        password = "Test@2PassBook_";
+
+        pgProposalInformation = new ProposalInformationBuilder().withCommitteeLevel(CommitteeLevel.POSTGRADUATE).create();
+        ugProposalInformation = new ProposalInformationBuilder().withCommitteeLevel(CommitteeLevel.UNDERGRADUATE).create();
+
+        pgResearchProgramme = new ProgrammeDetailsBuilder().withProgrammeType(ProgrammeType.POSTGRADUATE_RESEARCH).create();
+        pgTaughtProgramme = new ProgrammeDetailsBuilder().withProgrammeType(ProgrammeType.POSTGRADUATE_TAUGHT).create();
+        ugJointHonourIntegratedMastersType2Programme = new ProgrammeDetailsBuilder()
+                .withProgrammeType(ProgrammeType.UNDERGRADUATE)
+                .withHonourLevel(HonourLevel.JOINT)
+                .withIntegratedMastersType(IntegratedMastersType.INTEGRATED_MASTERS_TYPE_2)
+                .create();
+        subDegreeSingleHonourIntegratedMastersType3Programme = new ProgrammeDetailsBuilder()
+                .withProgrammeType(ProgrammeType.SUB_DEGREE)
+                .withHonourLevel(HonourLevel.SINGLE)
+                .withIntegratedMastersType(IntegratedMastersType.INTEGRATED_MASTERS_TYPE_3)
+                .create();
+    }
 
     @Test
     public void shouldCreateNewProgrammeTypePostgraduateResearch() {
         // Given
-        ProposalInformation proposalInformation = new ProposalInformationBuilder().create();
-        ProgrammeDetails programmeDetails = new ProgrammeDetailsBuilder().create();
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(username, password);
         // When
-        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, proposalInformation, programmeDetails);
+        ProgrammeCreationValidationPage programmeCreationValidationPage =
+                completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, pgProposalInformation, pgResearchProgramme);
+
         ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
         // Then
         assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
@@ -33,13 +62,11 @@ public class CreateNewProgrammeTest extends BaseTest {
     @Test
     public void shouldCreateNewProgrammeTypePostgraduateTaught() {
         // Given
-        ProposalInformation proposalInformation = new ProposalInformationBuilder().create();
-        ProgrammeDetails programmeDetails = new ProgrammeDetailsBuilder()
-                .withProgrammeType(ProgrammeType.POSTGRADUATE_TAUGHT)
-                .create();
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(username, password);
         // When
-        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, proposalInformation, programmeDetails);
+        ProgrammeCreationValidationPage programmeCreationValidationPage =
+                completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, pgProposalInformation, pgTaughtProgramme);
+
         ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
         // Then
         assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
@@ -48,17 +75,11 @@ public class CreateNewProgrammeTest extends BaseTest {
     @Test
     public void shouldCreateNewProgrammeTypeUndergraduateWithJointHonourLevelAndIntegratedMastersTypeTwo() {
         // Given
-        ProposalInformation proposalInformation = new ProposalInformationBuilder()
-                .withCommitteeLevel(CommitteeLevel.UNDERGRADUATE)
-                .create();
-        ProgrammeDetails programmeDetails = new ProgrammeDetailsBuilder()
-                .withProgrammeType(ProgrammeType.UNDERGRADUATE)
-                .withHonourLevel(HonourLevel.JOINT)
-                .withIntegratedMastersType(IntegratedMastersType.INTEGRATED_MASTERS_TYPE_2)
-                .create();
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(username, password);
         // When
-        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, proposalInformation, programmeDetails);
+        ProgrammeCreationValidationPage programmeCreationValidationPage =
+                completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, ugProposalInformation, ugJointHonourIntegratedMastersType2Programme);
+
         ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
         // Then
         assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
@@ -67,17 +88,9 @@ public class CreateNewProgrammeTest extends BaseTest {
     @Test
     public void shouldCreateNewProgrammeTypeSubDegreeWithSingleHonourLevelAndIntegratedMastersTypeThree() {
         // Given
-        ProposalInformation proposalInformation = new ProposalInformationBuilder()
-                .withCommitteeLevel(CommitteeLevel.UNDERGRADUATE)
-                .create();
-        ProgrammeDetails programmeDetails = new ProgrammeDetailsBuilder()
-                .withProgrammeType(ProgrammeType.SUB_DEGREE)
-                .withHonourLevel(HonourLevel.SINGLE)
-                .withIntegratedMastersType(IntegratedMastersType.INTEGRATED_MASTERS_TYPE_3)
-                .create();
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(curriculumUserUsername, curriculumUserPassword);
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(username, password);
         // When
-        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, proposalInformation, programmeDetails);
+        ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, ugProposalInformation, subDegreeSingleHonourIntegratedMastersType3Programme);
         ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
         // Then
         assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
@@ -92,59 +105,15 @@ public class CreateNewProgrammeTest extends BaseTest {
 
     private ProgrammeCreationValidationPage completeCreateProgrammeDataInputs(ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage, ProposalInformation proposalInformation, ProgrammeDetails programmeDetails) {
 
-        ProgrammeCreationProgrammeDetailsPage programmeCreationProgrammeDetailsPage = completeProgrammeCreationProposalInformationPage(programmeCreationProposalInformationPage, proposalInformation);
-        CreateProgrammeAddPathwaysPage createProgrammeAddPathwaysPage = completeProgrammeCreationProgrammeDetailsPage(programmeCreationProgrammeDetailsPage, programmeDetails);
-        AddVariantsPage addVariantsPage = completeCreateProgrammeAddPathwaysPage(createProgrammeAddPathwaysPage, programmeDetails.getUniqueProgrammeIdentifier());
-        return completeAddVariantsPage(addVariantsPage);
+        ProgrammeCreationProgrammeDetailsPage programmeCreationProgrammeDetailsPage =
+                programmeCreationProposalInformationPage.completeProgrammeCreationProposalInformationPage(proposalInformation);
 
-    }
+        CreateProgrammeAddPathwaysPage createProgrammeAddPathwaysPage =
+                programmeCreationProgrammeDetailsPage.completeProgrammeCreationProgrammeDetailsPage(programmeDetails);
 
-    private ProgrammeCreationProgrammeDetailsPage completeProgrammeCreationProposalInformationPage(ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage, ProposalInformation proposalInformation) {
-        programmeCreationProposalInformationPage.enterProposalTitle(proposalInformation.getProposalTitle());
-        programmeCreationProposalInformationPage.enterAcademicResponsible(proposalInformation.getAcademicResponsible());
-        programmeCreationProposalInformationPage.selectSchoolProgrammeEditor(proposalInformation.getSchoolProgrammeEditor());
-        programmeCreationProposalInformationPage.enterOwningDepartment(proposalInformation.getOwningDepartment());
-        programmeCreationProposalInformationPage.selectCommitteeLevel(proposalInformation.getCommitteeLevel());
-        return programmeCreationProposalInformationPage.selectNextButton();
+        AddVariantsPage addVariantsPage =
+                createProgrammeAddPathwaysPage.completeCreateProgrammeAddPathwaysPage(programmeDetails.getUniqueProgrammeIdentifier());
 
-    }
-
-    private CreateProgrammeAddPathwaysPage completeProgrammeCreationProgrammeDetailsPage(ProgrammeCreationProgrammeDetailsPage programmeCreationProgrammeDetailsPage, ProgrammeDetails programmeDetails) {
-
-        programmeCreationProgrammeDetailsPage.enterTitle(programmeDetails.getProgrammeTitle());
-        programmeCreationProgrammeDetailsPage.enterFullName(programmeDetails.getProgrammeFullName());
-        programmeCreationProgrammeDetailsPage.enterShortName(programmeDetails.getProgrammeShortName());
-        programmeCreationProgrammeDetailsPage.enterAward(programmeDetails.getAward());
-        programmeCreationProgrammeDetailsPage.selectLocation(programmeDetails.getLocation());
-        programmeCreationProgrammeDetailsPage.selectDistanceLearningEtc(programmeDetails.getDistanceLearning());
-        programmeCreationProgrammeDetailsPage.selectType(programmeDetails.getProgrammeType(), programmeDetails.getHonourLevel(), programmeDetails.getIntegratedMastersType());
-        programmeCreationProgrammeDetailsPage.selectSubjectOne();
-        programmeCreationProgrammeDetailsPage.selectDepartments(programmeDetails.getHonourLevel());
-        programmeCreationProgrammeDetailsPage.selectAdmissionsEntryLevel(programmeDetails.getAdmissionsEntry());
-        programmeCreationProgrammeDetailsPage.selectReplacesCourses();
-        programmeCreationProgrammeDetailsPage.selectAcademicYearProgrammeIsGoingLiveIn(programmeDetails.getAcademicYear());
-        programmeCreationProgrammeDetailsPage.selectYearInIndustryStage(programmeDetails.getYearInIndustryStage());
-        programmeCreationProgrammeDetailsPage.selectStudyAbroadStage(programmeDetails.getStudyAbroadStage());
-        programmeCreationProgrammeDetailsPage.selectIntercalatingStage(programmeDetails.getIntercalatingStage());
-        programmeCreationProgrammeDetailsPage.selectTeachingInstitution(programmeDetails.getTeachingInstitution());
-        programmeCreationProgrammeDetailsPage.selectAwardingInstitution(programmeDetails.getAwardingInstitution());
-
-        return programmeCreationProgrammeDetailsPage.selectNextButton();
-    }
-
-    private AddVariantsPage completeCreateProgrammeAddPathwaysPage(CreateProgrammeAddPathwaysPage createProgrammeAddPathwaysPage, String uniqueProgrammeTextIdentifier) {
-        createProgrammeAddPathwaysPage.enterFullName("Pathway " + uniqueProgrammeTextIdentifier);
-        createProgrammeAddPathwaysPage.enterAwardPrintName("Award " + uniqueProgrammeTextIdentifier);
-        return createProgrammeAddPathwaysPage.selectNextButton();
-    }
-
-    private ProgrammeCreationValidationPage completeAddVariantsPage(AddVariantsPage addVariantsPage) {
-        //TODO add variant build info
-        addVariantsPage.selectIntensity(ProgrammeIntensity.FULL_TIME);
-        addVariantsPage.selectIntakeMonth(IntakeMonth.OCTOBER_START);
-        addVariantsPage.enterLength("3");
-        addVariantsPage.selectUnitsOfMeasurement(UnitOfMeasurement.YEARS);
-        addVariantsPage.selectAddVariantButton();
-        return addVariantsPage.selectCreateProgrammeButton();
+        return addVariantsPage.completeAddVariantsPage(programmeDetails);
     }
 }

@@ -13,20 +13,26 @@ public class CreateProgrammeAddPathwaysPage extends BasePage {
         super(driver);
     }
 
-    public AddVariantsPage selectNextButton() {
+    public AddVariantsPage completeCreateProgrammeAddPathwaysPage(String uniqueProgrammeTextIdentifier) {
+        enterFullName("Pathway " + uniqueProgrammeTextIdentifier);
+        enterAwardPrintName("Award " + uniqueProgrammeTextIdentifier);
+        return selectNextButton();
+    }
+
+    private void enterFullName(String textToEnter) {
+        enterTextIntoElement(FULL_NAME_INPUT_IDENTIFIER, textToEnter);
+
+    }
+
+    private void enterAwardPrintName(String textToEnter) {
+        enterTextIntoElement(AWARD_PRINT_NAME_INPUT_IDENTIFIER, textToEnter);
+    }
+
+    private AddVariantsPage selectNextButton() {
 
         clickElement(NEXT_BUTTON_IDENTIFIER);
 
         return new AddVariantsPage(driver);
 
-    }
-
-    public void enterFullName(String textToEnter) {
-        enterTextIntoElement(FULL_NAME_INPUT_IDENTIFIER, textToEnter);
-
-    }
-
-    public void enterAwardPrintName(String textToEnter) {
-        enterTextIntoElement(AWARD_PRINT_NAME_INPUT_IDENTIFIER, textToEnter);
     }
 }

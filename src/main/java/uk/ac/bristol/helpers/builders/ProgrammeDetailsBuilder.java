@@ -23,6 +23,11 @@ public class ProgrammeDetailsBuilder {
     private IntercalatingStage intercalatingStage;
     private TeachingInstitution teachingInstitution;
     private AwardingInstitution awardingInstitution;
+    // TODO make variant object
+    private ProgrammeIntensity programmeIntensity;
+    private IntakeMonth intakeMonth;
+    private String length;
+    private UnitOfMeasurement unitOfMeasurement;
 
     public ProgrammeDetailsBuilder() {
 
@@ -45,6 +50,10 @@ public class ProgrammeDetailsBuilder {
         this.teachingInstitution = TeachingInstitution.UNIVERSITY_OF_BRISTOL;
         this.awardingInstitution = AwardingInstitution.UNIVERSITY_OF_BRISTOL;
         //TODO add variant details array
+        this.programmeIntensity = ProgrammeIntensity.FULL_TIME;
+        this.intakeMonth = IntakeMonth.OCTOBER_START;
+        this.length = "3";
+        this.unitOfMeasurement = UnitOfMeasurement.YEARS;
     }
 
     public ProgrammeDetailsBuilder withUniqueProgrammeIdentifier(String uniqueProgrammeIdentifier) {
@@ -132,10 +141,32 @@ public class ProgrammeDetailsBuilder {
         return this;
     }
 
+    // TODO variant refactor
+    public ProgrammeDetailsBuilder withProgrammeIntensity(ProgrammeIntensity programmeIntensity) {
+        this.programmeIntensity = programmeIntensity;
+        return this;
+    }
+
+    public ProgrammeDetailsBuilder withIntakeMonth(IntakeMonth intakeMonth) {
+        this.intakeMonth = intakeMonth;
+        return this;
+    }
+
+    public ProgrammeDetailsBuilder withLength(String withLength) {
+        this.length = withLength;
+        return this;
+    }
+
+    public ProgrammeDetailsBuilder unitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
+        return this;
+    }
+
     public ProgrammeDetails create() {
             return new ProgrammeDetails(uniqueProgrammeIdentifier, programmeTitle, programmeFullName,
                     programmeShortName, award, location, distanceLearning, programmeType, honourLevel,
                     integratedMastersType, admissionsEntry, academicYear, yearInIndustryStage, studyAbroadStage,
-                    intercalatingStage, teachingInstitution, awardingInstitution);
+                    intercalatingStage, teachingInstitution, awardingInstitution, programmeIntensity,
+                    intakeMonth, length, unitOfMeasurement);
         }
 }

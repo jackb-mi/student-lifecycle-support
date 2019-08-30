@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.enums.CommitteeLevel;
+import uk.ac.bristol.helpers.ProposalInformation;
 import uk.ac.bristol.pageobjects.BasePage;
 
 import java.util.concurrent.TimeUnit;
@@ -45,19 +46,29 @@ public class ProgrammeCreationProposalInformationPage extends BasePage {
         return this.getTextFromElement(this.PAGE_TITLE_IDENTIFIER);
     }
 
-    public void enterProposalTitle(String textToEnter) {
+    public ProgrammeCreationProgrammeDetailsPage completeProgrammeCreationProposalInformationPage(ProposalInformation proposalInformation) {
+        enterProposalTitle(proposalInformation.getProposalTitle());
+        enterAcademicResponsible(proposalInformation.getAcademicResponsible());
+        selectSchoolProgrammeEditor(proposalInformation.getSchoolProgrammeEditor());
+        enterOwningDepartment(proposalInformation.getOwningDepartment());
+        selectCommitteeLevel(proposalInformation.getCommitteeLevel());
+        return selectNextButton();
+    }
+
+
+    private void enterProposalTitle(String textToEnter) {
         enterTextIntoElement(PROPOSAL_TITLE_INPUT_IDENTIFIER, textToEnter);
     }
 
-    public void enterAcademicResponsible(String textToEnter) {
+    private void enterAcademicResponsible(String textToEnter) {
         enterTextIntoElement(ACADEMIC_RESPONSIBLE_INPUT_IDENTIFIER, textToEnter);
     }
 
-    public void enterOwningDepartment(String textToEnter) {
+    private void enterOwningDepartment(String textToEnter) {
         enterTextIntoElement(OWNING_DEPARTMENT_INPUT_IDENTIFIER, textToEnter);
     }
 
-    public void selectCommitteeLevel(CommitteeLevel committeeLevel) {
+    private void selectCommitteeLevel(CommitteeLevel committeeLevel) {
         switch (committeeLevel) {
             case POSTGRADUATE: {
                 clickElement(POSTGRADUATE_RADIO_BUTTON_IDENTIFIER);
@@ -72,13 +83,13 @@ public class ProgrammeCreationProposalInformationPage extends BasePage {
         }
     }
 
-    public void selectSchoolProgrammeEditor(String value) {
+    private void selectSchoolProgrammeEditor(String value) {
         clickElement(SCHOOL_PROGRAMME_EDITOR_DROPDOWN_IDENTIFIER);
         enterTextIntoElement(SCHOOL_PROGRAMME_EDITOR_DROPDOWN_TEXT_INPUT_IDENTIFIER, value);
         clickElement(SCHOOL_PROGRAMME_EDITOR_DROPDOWN_FIRST_SEARCH_RESULT_IDENTIFIER);
     }
 
-    public ProgrammeCreationProgrammeDetailsPage selectNextButton() {
+    private ProgrammeCreationProgrammeDetailsPage selectNextButton() {
         clickElement(NEXT_BUTTON_IDENTIFIER);
 
         ProgrammeCreationProgrammeDetailsPage programmeCreationProgrammeDetailsPage = new ProgrammeCreationProgrammeDetailsPage(driver);
