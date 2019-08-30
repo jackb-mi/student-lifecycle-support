@@ -26,7 +26,7 @@ public class ProgrammeDetailsBuilder {
     // TODO make variant object
     private ProgrammeIntensity programmeIntensity;
     private IntakeMonth intakeMonth;
-    private String length;
+    private Length length;
     private UnitOfMeasurement unitOfMeasurement;
 
     public ProgrammeDetailsBuilder() {
@@ -52,7 +52,7 @@ public class ProgrammeDetailsBuilder {
         //TODO add variant details array
         this.programmeIntensity = ProgrammeIntensity.FULL_TIME;
         this.intakeMonth = IntakeMonth.OCTOBER_START;
-        this.length = "3";
+        this.length = Length.THREE;
         this.unitOfMeasurement = UnitOfMeasurement.YEARS;
     }
 
@@ -152,7 +152,7 @@ public class ProgrammeDetailsBuilder {
         return this;
     }
 
-    public ProgrammeDetailsBuilder withLength(String withLength) {
+    public ProgrammeDetailsBuilder withLength(Length withLength) {
         this.length = withLength;
         return this;
     }

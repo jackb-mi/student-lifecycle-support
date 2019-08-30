@@ -30,7 +30,7 @@ public class AddVariantsPage extends BasePage {
     public ProgrammeCreationValidationPage completeAddVariantsPage(ProgrammeDetails programmeDetails) {
         selectIntensity(programmeDetails.getProgrammeIntensity());
         selectIntakeMonth(programmeDetails.getIntakeMonth());
-        enterLength(programmeDetails.getLength());
+        enterLength(programmeDetails.getLength().getValue());
         selectUnitsOfMeasurement(programmeDetails.getUnitOfMeasurement());
         selectAddVariantButton();
         return selectCreateProgrammeButton();

@@ -23,7 +23,7 @@ public class ProgrammeDetails {
         private AwardingInstitution awardingInstitution;
         private ProgrammeIntensity programmeIntensity;
         private IntakeMonth intakeMonth;
-        private String length;
+        private Length length;
         private UnitOfMeasurement unitOfMeasurement;
 
         public ProgrammeDetails(String uniqueProgrammeIdentifier, String programmeTitle, String programmeFullName,
@@ -32,7 +32,7 @@ public class ProgrammeDetails {
                                 AdmissionsEntry admissionsEntry, AcademicYear academicYear, YearInIndustryStage yearInIndustryStage,
                                 StudyAbroadStage studyAbroadStage, IntercalatingStage intercalatingStage,
                                 TeachingInstitution teachingInstitution, AwardingInstitution awardingInstitution,
-                                ProgrammeIntensity programmeIntensity, IntakeMonth intakeMonth, String length, UnitOfMeasurement unitOfMeasurement)
+                                ProgrammeIntensity programmeIntensity, IntakeMonth intakeMonth, Length length, UnitOfMeasurement unitOfMeasurement)
         {
             this.uniqueProgrammeIdentifier = uniqueProgrammeIdentifier;
             this.programmeTitle = programmeTitle;
@@ -129,7 +129,7 @@ public class ProgrammeDetails {
 
         public IntakeMonth getIntakeMonth() { return intakeMonth; }
 
-        public String getLength() { return length; }
+        public Length getLength() { return length; }
 
         public UnitOfMeasurement getUnitOfMeasurement() { return unitOfMeasurement; }
 }
