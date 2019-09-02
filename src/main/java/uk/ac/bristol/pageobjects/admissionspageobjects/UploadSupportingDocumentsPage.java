@@ -22,8 +22,6 @@ public class UploadSupportingDocumentsPage extends BasePage {
 
     public UploadedDocumentPage uploadDocument(String filename, String path) throws InterruptedException {
         driver.findElement(UPLOAD_NEW_FILE_IDENTIFIER).click();
-        //switchToIframe(SELECT_FILE_FRAME);
-        //driver.findElement(BROWSE_FOR_FILE_BUTTON_IDENTIFIER).click();
         uploadFile(UPLOAD_FILE_IDENTIFIER, filename, path);
         waitForElementToBeDisplayed(UPLOAD_PANEL_IDENTIFIER,driver, 10);
         driver.findElement(UPLOAD_BUTTON_IDENTIFIER).click();
