@@ -13,8 +13,7 @@ import uk.ac.bristol.pageobjects.UploadFilesPage;
 import java.io.IOException;
 
 import static junit.framework.TestCase.fail;
-import static uk.ac.bristol.enums.CurriculumProposalApprovalLevel.NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY;
-import static uk.ac.bristol.enums.CurriculumProposalApprovalLevel.PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY;
+import static uk.ac.bristol.enums.CurriculumProposalApprovalLevel.*;
 
 public class ProposalInformationPage extends BasePage {
 
@@ -25,6 +24,49 @@ public class ProposalInformationPage extends BasePage {
 
     public ProposalInformationPage(ChromeDriver driver) {
         super(driver);
+    }
+
+    public SubmitProposalPage completeProposalSectionsAndPrepareToSubmitToCatalogue(ProposalInformation proposalInformation) throws Exception {
+
+        completeProposalSections(proposalInformation);
+        return selectPrepareToSubmitProposalButton(proposalInformation.getApprovalLevel());
+    }
+
+    public void completeProposalSections(ProposalInformation proposalInformation) throws Exception {
+
+        switch (proposalInformation.getApprovalLevel()) {
+            case NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY: {
+                completeProposalSection(proposalInformation);
+                selectAndCompleteRationalSection(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+                selectAndCompleteEqualityAnalysisSection(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+                selectAndCompleteOrdinancesAndRegulationsSection(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+                selectAndCompleteSupportSection();
+                selectAndCompleteStudentsAndApplicantsSection(NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY);
+                break;
+            }
+            case PROGRAMME_PATHWAY_WITHDRAWAL_UNIVERSITY:
+            case OTHER_CHANGES_THAT_REQUIRE_APPROVAL_FACULTY: {
+                completeProposalSection(proposalInformation);
+                selectAndCompleteRationalSection(proposalInformation.getApprovalLevel());
+                selectAndCompleteEqualityAnalysisSection(proposalInformation.getApprovalLevel());
+                selectAndCompleteOrdinancesAndRegulationsSection(proposalInformation.getApprovalLevel());
+                selectAndCompleteStudentsAndApplicantsSection(proposalInformation.getApprovalLevel());
+                break;
+            }
+            case PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY: {
+                completeProposalSection(proposalInformation);
+                selectAndCompleteRationalSection(PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
+                selectAndCompleteEqualityAnalysisSection(PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
+                selectAndCompleteStudentsAndApplicantsSection(PROGRAMME_PATHWAY_SUSPENSION_UNIVERSITY);
+                break;
+            }
+            case UNIT_UPDATES_THAT_DO_NOT_REQUIRE_APPROVAL: {
+                completeProposalSection(proposalInformation);
+                break;
+            }
+            default:
+                fail("Unknown Curriculum Proposal Approval Level");
+        }
     }
 
     public void completeProposalSection(ProposalInformation proposalInformation) {
