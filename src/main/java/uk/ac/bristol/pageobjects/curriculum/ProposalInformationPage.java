@@ -156,11 +156,11 @@ public class ProposalInformationPage extends BasePage {
     public SubmitProposalPage selectPrepareToSubmitProposalButton(CurriculumProposalApprovalLevel proposalApprovalLevel) throws InterruptedException {
 
         if (proposalApprovalLevel != NEW_PROGRAMMES_HIGH_RISK_CHANGES_UNIVERSITY) {
-            clickElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.29\\."));
+            clickElement(By.id("ANSWER.TTQ.MENSYS.30."));
         }
 
         else {
-            clickElement(By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.31\\."));
+            clickElement(By.id("ANSWER.TTQ.MENSYS.32."));
         }
 
         SubmitProposalPage submitProposalPage = new SubmitProposalPage(driver);
