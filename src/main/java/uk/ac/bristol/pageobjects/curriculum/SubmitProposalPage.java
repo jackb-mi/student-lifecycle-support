@@ -7,17 +7,19 @@ import uk.ac.bristol.pageobjects.BasePage;
 public class SubmitProposalPage extends BasePage {
 
     public static final By SUBMIT_TO_CATALOGUE_BUTTON_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.7\\.");
+    private static final By SUBMIT_FOR_APPROVAL_BUTTON_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.6.");
 
     public SubmitProposalPage(ChromeDriver driver) {
         super(driver);
     }
 
+    public ProposalSubmissionConfirmationPage submitProposalForApproval() {
+        clickElement(SUBMIT_FOR_APPROVAL_BUTTON_IDENTIFIER);
+        return new ProposalSubmissionConfirmationPage(driver);
+    }
+
     public ViewProposalsToEditSearchPage submitProposalToCatalogue() {
-        waitForElementToBeDisplayed(SUBMIT_TO_CATALOGUE_BUTTON_IDENTIFIER, driver, 5);
-
         clickElement(SUBMIT_TO_CATALOGUE_BUTTON_IDENTIFIER);
-
-        ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = new ViewProposalsToEditSearchPage(driver);
-        return viewProposalsToEditSearchPage;
+        return new ViewProposalsToEditSearchPage(driver);
     }
 }
