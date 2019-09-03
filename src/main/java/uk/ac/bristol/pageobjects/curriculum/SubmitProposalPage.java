@@ -8,6 +8,7 @@ public class SubmitProposalPage extends BasePage {
 
     public static final By SUBMIT_TO_CATALOGUE_BUTTON_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.7\\.");
     private static final By SUBMIT_FOR_APPROVAL_BUTTON_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.6.");
+    private static final By WITHDRAW_PROPOSAL_BUTTON_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.5.");
 
     public SubmitProposalPage(ChromeDriver driver) {
         super(driver);
@@ -21,5 +22,10 @@ public class SubmitProposalPage extends BasePage {
     public ViewProposalsToEditSearchPage submitProposalToCatalogue() {
         clickElement(SUBMIT_TO_CATALOGUE_BUTTON_IDENTIFIER);
         return new ViewProposalsToEditSearchPage(driver);
+    }
+
+    public WithdrawalProposalConfirmationDecisionPage selectWithdrawProposalButton() {
+        clickElement(WITHDRAW_PROPOSAL_BUTTON_IDENTIFIER);
+        return new WithdrawalProposalConfirmationDecisionPage(driver);
     }
 }

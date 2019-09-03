@@ -1,14 +1,17 @@
-package uk.ac.bristol.curriculum;
+package uk.ac.bristol.curriculum.createProposal;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
-import uk.ac.bristol.enums.*;
+import uk.ac.bristol.enums.CommitteeLevel;
+import uk.ac.bristol.enums.HonourLevel;
+import uk.ac.bristol.enums.IntegratedMastersType;
+import uk.ac.bristol.enums.ProgrammeType;
 import uk.ac.bristol.helpers.ProgrammeDetails;
 import uk.ac.bristol.helpers.ProposalInformation;
 import uk.ac.bristol.helpers.builders.ProgrammeDetailsBuilder;
 import uk.ac.bristol.helpers.builders.ProposalInformationBuilder;
-import uk.ac.bristol.pageobjects.HomePage;
+import uk.ac.bristol.helpers.navigationHelper.CurriculumManagementAccessFlows;
 import uk.ac.bristol.pageobjects.curriculum.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +26,7 @@ public class CreateNewProgrammeTest extends BaseTest {
     private ProgrammeDetails pgTaughtProgramme;
     private ProgrammeDetails ugJointHonourIntegratedMastersType2Programme;
     private ProgrammeDetails subDegreeSingleHonourIntegratedMastersType3Programme;
+    private CurriculumManagementAccessFlows commonNavigation = new CurriculumManagementAccessFlows();
 
     @BeforeClass
     public void dataSetUp() {
@@ -49,7 +53,7 @@ public class CreateNewProgrammeTest extends BaseTest {
     @Test
     public void shouldCreateNewProgrammeTypePostgraduateResearch() {
         // Given
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(username, password);
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage = commonNavigation.accessCreateNewProgrammePage(driver, username, password);
         // When
         ProgrammeCreationValidationPage programmeCreationValidationPage =
                 completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, pgProposalInformation, pgResearchProgramme);
@@ -62,7 +66,7 @@ public class CreateNewProgrammeTest extends BaseTest {
     @Test
     public void shouldCreateNewProgrammeTypePostgraduateTaught() {
         // Given
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(username, password);
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage = commonNavigation.accessCreateNewProgrammePage(driver, username, password);
         // When
         ProgrammeCreationValidationPage programmeCreationValidationPage =
                 completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, pgProposalInformation, pgTaughtProgramme);
@@ -75,7 +79,7 @@ public class CreateNewProgrammeTest extends BaseTest {
     @Test
     public void shouldCreateNewProgrammeTypeUndergraduateWithJointHonourLevelAndIntegratedMastersTypeTwo() {
         // Given
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(username, password);
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage = commonNavigation.accessCreateNewProgrammePage(driver, username, password);
         // When
         ProgrammeCreationValidationPage programmeCreationValidationPage =
                 completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, ugProposalInformation, ugJointHonourIntegratedMastersType2Programme);
@@ -88,19 +92,12 @@ public class CreateNewProgrammeTest extends BaseTest {
     @Test
     public void shouldCreateNewProgrammeTypeSubDegreeWithSingleHonourLevelAndIntegratedMastersTypeThree() {
         // Given
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage =  accessCreateNewProgrammePage(username, password);
+        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage = commonNavigation.accessCreateNewProgrammePage(driver, username, password);
         // When
         ProgrammeCreationValidationPage programmeCreationValidationPage = completeCreateProgrammeDataInputs(programmeCreationProposalInformationPage, ugProposalInformation, subDegreeSingleHonourIntegratedMastersType3Programme);
         ProgrammeCreatedPage programmeCreatedPage = programmeCreationValidationPage.selectCreateProgrammeButton();
         // Then
         assertThat(programmeCreatedPage.getProgrammeCreationSuccessMessage()).isEqualTo(ProgrammeCreatedPage.SUCCESSFUL_PROGRAMME_CREATION_TEXT);
-    }
-
-    private ProgrammeCreationProposalInformationPage accessCreateNewProgrammePage(String curriculumUserUsername, String curriculumUserPassword) {
-        HomePage homePage = shouldAccessHomepageForTestEnvironment(curriculumUserUsername, curriculumUserPassword);
-        CurriculumPage curriculumPage = homePage.clickCurriculumLink();
-        ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage = curriculumPage.selectCreateNewProgrammeLink();
-        return programmeCreationProposalInformationPage;
     }
 
     private ProgrammeCreationValidationPage completeCreateProgrammeDataInputs(ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage, ProposalInformation proposalInformation, ProgrammeDetails programmeDetails) {
