@@ -28,6 +28,11 @@ public class BaseTest {
     }
 
     private void instantiateChromeDriver() {
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver.exe");
+
+//        driver = webdriver.Chrome('/path/to/your_chrome_driver_dir/chromedriver',chrome_options=chrome_options)
+
+//                driver = ChromeDriver()
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("start-maximized");
         chromeOptions.addArguments("test-type");
