@@ -21,6 +21,9 @@ public class UploadFilesPage extends BasePage {
     public static final By FILE_NAME_INPUT_IDENTIFIER = By.xpath("//*[starts-with(@id,'upnameo_')]");
     public static final By UPLOAD_BUTTON_IDENTIFIER = By.cssSelector("a[id*='PLUP_upload']");
     public static final By NEXT_BUTTON_IDENTIFIER = By.cssSelector("body > main > div > form > div > div > div > div.sv-panel-footer > div > input.sv-col-xs-12.sv-col-sm-2.sv-btn.sv-btn-primary");
+    private String User = System.getProperty("user.name");
+    private String Path = "/Users/" + User + "/Pictures/";
+    private String File = "juninho.jpg";
 
     public void selectBrowseForFileButton() throws InterruptedException, AWTException {
         driver.findElement(By.partialLinkText("Browse for file")).click();
@@ -30,7 +33,7 @@ public class UploadFilesPage extends BasePage {
 
         waitUntilElementIsVisible(driver, By.xpath("//input[@title='Browse for files']"));
 
-        uploadFile(By.xpath("//input[@title='Browse for files']"), "/Users/jack/Pictures/", "juninho.jpg");
+        uploadFile(By.xpath("//input[@title='Browse for files']"), Path, File);
         waitForElementToBeDisplayed(UPLOAD_PANEL_IDENTIFIER,driver, 10);
         enterTextIntoElement(FILE_NAME_INPUT_IDENTIFIER, "UploadedFile");
         clickElement(UPLOAD_BUTTON_IDENTIFIER);

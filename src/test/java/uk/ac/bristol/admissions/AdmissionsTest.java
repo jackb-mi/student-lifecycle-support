@@ -5,10 +5,11 @@ import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.enums.FolderTreeFolders;
 import uk.ac.bristol.enums.OfferGroups;
+import uk.ac.bristol.helpers.navigationHelper.CommonNavigation;
+import uk.ac.bristol.pageobjects.HomePage;
 import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
 import uk.ac.bristol.pageobjects.admissionspageobjects.FolderTreeOfferGroupPage;
 import uk.ac.bristol.pageobjects.admissionspageobjects.FolderTreePage;
-import uk.ac.bristol.pageobjects.HomePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
@@ -19,10 +20,12 @@ public class AdmissionsTest extends BaseTest {
     private String admissionsUserUsername = "PERF-1";
     private String admissionsUserPassword = "P1";
 
+    private CommonNavigation commonNavigation = new CommonNavigation();
+
     @Test
     public void shouldShouldAdmissionsDashboardLinks() {
         // Given
-        HomePage homePage = shouldAccessHomepage(admissionsUserUsername, admissionsUserPassword);
+        HomePage homePage = commonNavigation.shouldAccessHomepageForSiBetaEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
         // When
         AdmissionsPage admissionsPage = homePage.clickAdmissionsLink();
         // Then
@@ -37,7 +40,7 @@ public class AdmissionsTest extends BaseTest {
     @Test
     public void shouldShowCorrectFolderTreeStandardColumns() throws InterruptedException {
         //Given
-        HomePage homePage = shouldAccessHomepage(admissionsUserUsername, admissionsUserPassword);
+        HomePage homePage = commonNavigation.shouldAccessHomepageForSiBetaEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
         AdmissionsPage admissionsPage = homePage.clickAdmissionsLink();
         FolderTreeOfferGroupPage folderTreeOfferGroupPage = admissionsPage.goToFolderTreeOfferGroups();
         FolderTreePage folderTreePage = folderTreeOfferGroupPage.selectOfferGroup(OfferGroups.AEROSPACE_ENGINEERING.getId());
