@@ -9,7 +9,7 @@ public class CurriculumManagementAccessFlows extends CommonNavigation {
 
 
     public ProgrammeCreationProposalInformationPage accessCreateNewProgrammePage(ChromeDriver driver, String curriculumUserUsername, String curriculumUserPassword) {
-        HomePage homePage = shouldAccessHomepageForTestEnvironment(driver, curriculumUserUsername, curriculumUserPassword);
+        HomePage homePage = shouldAccessHomepageForSLSTestEnvironment(driver, curriculumUserUsername, curriculumUserPassword);
         CurriculumPage curriculumPage = homePage.clickCurriculumLink();
         ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage = curriculumPage.selectCreateNewProgrammeLink();
         return programmeCreationProposalInformationPage;
@@ -17,7 +17,7 @@ public class CurriculumManagementAccessFlows extends CommonNavigation {
 
     public ProposalInformationPage accessProposalLevelDecisionPageAndStartNewProposal(ChromeDriver driver, String username, String password, CurriculumProposalApprovalLevel proposalApprovalLevel) {
 
-        HomePage homePage = shouldAccessHomepageForTestEnvironment(driver, username, password);
+        HomePage homePage = shouldAccessHomepageForSLSTestEnvironment(driver, username, password);
         CurriculumPage curriculumPage = homePage.clickCurriculumLink();
         ViewProposalsToEditSearchPage viewProposalsToEditSearchPage = curriculumPage.selectCreateEditProposalsLink();
         ProposalLevelDecisionPage proposalLevelDecisionPage = viewProposalsToEditSearchPage.selectNewProposalButton();

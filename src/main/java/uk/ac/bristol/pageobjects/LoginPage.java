@@ -22,12 +22,12 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public LoginPage loadLoginPage() {
+    public LoginPage loadLoginPageForSiBetaEnvironment() {
         driver.get(this.buildUrl("evision-b.apps.bris.ac.uk/urd/sits.urd/run/SIW_LGN"));
         return new LoginPage(driver);
     }
 
-    public LoginPage loadLoginPageForTestEnvironment() {
+    public LoginPage loadLoginPageForSLSTestEnvironment() {
         driver.get(this.buildUrl("test.sls.bristol.ac.uk/urd/sits.urd/run/siw_lgn"));
         return new LoginPage(driver);
     }
