@@ -28,6 +28,8 @@ public class BaseTest {
     }
 
     private void instantiateChromeDriver() {
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("start-maximized");
         chromeOptions.addArguments("test-type");
@@ -36,7 +38,6 @@ public class BaseTest {
         chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
-
         this.driver = new ChromeDriver(chromeOptions);
 
         org.openqa.selenium.Dimension d = new org.openqa.selenium.Dimension(1900, 1900);
