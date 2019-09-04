@@ -28,7 +28,7 @@ public class BaseTest {
     }
 
     private void instantiateChromeDriver() {
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 
 //        driver = webdriver.Chrome('/path/to/your_chrome_driver_dir/chromedriver',chrome_options=chrome_options)
 
@@ -41,6 +41,7 @@ public class BaseTest {
         chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
+
 
         this.driver = new ChromeDriver(chromeOptions);
 
