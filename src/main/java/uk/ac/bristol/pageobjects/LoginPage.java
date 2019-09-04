@@ -2,6 +2,7 @@ package uk.ac.bristol.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import uk.ac.bristol.helpers.TestConfiguration;
 import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
 
 public class LoginPage extends BasePage {
@@ -21,6 +22,20 @@ public class LoginPage extends BasePage {
     public LoginPage(ChromeDriver driver) {
         super(driver);
     }
+
+
+    public LoginPage accessLoginPage() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.load();
+        return loginPage;
+    }
+
+    public void load() {
+
+//        driver.navigate().to(TestConfiguration.targetUrl());
+        driver.get(this.buildUrl(TestConfiguration.targetUrl()));
+    }
+
 
     public LoginPage loadLoginPageForSiBetaEnvironment() {
         driver.get(this.buildUrl("evision-b.apps.bris.ac.uk/urd/sits.urd/run/SIW_LGN"));

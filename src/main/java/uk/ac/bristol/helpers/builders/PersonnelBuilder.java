@@ -70,7 +70,8 @@ public class PersonnelBuilder {
     }
 
     public Personnel create() {
-        String apiBody = "<PersonnelList>" +
+        String apiBody =
+        "<PersonnelList>" +
                 "<Personnel>" +
                 "<PersonnelCode>" + personnelCode + "</PersonnelCode>" +
                 "<TitleCode>" + titleCode + "</TitleCode>" +
@@ -84,6 +85,18 @@ public class PersonnelBuilder {
                 "<DateOfBirth>" + dateOfBirth + "</DateOfBirth>" +
                 "</Personnel>" +
                 "</PersonnelList>";
+//
+//        "<PersonnelList>" +
+//                "<Personnel>" +
+//                "<PersonnelCode>TEST145</PersonnelCode>" +
+//                "<TitleCode>REV</TitleCode>" +
+//                "<Surname>TESTYTWO</Surname>" +
+//                "<EmailAddress>testy@bristol.ac.uk</EmailAddress>" +
+//                "<PRSExternalIDCode20>LOGIN145</PRSExternalIDCode20>" +
+//                "<ForenameUsed>ALFRED</ForenameUsed>" +
+//                "<DateOfBirth>1983-01-19</DateOfBirth>" +
+//                "</Personnel>" +
+//                "</PersonnelList>";
 
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.setBody(apiBody);
