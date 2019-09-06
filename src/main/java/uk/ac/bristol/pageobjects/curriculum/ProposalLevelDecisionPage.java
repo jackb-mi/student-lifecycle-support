@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.curriculum;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import uk.ac.bristol.enums.CurriculumProposalApprovalLevel;
 import uk.ac.bristol.pageobjects.BasePage;
@@ -12,7 +12,7 @@ public class ProposalLevelDecisionPage extends BasePage {
 
     private static final By NEXT_BUTTON_IDENTIFIER = By.cssSelector("input.sv-col-xs-12:nth-child(2)");
 
-    public ProposalLevelDecisionPage(ChromeDriver driver) {
+    public ProposalLevelDecisionPage(WebDriver driver) {
         super(driver);
     }
 

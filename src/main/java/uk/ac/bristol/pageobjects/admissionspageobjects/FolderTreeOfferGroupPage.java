@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class FolderTreeOfferGroupPage extends BasePage {
@@ -11,7 +11,7 @@ public class FolderTreeOfferGroupPage extends BasePage {
     public static final By APPLICANT_SEARCH_BUTTON_IDENTIFER = By.id("ui-id-2");
     public static final By LOAD_APPLICANTS_IDENTIFIER = By.cssSelector("div.sv-col-md-2.sv-col-md-offset-8 > input");
 
-    public FolderTreeOfferGroupPage(ChromeDriver driver) {
+    public FolderTreeOfferGroupPage(WebDriver driver) {
         super(driver);
     }
 

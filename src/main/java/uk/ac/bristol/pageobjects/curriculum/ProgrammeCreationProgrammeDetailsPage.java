@@ -5,8 +5,8 @@ import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.enums.*;
 import uk.ac.bristol.helpers.ProgrammeDetails;
 import uk.ac.bristol.pageobjects.BasePage;
@@ -54,7 +54,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     private static final By AWARDING_INSTITUTION_DROPDOWN_IDENTIFIER = By.cssSelector("#ANSWER_TTQ_MENSYS_25__chosen > a > div > b");
     private static final String AWARDING_INSTITUTION_RESULT_IDENTIFIER = "ANSWER.TTQ.MENSYS.25.";
 
-    public ProgrammeCreationProgrammeDetailsPage(ChromeDriver driver) {
+    public ProgrammeCreationProgrammeDetailsPage(WebDriver driver) {
         super(driver);
     }
 

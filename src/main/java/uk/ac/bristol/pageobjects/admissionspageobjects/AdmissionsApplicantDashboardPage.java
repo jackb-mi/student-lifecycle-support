@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class AdmissionsApplicantDashboardPage extends BasePage {
@@ -18,7 +18,7 @@ public class AdmissionsApplicantDashboardPage extends BasePage {
     public static final By QUALIFICATION_DETAILS_FORM = By.xpath("//div[contains(text(), 'Provide')]");
     public static final By REQUEST_FEEDBACK_FORM = By.xpath("//div[contains(text(), 'Request')]");
 
-    public AdmissionsApplicantDashboardPage(ChromeDriver driver) { super(driver); }
+    public AdmissionsApplicantDashboardPage(WebDriver driver) { super(driver); }
 
     public SelectUploadDocumentTypePage goToSelectUploadDocumentTypePage() {
         driver.findElement(UPLOAD_DOCS_IDENTIFIER).click();

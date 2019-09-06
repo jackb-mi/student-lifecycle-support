@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.curriculum;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class SubmitProposalPage extends BasePage {
@@ -10,7 +10,7 @@ public class SubmitProposalPage extends BasePage {
     private static final By SUBMIT_FOR_APPROVAL_BUTTON_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.6.");
     private static final By WITHDRAW_PROPOSAL_BUTTON_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.5.");
 
-    public SubmitProposalPage(ChromeDriver driver) {
+    public SubmitProposalPage(WebDriver driver) {
         super(driver);
     }
 

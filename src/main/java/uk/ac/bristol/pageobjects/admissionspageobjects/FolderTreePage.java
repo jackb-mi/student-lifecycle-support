@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class FolderTreePage extends BasePage {
@@ -25,7 +25,7 @@ public class FolderTreePage extends BasePage {
     public static final By COLUMN_SEVENTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(18)");
     public static final By COLUMN_EIGHTNTEEN_IDENTIFIER = By.cssSelector("#headrow > th:nth-child(19)"); 
 
-    public FolderTreePage(ChromeDriver driver) {
+    public FolderTreePage(WebDriver driver) {
         super(driver);
     }
 
