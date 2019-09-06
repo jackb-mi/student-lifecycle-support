@@ -1,6 +1,6 @@
 package uk.ac.bristol.helpers.navigationHelper;
 
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.enums.CurriculumProposalApprovalLevel;
 import uk.ac.bristol.pageobjects.HomePage;
 import uk.ac.bristol.pageobjects.curriculum.*;
@@ -8,14 +8,14 @@ import uk.ac.bristol.pageobjects.curriculum.*;
 public class CurriculumManagementAccessFlows extends CommonNavigation {
 
 
-    public ProgrammeCreationProposalInformationPage accessCreateNewProgrammePage(ChromeDriver driver, String curriculumUserUsername, String curriculumUserPassword) {
+    public ProgrammeCreationProposalInformationPage accessCreateNewProgrammePage(WebDriver driver, String curriculumUserUsername, String curriculumUserPassword) {
         HomePage homePage = shouldAccessHomepageForSLSTestEnvironment(driver, curriculumUserUsername, curriculumUserPassword);
         CurriculumPage curriculumPage = homePage.clickCurriculumLink();
         ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage = curriculumPage.selectCreateNewProgrammeLink();
         return programmeCreationProposalInformationPage;
     }
 
-    public ProposalInformationPage accessProposalLevelDecisionPageAndStartNewProposal(ChromeDriver driver, String username, String password, CurriculumProposalApprovalLevel proposalApprovalLevel) {
+    public ProposalInformationPage accessProposalLevelDecisionPageAndStartNewProposal(WebDriver driver, String username, String password, CurriculumProposalApprovalLevel proposalApprovalLevel) {
 
         HomePage homePage = shouldAccessHomepageForSLSTestEnvironment(driver, username, password);
         CurriculumPage curriculumPage = homePage.clickCurriculumLink();
