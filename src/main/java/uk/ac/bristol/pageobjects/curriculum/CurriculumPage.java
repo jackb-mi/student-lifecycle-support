@@ -8,6 +8,7 @@ public class CurriculumPage extends BasePage {
 
     private static final By CREATE_EDIT_PROPOSAL_LINK_IDENTIFIER = By.cssSelector("div.sv-panel:nth-child(1) > div:nth-child(4) > a:nth-child(1)");
     private static final By CREATE_NEW_PROGRAMME_LINK_IDENTIFIER = By.cssSelector("body > main > div > div.sv-row > div > div:nth-child(1) > div.sv-list-group > a:nth-child(2)");
+    private static final By VIEW_COMMITTEE_PAPERS_LINK_IDENTIFIER = By.cssSelector("body > main > div > div.sv-row > div > div:nth-child(1) > div.sv-list-group > a:nth-child(3)");
 
 
     public CurriculumPage(ChromeDriver driver) {
@@ -27,5 +28,12 @@ public class CurriculumPage extends BasePage {
 
         ProgrammeCreationProposalInformationPage programmeCreationProposalInformationPage = new ProgrammeCreationProposalInformationPage(driver);
         return programmeCreationProposalInformationPage;
+    }
+
+    public ViewCommitteePapersSearchPage selectViewCommitteePapersLink() {
+        clickElement(VIEW_COMMITTEE_PAPERS_LINK_IDENTIFIER);
+
+        ViewCommitteePapersSearchPage viewCommitteePapersSearchPage = new ViewCommitteePapersSearchPage(driver);
+        return viewCommitteePapersSearchPage;
     }
 }
