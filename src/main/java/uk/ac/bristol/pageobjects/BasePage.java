@@ -46,6 +46,11 @@ public class BasePage {
         driver.findElement(elementId).sendKeys(new CharSequence[]{textToEnter});
     }
 
+    public void clearTextFromElement(By elementId) {
+        waitUntilElementIsVisibleAndIsClickable(elementId);
+        driver.findElement(elementId).clear();
+    }
+
     public void clickElement(By elementId) {
         waitUntilElementIsVisibleAndIsClickable(elementId);
         driver.findElement(elementId).click();
