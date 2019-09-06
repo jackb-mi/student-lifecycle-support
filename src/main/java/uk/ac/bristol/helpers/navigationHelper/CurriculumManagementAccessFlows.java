@@ -25,4 +25,11 @@ public class CurriculumManagementAccessFlows extends CommonNavigation {
 
         return proposalInformationPage;
     }
+
+    public ViewCommitteePapersSearchPage accessViewCommitteePapersSearchPage(ChromeDriver driver, String curriculumUserUsername, String curriculumUserPassword) {
+        HomePage homePage = shouldAccessHomepageForSLSTestEnvironment(driver, curriculumUserUsername, curriculumUserPassword);
+        CurriculumPage curriculumPage = homePage.clickCurriculumLink();
+        ViewCommitteePapersSearchPage viewCommitteePapersSearchPage = curriculumPage.selectViewCommitteePapersLink();
+        return viewCommitteePapersSearchPage;
+    }
 }
