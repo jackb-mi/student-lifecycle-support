@@ -16,7 +16,6 @@ public class ApplicantDashboardTest extends BaseTest {
     private String DocUploadSurname = "USTCP";
     private String DocUploadDateOfBirth = "01/Jun/1987";
     private String DocUploadSsoLink = "ZC5R5P5JLWODbQ6DXrGrXOCTOqNT7mUAscS7MVM8iwTQgD4yH5";
-    //private String User = System.getProperty("user.name");
     private String File = "juninho.jpg";
 
     private CommonNavigation commonNavigation = new CommonNavigation();
