@@ -20,9 +20,9 @@ public class UploadSupportingDocumentsPage extends BasePage {
 
     public UploadSupportingDocumentsPage(ChromeDriver driver) { super(driver); }
 
-    public UploadedDocumentPage uploadDocument(String filename, String path) throws InterruptedException {
+    public UploadedDocumentPage uploadDocument(String filename) throws InterruptedException {
         driver.findElement(UPLOAD_NEW_FILE_IDENTIFIER).click();
-        uploadFile(UPLOAD_FILE_IDENTIFIER, filename, path);
+        uploadFile(UPLOAD_FILE_IDENTIFIER, filename);
         waitForElementToBeDisplayed(UPLOAD_PANEL_IDENTIFIER,driver, 10);
         driver.findElement(UPLOAD_BUTTON_IDENTIFIER).click();
         waitForElementTextToBeDisplayed(FILE_STATUS_PERCENTAGE_IDENTIFIER, driver, 10, "100%");
