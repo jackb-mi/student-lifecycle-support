@@ -152,13 +152,11 @@ public class BasePage {
         driver.switchTo().defaultContent();
     }
 
-    public void uploadFile(By elementId, String pathtofile, String name) {
+    public void uploadFile(By elementId, String name) {
         String filename = (name);
         File file = new File(filename);
- //       elem = (elementId);
- //       String js = "arguments[0].style.height='auto'; arguments[0].style.visibility='visible';";
- //       ((JavascriptExecutor) driver).executeScript(js, elementId);
-        String path = (pathtofile + file);
+        String projectDir = System.getProperty("user.dir");
+        String path = (projectDir +"/src/main/resources/data/"+ file);
         enterTextIntoElement(elementId, path);
     }
 
