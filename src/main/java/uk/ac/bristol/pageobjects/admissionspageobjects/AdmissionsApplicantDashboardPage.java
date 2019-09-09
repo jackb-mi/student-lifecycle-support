@@ -21,6 +21,7 @@ public class AdmissionsApplicantDashboardPage extends BasePage {
     public AdmissionsApplicantDashboardPage(WebDriver driver) { super(driver); }
 
     public SelectUploadDocumentTypePage goToSelectUploadDocumentTypePage() {
+        waitForElementToBeDisplayed(UPLOAD_DOCS_IDENTIFIER, driver, 10);
         driver.findElement(UPLOAD_DOCS_IDENTIFIER).click();
         SelectUploadDocumentTypePage selectUploadDocumentTypePage = new SelectUploadDocumentTypePage(driver);
         return selectUploadDocumentTypePage;
