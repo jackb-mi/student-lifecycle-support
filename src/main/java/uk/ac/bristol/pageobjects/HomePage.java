@@ -30,7 +30,7 @@ public class HomePage extends BasePage {
 
     public CurriculumPage clickCurriculumLink() {
         try {
-            driver.findElement(CURRICULUM_LINK_IDENTIFIER).click();
+            clickElement(CURRICULUM_LINK_IDENTIFIER);
         } catch (NoSuchElementException var2) {
             Assert.fail("Curriculum Link Not Found");
         }
