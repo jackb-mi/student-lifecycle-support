@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ViewProposalsToEditSearchPage extends BasePage {
 
-    public static final String PAGE_TITLE = "View Proposals to Edit";
+    public static final String PAGE_TITLE = "Create / edit Proposals";
     public static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
 
     public ViewProposalsToEditSearchPage(WebDriver driver) {
