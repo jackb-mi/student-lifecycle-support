@@ -16,7 +16,7 @@ public class AdmissionsApplicantLoginPage extends BasePage {
 
     //Navigate to the Applicant Dashboard Login Page
     public AdmissionsApplicantLoginPage applicantLoginPage(String ssolink){
-        driver.get(this.buildUrl("evision-b.apps.bris.ac.uk/urd/sits.urd/run/siw_sso.go?" + ssolink));
+        driver.get(this.buildUrl("test.sls.bristol.ac.uk/urd/sits.urd/run/siw_sso.go?" + ssolink));
         return new AdmissionsApplicantLoginPage(driver);
     }
     //Provide applicant details

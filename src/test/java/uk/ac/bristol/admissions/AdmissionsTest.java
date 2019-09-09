@@ -25,7 +25,7 @@ public class AdmissionsTest extends BaseTest {
     @Test
     public void shouldShouldAdmissionsDashboardLinks() {
         // Given
-        HomePage homePage = commonNavigation.shouldAccessHomepageForSiBetaEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
+        HomePage homePage = commonNavigation.shouldAccessHomepageForSLSTestEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
         // When
         AdmissionsPage admissionsPage = homePage.clickAdmissionsLink();
         // Then
@@ -40,7 +40,7 @@ public class AdmissionsTest extends BaseTest {
     @Test
     public void shouldShowCorrectFolderTreeStandardColumns() throws InterruptedException {
         //Given
-        HomePage homePage = commonNavigation.shouldAccessHomepageForSiBetaEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
+        HomePage homePage = commonNavigation.shouldAccessHomepageForSLSTestEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
         AdmissionsPage admissionsPage = homePage.clickAdmissionsLink();
         FolderTreeOfferGroupPage folderTreeOfferGroupPage = admissionsPage.goToFolderTreeOfferGroups();
         FolderTreePage folderTreePage = folderTreeOfferGroupPage.selectOfferGroup(OfferGroups.AEROSPACE_ENGINEERING.getId());

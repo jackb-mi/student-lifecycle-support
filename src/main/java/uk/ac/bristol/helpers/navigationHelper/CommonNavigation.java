@@ -18,7 +18,7 @@ public class CommonNavigation {
         return loginPage.loadLoginPageForSiBetaEnvironment();
     }
 
-    public AdmissionsApplicantLoginPage applicantLoginPageForSiBetaEnvironment(ChromeDriver driver, String ssolink) {
+    public AdmissionsApplicantLoginPage applicantLoginPageForSLSTestEnvironment(ChromeDriver driver, String ssolink) {
         AdmissionsApplicantLoginPage admissionsApplicantLoginPage = new AdmissionsApplicantLoginPage(driver);
         return admissionsApplicantLoginPage.applicantLoginPage(ssolink);
     }
@@ -37,8 +37,8 @@ public class CommonNavigation {
         return homePage;
     }
 
-    public AdmissionsApplicantDashboardPage shouldAccessApplicantDashboardForSiBetaEnvironment(ChromeDriver driver, String Studentno, String Surname, String dob, String ssolink) {
-        AdmissionsApplicantLoginPage admissionsApplicantLoginPage = applicantLoginPageForSiBetaEnvironment(driver, ssolink);
+    public AdmissionsApplicantDashboardPage shouldAccessApplicantDashboardForSLSTestEnvironment(ChromeDriver driver, String Studentno, String Surname, String dob, String ssolink) {
+        AdmissionsApplicantLoginPage admissionsApplicantLoginPage = applicantLoginPageForSLSTestEnvironment(driver, ssolink);
         admissionsApplicantLoginPage.enterApplicantDetails(Studentno, Surname, dob);
         AdmissionsApplicantDashboardPage admissionsApplicantDashboardPage = admissionsApplicantLoginPage.loginWithValidCredentials();
         return admissionsApplicantDashboardPage;
