@@ -6,6 +6,8 @@ import uk.ac.bristol.pageobjects.BasePage;
 
 public class SubmitProposalPage extends BasePage {
 
+    public static final String PAGE_TITLE = "Submit Proposal";
+    public static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
     public static final By SUBMIT_TO_CATALOGUE_BUTTON_IDENTIFIER = By.cssSelector("#ANSWER\\.TTQ\\.MENSYS\\.7\\.");
     private static final By SUBMIT_FOR_APPROVAL_BUTTON_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.6.");
     private static final By WITHDRAW_PROPOSAL_BUTTON_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.5.");

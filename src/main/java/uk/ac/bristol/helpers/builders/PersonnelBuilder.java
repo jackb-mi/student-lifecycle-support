@@ -8,8 +8,6 @@ import uk.ac.bristol.helpers.RandomData;
 
 import static io.restassured.RestAssured.given;
 
-//import uk.ac.bristol.helpers.PersonnelResponse;
-
 public class PersonnelBuilder {
 
 
@@ -85,18 +83,6 @@ public class PersonnelBuilder {
                 "<DateOfBirth>" + dateOfBirth + "</DateOfBirth>" +
                 "</Personnel>" +
                 "</PersonnelList>";
-//
-//        "<PersonnelList>" +
-//                "<Personnel>" +
-//                "<PersonnelCode>TEST145</PersonnelCode>" +
-//                "<TitleCode>REV</TitleCode>" +
-//                "<Surname>TESTYTWO</Surname>" +
-//                "<EmailAddress>testy@bristol.ac.uk</EmailAddress>" +
-//                "<PRSExternalIDCode20>LOGIN145</PRSExternalIDCode20>" +
-//                "<ForenameUsed>ALFRED</ForenameUsed>" +
-//                "<DateOfBirth>1983-01-19</DateOfBirth>" +
-//                "</Personnel>" +
-//                "</PersonnelList>";
 
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.setBody(apiBody);

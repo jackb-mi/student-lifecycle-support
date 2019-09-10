@@ -17,6 +17,7 @@ import static uk.ac.bristol.enums.CurriculumProposalApprovalLevel.*;
 
 public class ProposalInformationPage extends BasePage {
 
+    private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
     private static final By RATIONAL_SECTION_IDENTIFIER = By.cssSelector("#ui-id-3");
     private static final By EQUALITY_ANALYSIS_SECTION_IDENTIFIER = By.cssSelector("#ui-id-5");
     private static final By ORDINANCES_AND_REGULATIONS_SECTION_IDENTIFIER = By.cssSelector("#ui-id-7");
@@ -204,6 +205,8 @@ public class ProposalInformationPage extends BasePage {
         else {
             clickElement(By.id("ANSWER.TTQ.MENSYS.32."));
         }
+
+
 
         SubmitProposalPage submitProposalPage = new SubmitProposalPage(driver);
         return submitProposalPage;

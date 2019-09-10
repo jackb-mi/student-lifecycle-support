@@ -25,7 +25,7 @@ public class ProposalLevelDecisionPage extends BasePage {
     }
 
     private ProposalInformationPage selectNextButton() {
-        driver.findElement(NEXT_BUTTON_IDENTIFIER).click();
+        clickElement(NEXT_BUTTON_IDENTIFIER);
 
         ProposalInformationPage proposalInformationPage = new ProposalInformationPage(driver);
 
@@ -34,6 +34,7 @@ public class ProposalLevelDecisionPage extends BasePage {
 
     private void selectDropDownOption(String value) {
 
+        waitUntilElementIsVisibleAndIsClickable(APPROVAL_LEVEL_DROPDOWN_IDENTIFIER);
         Select dropDownValue = new Select(driver.findElement(APPROVAL_LEVEL_DROPDOWN_IDENTIFIER));
         dropDownValue.selectByValue(value);
     }
