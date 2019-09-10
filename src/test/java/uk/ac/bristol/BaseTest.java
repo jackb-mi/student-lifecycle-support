@@ -43,7 +43,6 @@ public class BaseTest {
     }
 
     private void instantiateChromeDriver() {
-//      System.setProperty("webdriver.chrome.driver", "/usr/local/bin/WebDriver");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("disable-plugins");
         chromeOptions.addArguments("disable-extensions");
