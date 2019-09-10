@@ -74,7 +74,6 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
-//        testListener.onTestFailure(result);
         onTestFailure(result);
         if(driver != null) {
             try {
