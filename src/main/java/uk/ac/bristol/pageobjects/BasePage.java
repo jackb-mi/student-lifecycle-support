@@ -4,7 +4,6 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -14,11 +13,11 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage {
-    public static ChromeDriver driver;
+    public static WebDriver driver;
     public static final By PAGE_TITLE_IDENTIFIER = By.cssSelector("#sitsportalpagetitle");
     public static final By NEXT_BUTTON_IDENTIFIER = By.name("NEXT.DUMMY.MENSYS.1");
 
-    public BasePage(ChromeDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -69,11 +68,11 @@ public class BasePage {
         return driver.findElement(elementId).getText();
     }
 
-    public Boolean isElementClickable(ChromeDriver driver, By elementId) {
+    public Boolean isElementClickable(WebDriver driver, By elementId) {
         return driver.findElement(elementId).isEnabled();
     }
 
-    public Boolean isElementDisplayed(ChromeDriver driver, By elementId) {
+    public Boolean isElementDisplayed(WebDriver driver, By elementId) {
         return driver.findElements(elementId).size() > 0;
     }
 
@@ -82,7 +81,7 @@ public class BasePage {
         waitUntilElementIsClickable(driver, elementId);
     };
 
-    public void waitUntilElementIsVisible(ChromeDriver driver, By elementId) {
+    public void waitUntilElementIsVisible(WebDriver driver, By elementId) {
         try {
             Awaitility.await().atMost(10L, TimeUnit.SECONDS).until(() -> isElementDisplayed(driver, elementId));
         } catch (ConditionTimeoutException cte) {
@@ -90,7 +89,7 @@ public class BasePage {
         }
     }
 
-    public void waitUntilElementIsClickable(ChromeDriver driver, By elementId) {
+    public void waitUntilElementIsClickable(WebDriver driver, By elementId) {
         try {
             Awaitility.await().atMost(5L, TimeUnit.SECONDS).until(() -> isElementClickable(driver, elementId));
         } catch (ConditionTimeoutException cte) {
@@ -152,18 +151,21 @@ public class BasePage {
         driver.switchTo().defaultContent();
     }
 
-    public void uploadFile(By elementId, String pathtofile, String name) {
+    public void uploadFile(By elementId, String name) {
         String filename = (name);
         File file = new File(filename);
- //       elem = (elementId);
- //       String js = "arguments[0].style.height='auto'; arguments[0].style.visibility='visible';";
- //       ((JavascriptExecutor) driver).executeScript(js, elementId);
-        String path = (pathtofile + file);
+        String projectDir = System.getProperty("user.dir");
+        String path = (projectDir +"/src/main/resources/data/"+ file);
         enterTextIntoElement(elementId, path);
     }
 
     public void scrollDown() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("scroll(0, 450);");
+    }
+
+    public void scrollDownTwo() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("scroll(450, 900);");
     }
 }

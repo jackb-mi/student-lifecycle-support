@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.curriculum;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class WithdrawalProposalConfirmationDecisionPage extends BasePage {
@@ -11,7 +11,7 @@ public class WithdrawalProposalConfirmationDecisionPage extends BasePage {
     public static final By ARE_YOU_SURE_MESSAGE_TEXT_IDENTIFIER = By.cssSelector("body > main > div > form > div > div > div > div.sv-panel-body > div > div > fieldset > p:nth-child(3)");
     public static final String ARE_YOU_SURE_MESSAGE = "Are you sure you want to withdraw proposal";
 
-    public WithdrawalProposalConfirmationDecisionPage(ChromeDriver driver) {
+    public WithdrawalProposalConfirmationDecisionPage(WebDriver driver) {
         super(driver);
     }
 

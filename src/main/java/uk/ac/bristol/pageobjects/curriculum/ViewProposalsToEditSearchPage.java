@@ -4,17 +4,17 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 import java.util.concurrent.TimeUnit;
 
 public class ViewProposalsToEditSearchPage extends BasePage {
 
-    public static final String PAGE_TITLE = "View Proposals to Edit";
+    public static final String PAGE_TITLE = "Create / edit Proposals";
     public static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
 
-    public ViewProposalsToEditSearchPage(ChromeDriver driver) {
+    public ViewProposalsToEditSearchPage(WebDriver driver) {
         super(driver);
     }
 

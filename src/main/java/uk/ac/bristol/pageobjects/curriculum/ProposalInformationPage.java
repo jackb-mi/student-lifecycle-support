@@ -3,7 +3,7 @@ package uk.ac.bristol.pageobjects.curriculum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import uk.ac.bristol.enums.CurriculumProposalApprovalLevel;
 import uk.ac.bristol.helpers.ProposalInformation;
@@ -17,12 +17,13 @@ import static uk.ac.bristol.enums.CurriculumProposalApprovalLevel.*;
 
 public class ProposalInformationPage extends BasePage {
 
+    private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
     private static final By RATIONAL_SECTION_IDENTIFIER = By.cssSelector("#ui-id-3");
     private static final By EQUALITY_ANALYSIS_SECTION_IDENTIFIER = By.cssSelector("#ui-id-5");
     private static final By ORDINANCES_AND_REGULATIONS_SECTION_IDENTIFIER = By.cssSelector("#ui-id-7");
     private static final By SUPPORT_SECTION_IDENTIFIER = By.cssSelector("#ui-id-9");
 
-    public ProposalInformationPage(ChromeDriver driver) {
+    public ProposalInformationPage(WebDriver driver) {
         super(driver);
     }
 
@@ -204,6 +205,8 @@ public class ProposalInformationPage extends BasePage {
         else {
             clickElement(By.id("ANSWER.TTQ.MENSYS.32."));
         }
+
+
 
         SubmitProposalPage submitProposalPage = new SubmitProposalPage(driver);
         return submitProposalPage;

@@ -25,7 +25,6 @@ public class CreateCurriculumProposalTestSubmitToCatalogueTest extends BaseTest 
     private ProposalInformation ugProposalNewProgrammesHighRiskChangesUniversity;
     private CurriculumManagementAccessFlows commonNavigation = new CurriculumManagementAccessFlows();
 
-
     @BeforeClass
     public void dataSetUp() {
         username = "SLSP-CRT02";

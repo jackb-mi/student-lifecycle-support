@@ -4,7 +4,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.enums.CommitteeLevel;
 import uk.ac.bristol.helpers.ProposalInformation;
 import uk.ac.bristol.pageobjects.BasePage;
@@ -29,7 +29,7 @@ public class ProgrammeCreationProposalInformationPage extends BasePage {
     private static final By NEXT_BUTTON_IDENTIFIER = By.name("NEXT.DUMMY.MENSYS.1");
 
 
-    public ProgrammeCreationProposalInformationPage(ChromeDriver driver) {
+    public ProgrammeCreationProposalInformationPage(WebDriver driver) {
         super(driver);
     }
 

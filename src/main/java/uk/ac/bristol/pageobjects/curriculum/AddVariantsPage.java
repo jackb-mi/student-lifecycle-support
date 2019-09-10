@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.curriculum;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.enums.IntakeMonth;
 import uk.ac.bristol.enums.ProgrammeIntensity;
 import uk.ac.bristol.enums.UnitOfMeasurement;
@@ -22,7 +22,7 @@ public class AddVariantsPage extends BasePage {
     private static final By CREATE_PROGRAMME_BUTTON_IDENTIFIER = By.id("ANSWER.TTQ.MENSYS.8.");
 
 
-    public AddVariantsPage(ChromeDriver driver) {
+    public AddVariantsPage(WebDriver driver) {
         super(driver);
     }
 

@@ -5,8 +5,8 @@ import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import uk.ac.bristol.enums.*;
 import uk.ac.bristol.helpers.ProgrammeDetails;
 import uk.ac.bristol.pageobjects.BasePage;
@@ -54,7 +54,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     private static final By AWARDING_INSTITUTION_DROPDOWN_IDENTIFIER = By.cssSelector("#ANSWER_TTQ_MENSYS_25__chosen > a > div > b");
     private static final String AWARDING_INSTITUTION_RESULT_IDENTIFIER = "ANSWER.TTQ.MENSYS.25.";
 
-    public ProgrammeCreationProgrammeDetailsPage(ChromeDriver driver) {
+    public ProgrammeCreationProgrammeDetailsPage(WebDriver driver) {
         super(driver);
     }
 
@@ -171,7 +171,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     }
 
     private void selectType(ProgrammeType programmeType, HonourLevel honourLevel, IntegratedMastersType integratedMastersType) {
-
+        scrollDown();
         clickElement(TYPE_DROPDOWN_IDENTIFIER);
         switch (programmeType) {
             case POSTGRADUATE_RESEARCH: {
@@ -185,14 +185,14 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
             case SUB_DEGREE: {
                 clickElement(By.id(TYPE_RESULT_IDENTIFIER + "2"));
                 selectSingleOrJoinHonoursRadioButton(honourLevel);
-                scrollDown();
+                scrollDownTwo();
                 selectIntegratedMastersType(integratedMastersType);
                 break;
             }
             case UNDERGRADUATE: {
                 clickElement(By.id(TYPE_RESULT_IDENTIFIER + "3"));
                 selectSingleOrJoinHonoursRadioButton(honourLevel);
-                scrollDown();
+                scrollDownTwo();
                 selectIntegratedMastersType(integratedMastersType);
                 break;
             }
