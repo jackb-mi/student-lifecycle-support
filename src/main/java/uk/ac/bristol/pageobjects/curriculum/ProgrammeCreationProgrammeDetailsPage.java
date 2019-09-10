@@ -185,14 +185,14 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
             case SUB_DEGREE: {
                 clickElement(By.id(TYPE_RESULT_IDENTIFIER + "2"));
                 selectSingleOrJoinHonoursRadioButton(honourLevel);
-                scrollDown();
+                scrollDownTwo();
                 selectIntegratedMastersType(integratedMastersType);
                 break;
             }
             case UNDERGRADUATE: {
                 clickElement(By.id(TYPE_RESULT_IDENTIFIER + "3"));
                 selectSingleOrJoinHonoursRadioButton(honourLevel);
-                scrollDown();
+                scrollDownTwo();
                 selectIntegratedMastersType(integratedMastersType);
                 break;
             }

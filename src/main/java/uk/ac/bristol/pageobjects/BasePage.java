@@ -163,4 +163,9 @@ public class BasePage {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("scroll(0, 450);");
     }
+
+    public void scrollDownTwo() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("scroll(450, 900);");
+    }
 }
