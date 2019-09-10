@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.curriculum;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class CurriculumPage extends BasePage {
@@ -11,7 +11,7 @@ public class CurriculumPage extends BasePage {
     private static final By VIEW_COMMITTEE_PAPERS_LINK_IDENTIFIER = By.cssSelector("body > main > div > div.sv-row > div > div:nth-child(1) > div.sv-list-group > a:nth-child(3)");
 
 
-    public CurriculumPage(ChromeDriver driver) {
+    public CurriculumPage(WebDriver driver) {
         super(driver);
     }
 

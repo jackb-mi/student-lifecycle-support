@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
 
 public class LoginPage extends BasePage {
@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     public static final String INVALID_PASSWORD_MESSAGE_HEADING = "Password Invalid";
     public static final String INVALID_PASSWORD_MESSAGE_DETAIL = "  You must enter a valid password to login.";
 
-    public LoginPage(ChromeDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 

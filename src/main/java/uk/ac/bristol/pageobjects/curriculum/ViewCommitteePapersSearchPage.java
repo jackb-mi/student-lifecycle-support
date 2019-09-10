@@ -4,7 +4,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.enums.CommitteeApprovalLevel;
 import uk.ac.bristol.enums.CommitteeLevel;
 import uk.ac.bristol.enums.Faculty;
@@ -16,7 +16,7 @@ import static junit.framework.TestCase.fail;
 
 public class ViewCommitteePapersSearchPage extends BasePage {
 
-    public static final String PAGE_TITLE = "Committee Papers";
+    public static final String PAGE_TITLE = "View Committee Papers";
     private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
     private static final By COMMITTEE_LEVEL_DROPDOWN_IDENTIFIER = By.name("POP_UDEF.POP.MENSYS.1-1");
     private static final By SCHOOL_SEARCH_TEXT_IDENTIFIER = By.name("POP_UDEF.POP.MENSYS.2-1");
@@ -26,7 +26,7 @@ public class ViewCommitteePapersSearchPage extends BasePage {
     private static final By PG_RADIO_BUTTON_IDENTIFIER = By.xpath("//*[@id=\"POP_UDEF.F3ACB95AD09911E99483D36F7F23575B.POP.MENSYS.4-12\"]");
     private static final By BOTH_RADIO_BUTTON_IDENTIFIER = By.xpath("//*[@id=\"POP_UDEF.F3ACB95AD09911E99483D36F7F23575B.POP.MENSYS.4-13\"]");
 
-    public ViewCommitteePapersSearchPage(ChromeDriver driver) {
+    public ViewCommitteePapersSearchPage(WebDriver driver) {
         super(driver);
     }
 

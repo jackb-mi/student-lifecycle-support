@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class UploadSupportingDocumentsPage extends BasePage {
@@ -18,7 +18,7 @@ public class UploadSupportingDocumentsPage extends BasePage {
     public static final By PREVIEW_IDENTIFIER = By.name("NEXT.DUMMY.MENSYS.1");
     public static final By DOCUMENT_UPLOAD_IDENTIFIER = By.cssSelector("div:nth-child(4) > p");
 
-    public UploadSupportingDocumentsPage(ChromeDriver driver) { super(driver); }
+    public UploadSupportingDocumentsPage(WebDriver driver) { super(driver); }
 
     public UploadedDocumentPage uploadDocument(String filename) throws InterruptedException {
         driver.findElement(UPLOAD_NEW_FILE_IDENTIFIER).click();
@@ -27,6 +27,7 @@ public class UploadSupportingDocumentsPage extends BasePage {
         driver.findElement(UPLOAD_BUTTON_IDENTIFIER).click();
         waitForElementTextToBeDisplayed(FILE_STATUS_PERCENTAGE_IDENTIFIER, driver, 10, "100%");
         driver.findElement(CLOSE_UPLOAD_FRAME_IDENTIFIER).click();
+        waitForElementToBeDisplayed(PREVIEW_IDENTIFIER, driver, 10);
         driver.findElement(PREVIEW_IDENTIFIER).click();
         waitForElementToBeDisplayed(DOCUMENT_UPLOAD_IDENTIFIER, driver, 10);
         UploadedDocumentPage uploadedDocumentPage = new UploadedDocumentPage(driver);

@@ -1,14 +1,14 @@
 package uk.ac.bristol.pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.curriculum.ProposalInformationPage;
 
 import java.io.File;
 
 public class UploadFilesPage extends BasePage {
 
-    public UploadFilesPage(ChromeDriver driver) {
+    public UploadFilesPage(WebDriver driver) {
         super(driver);
     }
 

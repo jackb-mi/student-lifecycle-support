@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class AdmissionsPage extends BasePage {
@@ -65,7 +65,7 @@ public class AdmissionsPage extends BasePage {
     public static final By FOLDEROVERVIEW_LINK_IDENTIFIER = By.cssSelector("div:nth-child(2) > div > div > div:nth-child(6) > div.sv-list-group.sv-portal-2-col > a:nth-child(24)");
 
 
-    public AdmissionsPage(ChromeDriver driver) {
+    public AdmissionsPage(WebDriver driver) {
         super(driver);
     }
 

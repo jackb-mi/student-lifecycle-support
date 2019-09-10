@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class SelectUploadDocumentTypePage extends BasePage {
@@ -11,7 +11,7 @@ public class SelectUploadDocumentTypePage extends BasePage {
     public static final By NEXT_BUTTON_IDENTIFIER = By.name("NEXT.DUMMY.MENSYS.1");
 
 
-    public SelectUploadDocumentTypePage(ChromeDriver driver) { super(driver); }
+    public SelectUploadDocumentTypePage(WebDriver driver) { super(driver); }
 
     public UploadSupportingDocumentsPage goToUploadDocumentPage(String doctype) {
         selectFromDropdown(DOCUMENT_TYPE_IDENTIFIER, doctype);
