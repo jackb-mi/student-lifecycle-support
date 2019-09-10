@@ -4,7 +4,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.enums.CommitteeApprovalLevel;
 import uk.ac.bristol.enums.CommitteeLevel;
 import uk.ac.bristol.enums.Faculty;
@@ -26,7 +26,7 @@ public class ViewCommitteePapersSearchPage extends BasePage {
     private static final By PG_RADIO_BUTTON_IDENTIFIER = By.xpath("//*[@id=\"POP_UDEF.F3ACB95AD09911E99483D36F7F23575B.POP.MENSYS.4-12\"]");
     private static final By BOTH_RADIO_BUTTON_IDENTIFIER = By.xpath("//*[@id=\"POP_UDEF.F3ACB95AD09911E99483D36F7F23575B.POP.MENSYS.4-13\"]");
 
-    public ViewCommitteePapersSearchPage(ChromeDriver driver) {
+    public ViewCommitteePapersSearchPage(WebDriver driver) {
         super(driver);
     }
 
