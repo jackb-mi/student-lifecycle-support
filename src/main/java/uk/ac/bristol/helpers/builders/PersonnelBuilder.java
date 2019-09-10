@@ -8,8 +8,6 @@ import uk.ac.bristol.helpers.RandomData;
 
 import static io.restassured.RestAssured.given;
 
-//import uk.ac.bristol.helpers.PersonnelResponse;
-
 public class PersonnelBuilder {
 
 
@@ -70,7 +68,8 @@ public class PersonnelBuilder {
     }
 
     public Personnel create() {
-        String apiBody = "<PersonnelList>" +
+        String apiBody =
+        "<PersonnelList>" +
                 "<Personnel>" +
                 "<PersonnelCode>" + personnelCode + "</PersonnelCode>" +
                 "<TitleCode>" + titleCode + "</TitleCode>" +

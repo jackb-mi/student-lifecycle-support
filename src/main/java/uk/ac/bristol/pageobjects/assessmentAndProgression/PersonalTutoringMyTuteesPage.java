@@ -1,4 +1,4 @@
-package uk.ac.bristol.pageobjects.curriculum;
+package uk.ac.bristol.pageobjects.assessmentAndProgression;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
@@ -9,12 +9,12 @@ import uk.ac.bristol.pageobjects.BasePage;
 
 import java.util.concurrent.TimeUnit;
 
-public class ViewProposalsToEditSearchPage extends BasePage {
+public class PersonalTutoringMyTuteesPage extends BasePage {
 
-    public static final String PAGE_TITLE = "Create / edit Proposals";
-    public static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
+    public static final String PAGE_TITLE = "My Tutees";
+    private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
 
-    public ViewProposalsToEditSearchPage(WebDriver driver) {
+    public PersonalTutoringMyTuteesPage(WebDriver driver) {
         super(driver);
     }
 
@@ -29,14 +29,5 @@ public class ViewProposalsToEditSearchPage extends BasePage {
         }
 
         return this.getTextFromElement(this.PAGE_TITLE_IDENTIFIER);
-
-    }
-
-    public ProposalLevelDecisionPage selectNewProposalButton() {
-
-        driver.findElement(By.cssSelector("#poddatasection > div.sv-panel.sv-panel-primary > div.sv-panel-body > div > div > fieldset > span > div > div > a")).click();
-
-        ProposalLevelDecisionPage proposalLevelDecisionPage = new ProposalLevelDecisionPage(driver);
-        return proposalLevelDecisionPage;
     }
 }

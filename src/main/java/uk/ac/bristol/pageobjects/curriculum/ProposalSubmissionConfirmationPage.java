@@ -4,7 +4,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 import java.util.concurrent.TimeUnit;
@@ -14,7 +14,7 @@ public class ProposalSubmissionConfirmationPage extends BasePage {
     public static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
     public static final Object PAGE_TITLE = "Email sent";
 
-    public ProposalSubmissionConfirmationPage(ChromeDriver driver) {
+    public ProposalSubmissionConfirmationPage(WebDriver driver) {
         super(driver);
     }
 

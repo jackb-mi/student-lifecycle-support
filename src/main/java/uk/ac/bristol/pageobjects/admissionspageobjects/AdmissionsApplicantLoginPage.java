@@ -1,7 +1,7 @@
 package uk.ac.bristol.pageobjects.admissionspageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 public class AdmissionsApplicantLoginPage extends BasePage {
@@ -12,7 +12,7 @@ public class AdmissionsApplicantLoginPage extends BasePage {
     public static final By DASHBOARD_GUIDE_BUTTON_IDENTIFIER = (By.cssSelector("div.sv-col-sm-offset-5.sv-col-sm-2 > input"));
 
 
-    public AdmissionsApplicantLoginPage(ChromeDriver driver) { super(driver); }
+    public AdmissionsApplicantLoginPage(WebDriver driver) { super(driver); }
 
     //Navigate to the Applicant Dashboard Login Page
     public AdmissionsApplicantLoginPage applicantLoginPage(String ssolink){

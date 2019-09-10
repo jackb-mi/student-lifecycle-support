@@ -4,7 +4,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.BasePage;
 
 import java.util.concurrent.TimeUnit;
@@ -14,7 +14,7 @@ public class ViewCommitteePapersSearchResultsPage extends BasePage {
     public static final String PAGE_TITLE = "Results";
     private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
 
-    public ViewCommitteePapersSearchResultsPage(ChromeDriver driver) {
+    public ViewCommitteePapersSearchResultsPage(WebDriver driver) {
         super(driver);
     }
 
