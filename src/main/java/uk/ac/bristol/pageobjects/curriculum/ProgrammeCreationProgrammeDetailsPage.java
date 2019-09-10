@@ -171,7 +171,7 @@ public class ProgrammeCreationProgrammeDetailsPage extends BasePage {
     }
 
     private void selectType(ProgrammeType programmeType, HonourLevel honourLevel, IntegratedMastersType integratedMastersType) {
-
+        scrollDown();
         clickElement(TYPE_DROPDOWN_IDENTIFIER);
         switch (programmeType) {
             case POSTGRADUATE_RESEARCH: {

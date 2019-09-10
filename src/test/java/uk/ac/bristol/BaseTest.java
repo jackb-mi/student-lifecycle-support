@@ -58,7 +58,7 @@ public class BaseTest {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.addArguments("disable-plugins");
         firefoxOptions.addArguments("disable-extensions");
-//      firefoxOptions.addArguments("--headless");
+        firefoxOptions.addArguments("--headless");
         firefoxOptions.addArguments("--no-sandbox");
         firefoxOptions.addArguments("--disable-dev-shm-usage");
         this.driver = new FirefoxDriver(firefoxOptions);
