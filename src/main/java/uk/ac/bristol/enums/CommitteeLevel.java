@@ -2,7 +2,8 @@ package uk.ac.bristol.enums;
 
 public enum CommitteeLevel {
     POSTGRADUATE("PG"),
-    UNDERGRADUATE("UG");
+    UNDERGRADUATE("UG"),
+    BOTH("");
 
     private String value;
 
