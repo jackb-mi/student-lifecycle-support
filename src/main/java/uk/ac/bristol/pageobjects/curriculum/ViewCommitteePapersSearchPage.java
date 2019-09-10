@@ -16,7 +16,7 @@ import static junit.framework.TestCase.fail;
 
 public class ViewCommitteePapersSearchPage extends BasePage {
 
-    public static final String PAGE_TITLE = "Committee Papers";
+    public static final String PAGE_TITLE = "View Committee Papers";
     private static final By PAGE_TITLE_IDENTIFIER = By.cssSelector(".sv-panel-title");
     private static final By COMMITTEE_LEVEL_DROPDOWN_IDENTIFIER = By.name("POP_UDEF.POP.MENSYS.1-1");
     private static final By SCHOOL_SEARCH_TEXT_IDENTIFIER = By.name("POP_UDEF.POP.MENSYS.2-1");
