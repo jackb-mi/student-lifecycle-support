@@ -7,9 +7,9 @@ import uk.ac.bristol.enums.FolderTreeFolders;
 import uk.ac.bristol.enums.OfferGroups;
 import uk.ac.bristol.helpers.navigationHelper.CommonNavigation;
 import uk.ac.bristol.pageobjects.HomePage;
-import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
-import uk.ac.bristol.pageobjects.admissionspageobjects.FolderTreeOfferGroupPage;
-import uk.ac.bristol.pageobjects.admissionspageobjects.FolderTreePage;
+import uk.ac.bristol.pageobjects.admissions.AdmissionsPage;
+import uk.ac.bristol.pageobjects.admissions.FolderTreeOfferGroupPage;
+import uk.ac.bristol.pageobjects.admissions.FolderTreePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;

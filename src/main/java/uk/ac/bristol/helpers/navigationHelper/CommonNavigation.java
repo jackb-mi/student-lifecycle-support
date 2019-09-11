@@ -3,8 +3,8 @@ package uk.ac.bristol.helpers.navigationHelper;
 import org.openqa.selenium.WebDriver;
 import uk.ac.bristol.pageobjects.HomePage;
 import uk.ac.bristol.pageobjects.LoginPage;
-import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsApplicantDashboardPage;
-import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsApplicantLoginPage;
+import uk.ac.bristol.pageobjects.admissions.AdmissionsApplicantDashboardPage;
+import uk.ac.bristol.pageobjects.admissions.AdmissionsApplicantLoginPage;
 
 public class CommonNavigation {
 

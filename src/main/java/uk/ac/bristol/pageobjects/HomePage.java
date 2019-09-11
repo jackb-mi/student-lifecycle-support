@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsPage;
+import uk.ac.bristol.pageobjects.admissions.AdmissionsPage;
 import uk.ac.bristol.pageobjects.assessmentAndProgression.AssessmentAndProgressionPage;
 import uk.ac.bristol.pageobjects.curriculum.CurriculumPage;
 

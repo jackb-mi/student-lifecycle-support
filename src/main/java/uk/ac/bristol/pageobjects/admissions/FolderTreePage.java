@@ -1,4 +1,4 @@
-package uk.ac.bristol.pageobjects.admissionspageobjects;
+package uk.ac.bristol.pageobjects.admissions;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

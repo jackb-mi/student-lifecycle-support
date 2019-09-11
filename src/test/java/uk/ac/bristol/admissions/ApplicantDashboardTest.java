@@ -3,10 +3,10 @@ package uk.ac.bristol.admissions;
 import org.testng.annotations.Test;
 import uk.ac.bristol.BaseTest;
 import uk.ac.bristol.helpers.navigationHelper.CommonNavigation;
-import uk.ac.bristol.pageobjects.admissionspageobjects.AdmissionsApplicantDashboardPage;
-import uk.ac.bristol.pageobjects.admissionspageobjects.SelectUploadDocumentTypePage;
-import uk.ac.bristol.pageobjects.admissionspageobjects.UploadSupportingDocumentsPage;
-import uk.ac.bristol.pageobjects.admissionspageobjects.UploadedDocumentPage;
+import uk.ac.bristol.pageobjects.admissions.AdmissionsApplicantDashboardPage;
+import uk.ac.bristol.pageobjects.admissions.SelectUploadDocumentTypePage;
+import uk.ac.bristol.pageobjects.admissions.UploadSupportingDocumentsPage;
+import uk.ac.bristol.pageobjects.admissions.UploadedDocumentPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
