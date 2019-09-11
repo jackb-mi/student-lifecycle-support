@@ -9,7 +9,7 @@ import uk.ac.bristol.pageobjects.assessmentAndProgression.AssessmentAndProgressi
 import uk.ac.bristol.pageobjects.curriculum.CurriculumPage;
 
 public class HomePage extends BasePage {
-    private static final By ADMISSIONS_LINK_IDENTIFIER = By.cssSelector("body > main > div > div.sv-row > div > div > div.sv-list-group > div:nth-child(1) > a");
+    private static final By ADMISSIONS_LINK_IDENTIFIER = By.linkText("Admissions");
     private static final By CURRICULUM_LINK_IDENTIFIER = By.id("CRT001");
     private static final By REGISTRATIONS_LINK_IDENTIFIER = By.cssSelector("#REG001");
     private static final By ASSESSMENT_AND_PROGRESSION_LINK_IDENTIFIER = By.cssSelector("#EXA001");
