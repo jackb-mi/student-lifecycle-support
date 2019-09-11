@@ -49,7 +49,7 @@ public class BaseTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("disable-plugins");
         chromeOptions.addArguments("disable-extensions");
-        chromeOptions.addArguments("--headless");
+       // chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
         this.driver = new ChromeDriver(chromeOptions);
@@ -74,7 +74,8 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
-        onTestFailure(result);
+        if (!result.isSuccess()){
+        onTestFailure(result);}
         if(driver != null) {
             try {
                 driver.quit();

@@ -17,15 +17,15 @@ import static org.junit.Assert.fail;
 public class AdmissionsTest extends BaseTest {
 
 
-    private String admissionsUserUsername = "PERF-1";
-    private String admissionsUserPassword = "P1";
+    private String admissionsUserUsername = "TEST3186@bristol.ac.uk";
+    private String admissionsUserPassword = "Test@1234";
 
     private CommonNavigation commonNavigation = new CommonNavigation();
 
     @Test
     public void shouldShouldAdmissionsDashboardLinks() {
         // Given
-        HomePage homePage = commonNavigation.shouldAccessHomepageForSiBetaEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
+        HomePage homePage = commonNavigation.shouldAccessHomepageForSLSTestEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
         // When
         AdmissionsPage admissionsPage = homePage.clickAdmissionsLink();
         // Then
@@ -40,7 +40,7 @@ public class AdmissionsTest extends BaseTest {
     @Test
     public void shouldShowCorrectFolderTreeStandardColumns() throws InterruptedException {
         //Given
-        HomePage homePage = commonNavigation.shouldAccessHomepageForSiBetaEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
+        HomePage homePage = commonNavigation.shouldAccessHomepageForSLSTestEnvironment(driver, admissionsUserUsername, admissionsUserPassword);
         AdmissionsPage admissionsPage = homePage.clickAdmissionsLink();
         FolderTreeOfferGroupPage folderTreeOfferGroupPage = admissionsPage.goToFolderTreeOfferGroups();
         FolderTreePage folderTreePage = folderTreeOfferGroupPage.selectOfferGroup(OfferGroups.AEROSPACE_ENGINEERING.getId());
@@ -263,50 +263,30 @@ public class AdmissionsTest extends BaseTest {
         assertThat(isElementDisplayed(admissionsPage.LNAT_LINK_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.WORK_EXP_LINK_IDENTIFIER)).isTrue();
 
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_TITLE_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.TALK_SEARCH_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAY_SUMMARY_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.ACCESS_REQUIREMENTS_LINK_IDENTIFIER)).isTrue();
-
-        assertThat(isElementDisplayed(admissionsPage.HELP_SUPPORT_TITLE_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.USER_GUIDES_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.POLICY_GUIDANCE_LINK_IDENTIFIER)).isTrue();
-
         assertThat(isElementDisplayed(admissionsPage.ATTRIBUTE_MANAGEMENT_TITLE_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.MANAGE_COURSE_ATTRIBUTES_LINK_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.MANAGE_ADMISSIONS_THRESHOLDS_LINK_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.DUPLICATE_MATCHING_LINK_IDENTIFIER)).isTrue();
 
         assertThat(isElementDisplayed(admissionsPage.CONFIRMATION_TITLE_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.CONFIRMATION_CALL_CENTRE_LINK_IDENTIFIER)).isTrue();
+        //assertThat(isElementDisplayed(admissionsPage.CONFIRMATION_CALL_CENTRE_LINK_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.CONFIRMATION_PROCESSING_GROUP_LINK_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.CONFIRMATION_PROCESSING_CHECKING_LINK_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.MANAGE_NEAR_MISS_LINK_IDENTIFIER)).isTrue();
         assertThat(isElementDisplayed(admissionsPage.SEND_CONFIRMATION_LINK_IDENTIFIER)).isTrue();
 
         assertThat(isElementDisplayed(admissionsPage.REPORTS_TITLE_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_SCHOOL_BOOKINGS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_DEPARTMENT_BOOKINGS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_ACCESS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_TALK_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_MATURE_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_FULL_TALKS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_PARK_RIDE_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_VET_SCIENCE_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_WP_BOOKERS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.OPEN_DAYS_INTERNATIONAL_BOOKERS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.PG_APPLICATIONS_VISA_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.PG_APPLICATIONS_VISA_REQUEST_VIEWER_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.PG_NEW_STUDENT_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.PG_COMBINED_CAS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.PG_PROGRAMME_FEES_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.PRE_SESSIONAL_APP_SUMMARY_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.APPLICANT_CONTACT_DETAILS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.CLEARANCE_CHECK_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.NEW_DOCUMENT_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.ACCEPTED_APPLICANTS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.REGISTRATION_PACKS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.DECISION_CHECKER_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.WP_PROJECTS_LINK_IDENTIFIER)).isTrue();
-        assertThat(isElementDisplayed(admissionsPage.FOLDEROVERVIEW_LINK_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.APPLICATION_DECISIONS_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.SCORING_RUBRIC_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.FOLDER_OVERVIEW_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.ACCEPTED_APPLICANTS)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.SCORING_AND_TURNAROUND_TIMES)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.DECISION_CHECKER_IDETIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.EXTENUATING_CIRCUMSTANCES_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.APPLICANTION_LOG_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.CLEARANCE_CHECK_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.NEW_DOCUMENT_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.REGISTRATION_PACKS_IDENTIFIER)).isTrue();
+        assertThat(isElementDisplayed(admissionsPage.WP_PROJECTS_IDENTIFIER)).isTrue();
     }
 }
