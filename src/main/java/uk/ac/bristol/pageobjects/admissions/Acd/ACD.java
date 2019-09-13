@@ -1,4 +1,4 @@
-package uk.ac.bristol.pageobjects.admissions;
+package uk.ac.bristol.pageobjects.admissions.Acd;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,29 +18,6 @@ public class ACD extends BasePage {
     public static final By DECISION_TAB_IDENTIFIER = By.xpath("//div[contains(text(), 'Request')]");
     public static final By ACTUAL_QUALS_TAB_IDENTIFIER = By.xpath("//div[contains(text(), 'Request')]");
     public static final By APPLICANTION_LOG_TAB_IDENTIFIER = By.xpath("//div[contains(text(), 'Request')]");
-
-    public class SearchPanel {
-        //***Need to change selector for these***
-        //public static final By SEARCH_CRITERIA_HEADER_IDENTIFIER = By.className("sv-panel-title");
-        //public static final By SEARCH_RESULTS_HEADER_IDENTIFIER = By.className("sv-panel-title");
-        public final By STUDENT_CODE_FIELD_IDENTIFIER = By.cssSelector("#CAP_STUC");
-        public final By UCAS_ID_FIELD_IDENTIFIER = By.cssSelector("#CAP_UCI2");
-        public final By FORENAME_FIELD_IDENTIFIER = By.id("STU_FNM1");
-        public final By SURNAME_FIELD_IDENTIFIER = By.id("STU_SURN");
-        public final By RETRIEVE_BUTTON_IDENTIFIER = By.id("FINDAPP");
-        public final By STUCODE_COLUMN_IDENTIFIER = By.id("FINDAPP");
-        public final By CAPSEQN_COLUMN_IDENTIFIER = By.id("FINDAPP");
-        public final By APFSEQN_COLUMN_IDENTIFIER = By.id("FINDAPP");
-        public final By DOB_COLUMN_IDENTIFIER = By.id("FINDAPP");
-        public final By NAME_COLUMN_IDENTIFIER = By.id("FINDAPP");
-        public final By PERSONALID_COLUMN_IDENTIFIER = By.id("FINDAPP");
-        public final By GENDER_COLUMN_IDENTIFIER = By.id("FINDAPP");
-        public final By DECISION_RESPONSE_IDENTIFIER = By.id("FINDAPP");
-        public final By SELECT_COLUMN_IDENTIFIER = By.id("FINDAPP");
-        public final By SELECT_BUTTON_IDENTIFIER = By.id("0_SELECT");
-        public final By CLEAR_BUTTON_IDENTIFIER = By.cssSelector(".ui-helper-clearfix > div > button:nth-child(1)T");
-        public final By CLOSE_BUTTON_IDENTIFIER = By.cssSelector(".ui-helper-clearfix > div > button:nth-child(2)");
-    }
 
     public class AcdHeaerPanel {
         public final By PREVIOUS_BUTTON_IDENTIFIER = By.id("LEFT");
@@ -70,7 +47,14 @@ public class ACD extends BasePage {
     }
 
     public class ApplicantDetails {
-        public final By PERSONAL_DETAILS_HEADER_IDENTIFIER = By.cssSelector("#ycls-tab-UDT3 > div > div.sv-row > div:nth-child(1) > div > div > div > div > h3");
+
+
+
+
+
+
+
+
 
 
     }
